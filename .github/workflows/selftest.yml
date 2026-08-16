@@ -1,0 +1,89 @@
+name: self-test
+
+# Runs HookGuard against its own fixtures on every push. The point is not just
+# "does it run" — it asserts the scanner still DISCRIMINATES: the guarded hook
+# must stay clean and the risky one must still trip. A scanner that drifts into
+# flagging everything (or nothing) fails here rather than in someone's PR.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Guarded hook must produce zero findings
+        run: |
+          python3 src/ci.py tests/fixtures/GuardedHook.sol \
+            --comment false --fail-on never --json-out out/guarded.json
+          n=$(python3 -c "import json;print(sum(len(c['findings']) for c in json.load(open('out/guarded.json'))))")
+          echo "guarded findings: $n"
+          if [ "$n" != "0" ]; then
+            echo "::error::GuardedHook produced $n finding(s); expected 0. False positives make the tool untrustworthy."
+            exit 1
+          fi
+
+      - name: Risky hook must trip the HIGH rules
+        run: |
+          python3 src/ci.py tests/fixtures/RiskyHook.sol \
+            --comment false --fail-on never --json-out out/risky.json
+          python3 - <<'PY'
+          import json, sys
+          f = [x for c in json.load(open("out/risky.json")) for x in c["findings"]]
+          codes = {x[1] for x in f}
+          need = {"PERMISSIONLESS_ATTACHMENT", "MISSING_POOLMANAGER_GUARD",
+                  "REVERT_DOS_RISK", "REENTRANCY_SURFACE"}
+          missing = need - codes
+          print("risky findings:", sorted(codes))
+          if missing:
+              print(f"::error::RiskyHook no longer trips: {sorted(missing)}")
+              sys.exit(1)
+          if not any(x[0] == "HIGH" for x in f):
+              print("::error::RiskyHook produced no HIGH finding")
+              sys.exit(1)
+          for x in f:
+              if len(x) < 4 or not isinstance(x[3], int) or x[3] < 1:
+                  print(f"::error::finding {x[1]} has no usable line number: {x[:2]}")
+                  sys.exit(1)
+          PY
+
+      - name: Exit code must be non-zero when a HIGH is present
+        run: |
+          if python3 src/ci.py tests/fixtures/RiskyHook.sol --comment false --fail-on HIGH; then
+            echo "::error::expected a non-zero exit for a HIGH finding"
+            exit 1
+          fi
+          echo "correctly failed on HIGH"
+
+      - name: Registry pass still reproduces
+        run: |
+          python3 src/risk.py | tail -3
+
+  action:
+    # Uses the action exactly the way a consumer would, against the fixtures.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: scan
+        uses: ./
+        with:
+          paths: tests/fixtures
+          fail-on: never
+          comment: 'false'
+          json-out: out/action.json
+      - name: Outputs are populated
+        run: |
+          echo "contracts=${{ steps.scan.outputs.contracts }}"
+          echo "high=${{ steps.scan.outputs.high }}"
+          echo "total=${{ steps.scan.outputs.total }}"
+          test "${{ steps.scan.outputs.contracts }}" = "2" || {
+            echo "::error::expected 2 hook contracts in fixtures"; exit 1; }
+          test "${{ steps.scan.outputs.high }}" -ge 1 || {
+            echo "::error::expected at least one HIGH from the risky fixture"; exit 1; }
