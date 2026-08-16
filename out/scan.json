@@ -1,7 +1,350 @@
 [
  {
-  "file": "tests/fixtures/GuardedHook.sol",
-  "contract": "GuardedHook",
+  "file": "corpus/arbitrum/0x192499a79cadb2e9ba221a252a3e3b7adc714880/ArrakisPrivateHook.sol",
+  "contract": "ArrakisPrivateHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    34
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    216
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x2097d7329389264a1542ad50802bb0de84a650c4/BVCCDynamicFeeHook_v4.3.sol",
+  "contract": "BVCCDynamicFeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    27
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x3043e182047f8696dfe483535785ed1c3681bac4/BackGeoOracle.sol",
+  "contract": "BackGeoOracle",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x3e61d0519d598bf2dfaef5b8fa0256bf7e1d60c0/SafeSwapHook.sol",
+  "contract": "SafeSwapHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x4440854b2d02c57a0dc5c58b7a884562d875c0c4/UniswapV4KEMHook.sol",
+  "contract": "UniswapV4KEMHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    25
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x486579de6391053df88a073cebd673dd545200cc/DynamicFeeHookV2.sol",
+  "contract": "DynamicFeeHookV2",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    52
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x5e645c3d580976ca9e3fe77525d954e73a0ce0c0/Alphix.sol",
+  "contract": "Alphix",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x62076c1cb0ea57acd2353ff45226a1fb1e6100c4/DynamicFeeHook.sol",
+  "contract": "DynamicFeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    23
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x63d3132013839ed98e9dbc375a88d5eebf52d040/WLimitOrderHook.sol",
+  "contract": "WLimitOrderHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    15
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x6d9c97c94c88a67d1a93bbc8ccae3a5322208844/FeeHook.sol",
+  "contract": "FeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    24
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0x986522646bf8f57d3b28c5808ede9b1e5cca0ac0/FedzHook.sol",
+  "contract": "FedzHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    17
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0xb4f4949e8d0a177bb6d2fea33e9516bb219610cc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    54
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0xbf4b4a83708474528a93c123f817e7f2a0637a88/VTSwapHook.sol",
+  "contract": "VTSwapHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0xc4bf39a096a1b610dd6186935f3ad99c66239080/SlippageFeeHook.sol",
+  "contract": "SlippageFeeHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    27
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    27
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0xd73339564ac99f3e09b0ebc80603ff8b796500c0/LimitOrderHook.sol",
+  "contract": "LimitOrderHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    17
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    17
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/arbitrum/0xe025cb6c58826ac79e2052c350250881f8f51bc0/EMADynamicFeeHook.sol",
+  "contract": "EMADynamicFeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    17
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/avalanche/0x3b48f794a1d67febe95f66b6dff38c0a7e934044/StrategyFeeHook.sol",
+  "contract": "StrategyFeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    22
+   ]
+  ],
+  "declared": [
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/avalanche/0x9ce226b94717bd5c483daa880efe915b7d382aa8/AuthHook.sol",
+  "contract": "AuthSwaps",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/avalanche/0xbfc09fb0a5cde1457b4393d056601531fb52eaa8/AuthHook.sol",
+  "contract": "AuthSwaps",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/avalanche/0xe32a5d788c568fc5a671255d17b618e70552e044/ArenaHook.sol",
+  "contract": "ArenaHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x0469a4bd3724dc86c9542f4694c976da13c450c0/ZoraV4CoinHook.sol",
+  "contract": "ZoraV4CoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    58
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x04e08a08bab77b389e970a65d91fba8bf4ef6080/GovernedLBPStrategy.sol",
+  "contract": "GovernedLBPStrategy",
   "findings": [],
   "declared": [
    "beforeInitialize",
@@ -10,41 +353,2340 @@
   "returnsDelta": []
  },
  {
-  "file": "tests/fixtures/RiskyHook.sol",
-  "contract": "RiskyHook",
+  "file": "corpus/base/0x07cd1505846bc1a0a7b38065684e7dcbde6f2000/LpGuardHook.sol",
+  "contract": "LpGuardHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x0b8fbfa9861af89d7d2cf2e55f61cee982a22080/GovernedLBPStrategy.sol",
+  "contract": "GovernedLBPStrategy",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x0fd17dc291cd04fedd6d2f1fa6c1f247e6546a40/OwnerManagedRangeHook.sol",
+  "contract": "OwnerManagedRangeHook",
   "findings": [
    [
     "HIGH",
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
-    9
+    29
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x1216eefa98a268d5c610ffdd9c0eb2d6b1290aec/ApexYieldHook.sol",
+  "contract": "ApexYieldHook",
+  "findings": [],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x121f94835dab08ebaf084809a97e525b69e400cc/UniswapV4SwapFeeHookV1.sol",
+  "contract": "UniswapV4SwapFeeHookV1",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    55
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x1258e5f3c71ca9dce95ce734ba5759532e46d040/CreatorCoinHook.sol",
+  "contract": "CreatorCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    15
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x167f77c0d015414f65bf3dde7198922c399e2080/GovernedLBPStrategy.sol",
+  "contract": "GovernedLBPStrategy",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x180d1981ee8d6cc878df230a05787cd831f70040/SpectraLaunchHook.sol",
+  "contract": "SpectraHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    38
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x1c0c00db76140b4e7deb997ccf1246d8d6b80440/A51pegHook.sol",
+  "contract": "A51pegHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    21
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x1e0c810a30fb82391df936602c1161421381b0c8/SuperStrategy.sol",
+  "contract": "SuperStrategy",
+  "findings": [
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    466
    ],
    [
     "HIGH",
     "MISSING_POOLMANAGER_GUARD",
     "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    20
+    510
    ],
    [
     "HIGH",
     "MISSING_POOLMANAGER_GUARD",
     "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    549
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    119
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x2063a2b535a59911532cdf4d1cf28501099f0aec/SnapBackHook.sol",
+  "contract": "SnapBackHook",
+  "findings": [],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x21411ada5ba2bf1ed416a2573e037cda070ce080/MoonsendFeeHook_BASE.sol",
+  "contract": "MoonsendFeeHook_BASE",
+  "findings": [
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    110
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    117
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    125
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    133
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x22266a74902ef7546ab80156539e7a349ad20040/BpegAll.sol",
+  "contract": "BpegRenderer",
+  "findings": [],
+  "declared": [
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x23321f11a6d44fd1ab790044fdfde5758c902fdc/BidWall.sol",
+  "contract": "BidWall",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    36
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x23321f11a6d44fd1ab790044fdfde5758c902fdc/Indexer.sol",
+  "contract": "IndexerSubscriber",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    17
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x23321f11a6d44fd1ab790044fdfde5758c902fdc/PoolSwap.sol",
+  "contract": "PoolSwap",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    21
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x23321f11a6d44fd1ab790044fdfde5758c902fdc/PositionManager.sol",
+  "contract": "PositionManager",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "afterDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x23321f11a6d44fd1ab790044fdfde5758c902fdc/ReferralEscrow.sol",
+  "contract": "ReferralEscrow",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     27
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x23ab2e6d4ab0c5f872567098671f1ffb46fd2500/TELxIncentiveHook.sol",
+  "contract": "TELxIncentiveHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x2677fdcb72f59766d03d9ee4a6c7390bf3ed0800/DCAHook.sol",
+  "contract": "DCAHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    13
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x26ebd6c282328625bce05dac77f9d5f2bc3568cc/WhaleAIHook.sol",
+  "contract": "WhaleAIHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    145
    ],
    [
     "MEDIUM",
-    "REVERT_DOS_RISK",
-    "beforeSwap makes an external call (oracle.) with no try/catch. If the dependency reverts or is paused, every swap on every pool using this hook is bricked \u2014 including LP exits.",
-    23
-   ],
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    145
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x282b5e7d546b5e39963753d11b2bb6cd3c9da088/MoonpotHook.sol",
+  "contract": "MoonpotHook",
+  "findings": [
    [
     "MEDIUM",
-    "REENTRANCY_SURFACE",
-    "afterSwap performs a token/native transfer with no reentrancy guard. One hook serves many pools; assume re-entry into this and other pools before the callback sequence completes.",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    33
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x2934140dcf6ca98eed60e8e31d3816d038f92080/GovernedLBPStrategy.sol",
+  "contract": "GovernedLBPStrategy",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x2b15a16b3ef024005ba899bb51764fcd58cf9040/ContentCoinHook.sol",
+  "contract": "ContentCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    15
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x2c56c1302b6224b2bb1906c46f554622e12f10c4/BVCCDynamicFeeHook_v4.3.sol",
+  "contract": "BVCCDynamicFeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     27
    ]
   ],
   "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x2fd54aaf84023eda60bd65edb5914c1a306850cc/SeedifyFeeHook.sol",
+  "contract": "SeedifyFeeHook",
+  "findings": [],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x35b9b5b023897da8c7375ba6141245b8416460cc/wASSBLASTER.sol",
+  "contract": "wASSBLASTER",
+  "findings": [
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    237
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    289
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    359
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x3e342a06f9592459d75721d6956b570f02ef2dc0/UniswapV4MulticurveInitializer.sol",
+  "contract": "UniswapV4MulticurveInitializer",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    122
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x3e342a06f9592459d75721d6956b570f02ef2dc0/UniswapV4MulticurveInitializerHook.sol",
+  "contract": "UniswapV4MulticurveInitializerHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x3e342a06f9592459d75721d6956b570f02ef2dc0/UniswapV4ScheduledMulticurveInitializer.sol",
+  "contract": "UniswapV4ScheduledMulticurveInitializer",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    40
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x3e342a06f9592459d75721d6956b570f02ef2dc0/UniswapV4ScheduledMulticurveInitializerHook.sol",
+  "contract": "UniswapV4ScheduledMulticurveInitializerHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x4440854b2d02c57a0dc5c58b7a884562d875c0c4/UniswapV4KEMHook.sol",
+  "contract": "UniswapV4KEMHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    25
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x4519e2b040ff1b64fa03abe2aef0bc99d7cceaa8/GPXHooks.sol",
+  "contract": "GPXHooks",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x4627812f40bdd47c8fa1a4daac8f40bc26ef8040/SpectraLaunch.sol",
+  "contract": "SpectraLaunch",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    37
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x46b8c74d89a647063311ad08c7456732d5e94888/WontonHook.sol",
+  "contract": "WontonHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    32
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x4ab61d774b170d0610fdcc5559aae2c356c600c8/PubhouseHook.sol",
+  "contract": "PubhouseHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    26
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x51bba15255406cfe7099a42183302640ba7dafdc/BidWall.sol",
+  "contract": "BidWall",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    33
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x51bba15255406cfe7099a42183302640ba7dafdc/PoolSwap.sol",
+  "contract": "PoolSwap",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    21
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x51bba15255406cfe7099a42183302640ba7dafdc/PositionManager.sol",
+  "contract": "PositionManager",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "afterDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x51bba15255406cfe7099a42183302640ba7dafdc/ReferralEscrow.sol",
+  "contract": "ReferralEscrow",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    25
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x52a22cda1d1e77f8997fceb2165c6fc76b808440/KPEGHook.sol",
+  "contract": "KPEGHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    17
+   ]
+  ],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x5613c279e8db9815dbd0cdfbd10515eabd350088/Hook.sol",
+  "contract": "Hook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    29
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    165
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x570a48f96035c2874de1c0f13c5075a05683b0cc/DeliHook.sol",
+  "contract": "DeliHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    39
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x59f39091fd6f47e9d0bcb466f74e305f1709bac4/BackGeoOracle.sol",
+  "contract": "BackGeoOracle",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x5bf219b3cc11e3f6dd8dc8fc89d7d1deb0431040/ContentCoinHook.sol",
+  "contract": "ContentCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x5c062f56e7f1a5cf25b95e626af15176f52fb0c8/SuperStrategy.sol",
+  "contract": "SuperStrategy",
+  "findings": [
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    450
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    494
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    528
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    117
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x5ca33d75df69c4f46093b7eb7f0f6dacace62080/GovernedLBPStrategy.sol",
+  "contract": "GovernedLBPStrategy",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x5cd525c621afca515bf58631d4733fba7b72aae4/VerifiedPoolsBasicHook.sol",
+  "contract": "VerifiedPoolsBasicHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x5e5d19d22c85a4aef7c1fdf25fb22a5a38f71040/CreatorCoinHook.sol",
+  "contract": "CreatorCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x6145a9cd8d6b597af774ea95b73684416848e088/MoonpotHook.sol",
+  "contract": "MoonpotHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    31
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x631352aaa9d6554848af674106bcd8bb9e59a5cf/AngstromL2.sol",
+  "contract": "AngstromL2",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    47
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterAddLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    274
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterRemoveLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    297
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    326
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    370
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x6646b048fba0a70a692f7690ae6dad83bcacb0c8/SuperStrategy.sol",
+  "contract": "SuperStrategy",
+  "findings": [
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    451
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    495
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    529
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    117
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x66799c2eb2590006820f6cb826133176ecdda888/EstateHook.sol",
+  "contract": "EstateHook",
+  "findings": [],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x66e51deab56975bb1c64413bd3ab01fa95b82acc/XDHook.sol",
+  "contract": "XDHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x6b80ce7c95b0206b14ce9977c904e11918d48040/SpectraLaunch.sol",
+  "contract": "SpectraLaunch",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    37
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x6cabe2fd9fb60c5afcab7de732b0a224fc382eec/GPOHooks.sol",
+  "contract": "GPOHooks",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x704268ac7043aeef50f47b6a03ae68ccf808e044/BtcAccHook.sol",
+  "contract": "BtcAccHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x70e163cf92b4565a0eeba7d12d2cfcebd51c40cc/BaseTestHooks.sol",
+  "contract": "BaseTestHooks",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    11
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x70e163cf92b4565a0eeba7d12d2cfcebd51c40cc/FloorHook.sol",
+  "contract": "FloorHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    36
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x755776c51399f7ee15d47ddaf47347d26f5ca840/BasememeHook.sol",
+  "contract": "BasememeHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x7624ac031ca94a9d6f732a74ef90ea10c5510040/SpectraLaunch.sol",
+  "contract": "SpectraLaunch",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    37
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x7cbbff9c4fcd74b221c535f4fb4b1db04f1b9044/AlphixLVRFee.sol",
+  "contract": "AlphixLVRFee",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    37
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x7fa49d29481b6d168505ccde26635e204c09e5cf/AngstromL2.sol",
+  "contract": "AngstromL2",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    47
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterAddLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    281
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterRemoveLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    304
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    333
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    382
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x81542dc43aff247eff4a0ecefc286a2973ae1040/ContentCoinHook.sol",
+  "contract": "ContentCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x8218fa8d7922e22aed3556a09d5a715f16ad5040/CreatorCoinHook.sol",
+  "contract": "CreatorCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    15
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x84129dc46b712614471131e8b9dadd64c7d21bc0/EMADynamicFeeHook.sol",
+  "contract": "EMADynamicFeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    17
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x84bbab8cac69bf6711ba81f9915dc346f4cf2088/RwagmiHookV2.sol",
+  "contract": "RwagmiHookV2",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    29
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x854f820475b229b7805a386f758cfb285023d040/CreatorCoinHook.sol",
+  "contract": "CreatorCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x880bfa436d722bfde337eafc7c22123c17b90088/BuffetHook.sol",
+  "contract": "BuffetAMM",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    28
+   ]
+  ],
+  "declared": [
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x88c9ff9fc0b22cca42265d3f1d1c2c39e41cdacc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    54
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x892d3c2b4abeaaf67d52a7b29783e2161b7cad40/UniswapV4MulticurveInitializer.sol",
+  "contract": "UniswapV4MulticurveInitializer",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    122
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x892d3c2b4abeaaf67d52a7b29783e2161b7cad40/UniswapV4MulticurveInitializerHook.sol",
+  "contract": "UniswapV4MulticurveInitializerHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x8dc3b85e1dc1c846ebf3971179a751896842e5dc/AnyPositionManager.sol",
+  "contract": "AnyPositionManager",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "afterDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x8dc3b85e1dc1c846ebf3971179a751896842e5dc/BidWall.sol",
+  "contract": "BidWall",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    36
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x8dc3b85e1dc1c846ebf3971179a751896842e5dc/Indexer.sol",
+  "contract": "IndexerSubscriber",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    17
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x8dc3b85e1dc1c846ebf3971179a751896842e5dc/PoolSwap.sol",
+  "contract": "PoolSwap",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    21
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x8dc3b85e1dc1c846ebf3971179a751896842e5dc/PositionManager.sol",
+  "contract": "PositionManager",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "afterDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x8dc3b85e1dc1c846ebf3971179a751896842e5dc/ReferralEscrow.sol",
+  "contract": "ReferralEscrow",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    27
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x8f29bd5c8429730fa4c46e6295c4e679ededd0cc/AegisHook.sol",
+  "contract": "AegisHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    52
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x9278f6e55ce58519c79dc1ab0ad3b29ea7821040/CreatorCoinHook.sol",
+  "contract": "CreatorCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x9301690be9ac901de52c5ebff883862bbfc99040/CreatorCoinHook.sol",
+  "contract": "CreatorCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x95afbc0fccf974b41380f24e562f15b6dd90fac8/DeliHookConstantProduct.sol",
+  "contract": "DeliHookConstantProduct",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    38
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x972fd516470c0e1841211c51c37ab2f7dfe44040/SpectraLaunchHook.sol",
+  "contract": "SpectraHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    38
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x9850de90445233c2561dd29fc67aaa353b48a888/V4PoolHook.sol",
+  "contract": "V4PoolHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x98aa253a44497dfa77ec1170e69f851cb17c2000/AquinasPoolHook.sol",
+  "contract": "AquinasPoolHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x994f0eefe7a9857698218205b721466ef0038ac0/SwayHookJIT.sol",
+  "contract": "SwayHookJIT",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    95
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x9d11f9505ca92f4b6983c1285d1ac0aaff7ec0c0/LimitOrderHook.sol",
+  "contract": "LimitOrderHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    17
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    17
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x9e433f32bb5481a9ca7dff5b3af74a7ed041a888/flETHHooks.sol",
+  "contract": "flETHHooks",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x9ea932730a7787000042e34390b8e435dd839040/ContentCoinHook.sol",
+  "contract": "ContentCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xa1ebdd5ca6470bbd67114331387f2dda7bfad040/ZoraV4CoinHook.sol",
+  "contract": "ZoraV4CoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    36
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xaa226363fb5b8718d125357ddc6539a82489e0c4/LoyaltyVolatilityHook.sol",
+  "contract": "LoyaltyVolatilityHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb030fd8c2f8576f8ab05cfbbe659285e7d7a1040/ContentCoinHook.sol",
+  "contract": "ContentCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb3ae7c0495fe4d20786cf6d119c7a821f83f40cc/BurnOnSwapHook.sol",
+  "contract": "BurnOnSwapHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    17
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb476c448da4453208df4e371fee26f4e630d3044/Spawner.sol",
+  "contract": "Spawner",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    23
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb476c448da4453208df4e371fee26f4e630d3044/SpawnerHook.sol",
+  "contract": "SpawnerHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb4f4949e8d0a177bb6d2fea33e9516bb219610cc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    54
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb903b0ab7bcee8f5e4d8c9b10a71aac7135d6fdc/BidWall.sol",
+  "contract": "BidWall",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    36
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb903b0ab7bcee8f5e4d8c9b10a71aac7135d6fdc/Indexer.sol",
+  "contract": "IndexerSubscriber",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    17
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb903b0ab7bcee8f5e4d8c9b10a71aac7135d6fdc/PoolSwap.sol",
+  "contract": "PoolSwap",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    21
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb903b0ab7bcee8f5e4d8c9b10a71aac7135d6fdc/PositionManager.sol",
+  "contract": "PositionManager",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "afterDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb903b0ab7bcee8f5e4d8c9b10a71aac7135d6fdc/ReferralEscrow.sol",
+  "contract": "ReferralEscrow",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    27
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xb91ca876220674c2efc20ced68de110a075250c0/HomelanderUniV4Plugin.sol",
+  "contract": "HomelanderUniV4Plugin",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    22
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    22
+   ],
+   [
+    "MEDIUM",
+    "REENTRANCY_SURFACE",
+    "afterInitialize performs a token/native transfer with no reentrancy guard. One hook serves many pools; assume re-entry into this and other pools before the callback sequence completes.",
+    164
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xbb7784a4d481184283ed89619a3e3ed143e1adc0/DecayMulticurveInitializer.sol",
+  "contract": "DecayMulticurveInitializer",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    61
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xbb7784a4d481184283ed89619a3e3ed143e1adc0/DecayMulticurveInitializerHook.sol",
+  "contract": "DecayMulticurveInitializerHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    65
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xbb7784a4d481184283ed89619a3e3ed143e1adc0/UniswapV4MulticurveInitializer.sol",
+  "contract": "UniswapV4MulticurveInitializer",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    123
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xbb7784a4d481184283ed89619a3e3ed143e1adc0/UniswapV4MulticurveInitializerHook.sol",
+  "contract": "UniswapV4MulticurveInitializerHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xbd2597a08627f119ed50c1a252f888f5bfd31b80/DynamicFeeHook.sol",
+  "contract": "DynamicFeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    20
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xbdf938149ac6a781f94faa0ed45e6a0e984c6544/DopplerHookInitializer.sol",
+  "contract": "DopplerHookInitializer",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xc3b8e77ac038aa260035a1911827086c34a9e844/StrategyHookV2.sol",
+  "contract": "StrategyHookV2",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xc5a48b447f01e9ce3ede71e4c1c2038c38bd9000/GraduationHook.sol",
+  "contract": "GraduationHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    7
+   ]
+  ],
+  "declared": [
+   "afterInitialize"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xc8d077444625eb300a427a6dfb2b1dbf9b159040/ZoraV4CoinHook.sol",
+  "contract": "ZoraV4CoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    53
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xca51c787e7136db1cbfd92a24287ea8e9363b0c8/SuperStrat.sol",
+  "contract": "SuperStrat",
+  "findings": [
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    501
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    545
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    578
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    83
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xca975b9daf772c71161f3648437c3616e5be0088/SimpleSellTaxHook.sol",
+  "contract": "SimpleSellTaxHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    16
+   ]
+  ],
+  "declared": [
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xcd256a2f4574cb6aca4837313ad225d2fe1de5cf/AngstromL2.sol",
+  "contract": "AngstromL2",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    47
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterAddLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    281
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterRemoveLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    304
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    333
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    382
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xced494a8cc54d593dbc7bdc6f4c61a948c932080/GovernedLBPStrategy.sol",
+  "contract": "GovernedLBPStrategy",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xd3c1f2174f37f88811f99b1b1b4c1356c0246000/AquinasPoolHook.sol",
+  "contract": "AquinasPoolHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xd577f945b6025ce1e60ac1a82f2ee8ff3fb428c4/ArtacleIndexHook.sol",
+  "contract": "ArtacleIndexHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xd61a675f8a0c67a73dc3b54fb7318b4d91409040/CreatorCoinHook.sol",
+  "contract": "CreatorCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xd6fecff347c6203a41874e8d77de669b54e7a500/UniswapV4Migrator.sol",
+  "contract": "UniswapV4Migrator",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    69
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xd6fecff347c6203a41874e8d77de669b54e7a500/UniswapV4MigratorHook.sol",
+  "contract": "UniswapV4MigratorHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xd6fecff347c6203a41874e8d77de669b54e7a500/UniswapV4MigratorSplit.sol",
+  "contract": "UniswapV4MigratorSplit",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    70
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xd6fecff347c6203a41874e8d77de669b54e7a500/UniswapV4MigratorSplitHook.sol",
+  "contract": "UniswapV4MigratorSplitHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xdfe0f6d6cdda8f8ea47d6c5bddbdea51425290c0/HomelanderUniV4Plugin.sol",
+  "contract": "HomelanderUniV4Plugin",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    22
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    22
+   ],
+   [
+    "MEDIUM",
+    "REENTRANCY_SURFACE",
+    "afterInitialize performs a token/native transfer with no reentrancy guard. One hook serves many pools; assume re-entry into this and other pools before the callback sequence completes.",
+    164
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xe2b4100de1cd284bd364f738d1354715515c90c0/ZoraV4CoinHook.sol",
+  "contract": "ZoraV4CoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    57
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xe61bdf0c9e665f02df20fede6dcef379cb751040/ContentCoinHook.sol",
+  "contract": "ContentCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xe87be9bc8e462de016760aa83bac56d608836aa8/RehypHook.sol",
+  "contract": "RehypHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xea9346e83952840e69beb36df365c4e68de0e080/LiquidLaunchHook.sol",
+  "contract": "LiquidLaunchHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xed1698c29928a6c44cddb0c75ab0e5d47eb72a80/TWAMM.sol",
+  "contract": "TWAMM",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xf6d0a13609bb5779bc5d639f2ba3bfda83d4d0c0/ZoraV4CoinHook.sol",
+  "contract": "ZoraV4CoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    57
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xf785bb58059fab6fb19bdda2cb9078d9e546efdc/BidWall.sol",
+  "contract": "BidWall",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    36
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xf785bb58059fab6fb19bdda2cb9078d9e546efdc/Indexer.sol",
+  "contract": "IndexerSubscriber",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    17
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xf785bb58059fab6fb19bdda2cb9078d9e546efdc/PoolSwap.sol",
+  "contract": "PoolSwap",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    21
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xf785bb58059fab6fb19bdda2cb9078d9e546efdc/PositionManager.sol",
+  "contract": "PositionManager",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "afterDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xf785bb58059fab6fb19bdda2cb9078d9e546efdc/ReferralEscrow.sol",
+  "contract": "ReferralEscrow",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    25
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xf9527fb5a34ac6fbc579e4fbc3bf292ed57d4880/ArrakisPrivateHook.sol",
+  "contract": "ArrakisPrivateHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    34
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
+    212
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xfbce3d80c659c765bc6c55e29e87d839c7609040/CreatorCoinHook.sol",
+  "contract": "CreatorCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    9
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xfe6947cd46a7e8f068a6b6ca804fb986feda8040/BpegAll.sol",
+  "contract": "BpegRenderer",
+  "findings": [],
+  "declared": [
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xfee99b847f90d7a7f87e273097b72e33d3490440/BpegAll.sol",
+  "contract": "BpegRenderer",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    18
+   ]
+  ],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xff02680c7afe8c63e91c07efa985c81efa6b68c4/StockTokenHook.sol",
+  "contract": "StockTokenHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xff74be9d3596ea7a33bb4983dd7906fb34135040/ContentCoinHook.sol",
+  "contract": "ContentCoinHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    15
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/bnb/0x77b2051204306786934be8bec29a48584e133ac4/BackGeoOracle.sol",
+  "contract": "BackGeoOracle",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/bnb/0x8a36d8408f5285c3f81509947bc187b3c0efd0c4/BVCCDynamicFeeHook_v4.3.sol",
+  "contract": "BVCCDynamicFeeHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    27
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/ethereum/0x00001f3b9712708127b1fcad61cb892535951888/BunniHook.sol",
+  "contract": "BunniHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    42
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/optimism/0x2c3254da64956f495356a482d51e7311347f5044/VolumeDynamicFeeHook.sol",
+  "contract": "VolumeDynamicFeeHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    19
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/polygon/0x079fd05102b6569dedde57551311bffe83f19f00/ATXMV4GlobalHook.sol",
+  "contract": "ATXMV4GlobalHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    23
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/polygon/0x15cd9520d0faf71c938db4426f8c58b5cbaa9acc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    54
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/robinhood/0x01617950099780f43dbd331cecc27b8af521e0cc/CreatorFeeHookV1.sol",
+  "contract": "CreatorFeeHookV1",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/soneium/0xb4f4949e8d0a177bb6d2fea33e9516bb219610cc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
+    54
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
    "beforeSwap",
    "afterSwap"
   ],

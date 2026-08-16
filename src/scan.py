@@ -29,6 +29,31 @@ def line_of(src, pos):
     """1-indexed line number for a character offset."""
     return src.count('\n', 0, pos) + 1
 
+def body_of(src, brace_pos):
+    """Return the {...} block starting at brace_pos, brace-matched."""
+    depth, i = 0, brace_pos
+    while i < len(src):
+        if src[i] == '{': depth += 1
+        elif src[i] == '}':
+            depth -= 1
+            if depth == 0: return src[brace_pos:i+1]
+        i += 1
+    return src[brace_pos:]
+
+def is_inert(body):
+    """True if a callback cannot desync anything: it either reverts
+    unconditionally, or is a stub that only returns its selector.
+
+    Hooks implementing IHooks directly must define all ten callbacks even when
+    they only support two. The unused eight typically revert. Flagging those for
+    a missing PoolManager guard is noise — there is no state behind them — and a
+    scanner that reports ten findings on one contract gets muted."""
+    inner = body[1:-1]
+    if re.search(r'\brevert\b', inner) and not re.search(r'\bif\b|\brequire\b', inner):
+        return True                                   # unconditional revert
+    mutates = re.search(r'[^=!<>]=[^=]|\.call|\.transfer|safeTransfer|delete\s|\+\+|--', inner)
+    return not mutates                                # pure selector stub
+
 def analyze(path):
     raw = open(path, encoding='utf-8', errors='ignore').read()
     src = strip_comments(raw)
@@ -79,7 +104,8 @@ def analyze(path):
     if not uses_basehook:
         for c in CALLBACKS:
             m = re.search(rf'function\s+{c}\s*\([^)]*\)([^{{]*)\{{', src, re.S)
-            if m and not re.search(r'onlyPoolManager|onlyByPoolManager|poolManagerOnly|msg\.sender\s*==\s*address\(\s*poolManager', m.group(1)+src[m.end():m.end()+200]):
+            if m and not re.search(r'onlyPoolManager|onlyByPoolManager|poolManagerOnly|msg\.sender\s*==\s*address\(\s*poolManager', m.group(1)+src[m.end():m.end()+200]) \
+               and not is_inert(body_of(src, m.end()-1)):
                 F.append(('HIGH','MISSING_POOLMANAGER_GUARD',
                     f'{c}() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. '
                     'Anyone can call the callback directly and desync hook state.', line_of(src, m.start())))

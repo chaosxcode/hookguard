@@ -59,6 +59,18 @@ python3 src/risk.py                 # registry-wide risk profile -> out/risk.jso
 python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 ```
 
+## Does it actually discriminate?
+
+Measured against **170 real deployed hooks** (verified source pulled from
+Sourcify), not fixtures: **32% come back completely clean**, and one
+false-positive class was found by reading source and fixed — callbacks that
+revert unconditionally are no longer flagged for a missing PoolManager guard,
+which took the worst single contract from 11 findings to 2 without any loss of
+detection.
+
+Full method, per-rule firing rates, and what it does *not* establish:
+[docs/precision.md](docs/precision.md).
+
 ## Use it in CI
 
 Add this to `.github/workflows/hookguard.yml` in your hook repo. It runs on

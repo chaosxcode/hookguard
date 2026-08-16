@@ -11,3 +11,4 @@ hookguard-deck.html
 # python
 __pycache__/
 *.pyc
+corpus/
