@@ -13,6 +13,8 @@ SRC  = os.path.join(ROOT, "out", "risk.json")
 DOCS = os.path.join(ROOT, "docs")
 
 hooks = json.load(open(SRC))
+UNI = os.path.join(ROOT, "out", "unichain-onchain.json")
+uni = json.load(open(UNI)) if os.path.exists(UNI) else None
 os.makedirs(DOCS, exist_ok=True)
 shutil.copyfile(SRC, os.path.join(DOCS, "risk.json"))
 
@@ -66,6 +68,37 @@ chain_html = "".join(
     f'<td class="num"><span class="bar"><span style="width:{p:.1f}%"></span></span>'
     f'<b class="mono">{p:.1f}%</b></td></tr>'
     for c, n, un, p in chain_rows)
+
+uni_section = "" if not uni else f"""
+<section>
+  <h2>The registry is opt-in &mdash; Unichain measured</h2>
+  <p class="sub">Registry coverage assumes hooks register themselves. Scanning every
+  <span class="mono">Initialize</span> event in Unichain's full history &mdash; every pool ever created,
+  and the hook attached to it &mdash; shows how much that assumption misses.</p>
+
+  <div class="stats" style="margin-top:28px;">
+    <div class="stat"><div class="n">{uni['poolsCreated']:,}</div><div class="c">pools ever created on Unichain</div></div>
+    <div class="stat"><div class="n">{uni['poolsWithHook']:,}</div><div class="c">of them attach a hook &mdash; {uni['poolsWithHook']/uni['poolsCreated']*100:.0f}%</div></div>
+    <div class="stat"><div class="n">{uni['distinctHooks']:,}</div><div class="c">distinct hook contracts deployed</div></div>
+    <div class="stat"><div class="n" style="color:var(--good)">{uni['registryHooksSeenOnchain']}</div><div class="c">of those are in the registry</div></div>
+    <div class="stat"><div class="n" style="color:var(--risk)">{uni['registryCoveragePct']}%</div><div class="c">registry coverage of deployed hooks</div></div>
+  </div>
+
+  <div class="note">
+    <b>Read this carefully, because the raw number oversells it.</b>
+    {uni['hooksServingOnePool']:,} of the {uni['distinctHooks']:,} serve exactly one pool &mdash; almost certainly
+    launchpads minting a hook per token, not {uni['hooksServingOnePool']:,} distinct designs. The population that
+    matters is the <b>{uni['hooksServingMultiplePools']}</b> serving two or more pools and the
+    <b>{uni['hooksServingTenPlusPools']}</b> serving ten or more.
+    Even after that discount, the two busiest hooks on the chain are not in the registry at all.
+  </div>
+
+  <p class="sub" style="margin-top:20px">Reproduce: <span class="mono">python3 src/discover.py</span>
+  with <span class="mono">CHAIN=unichain</span>. The scan aborts rather than publish a partial result,
+  because an undercount is the one error that would quietly invalidate the number.
+  Raw data: <a href="unichain-onchain.json">unichain-onchain.json</a></p>
+</section>
+"""
 
 HTML = f"""<!DOCTYPE html>
 <html lang="en">
@@ -233,6 +266,8 @@ footer {{ margin-top:88px; padding-top:32px; border-top:1px solid var(--line);
     visible at this layer, never "safe."
   </div>
 </section>
+
+{uni_section}
 
 <section>
   <h2>By chain</h2>

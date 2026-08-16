@@ -165,6 +165,37 @@ footer { margin-top:88px; padding-top:32px; border-top:1px solid var(--line);
   </div>
 </section>
 
+
+<section>
+  <h2>The registry is opt-in &mdash; Unichain measured</h2>
+  <p class="sub">Registry coverage assumes hooks register themselves. Scanning every
+  <span class="mono">Initialize</span> event in Unichain's full history &mdash; every pool ever created,
+  and the hook attached to it &mdash; shows how much that assumption misses.</p>
+
+  <div class="stats" style="margin-top:28px;">
+    <div class="stat"><div class="n">7,538</div><div class="c">pools ever created on Unichain</div></div>
+    <div class="stat"><div class="n">5,365</div><div class="c">of them attach a hook &mdash; 71%</div></div>
+    <div class="stat"><div class="n">1,211</div><div class="c">distinct hook contracts deployed</div></div>
+    <div class="stat"><div class="n" style="color:var(--good)">15</div><div class="c">of those are in the registry</div></div>
+    <div class="stat"><div class="n" style="color:var(--risk)">1.24%</div><div class="c">registry coverage of deployed hooks</div></div>
+  </div>
+
+  <div class="note">
+    <b>Read this carefully, because the raw number oversells it.</b>
+    1,094 of the 1,211 serve exactly one pool &mdash; almost certainly
+    launchpads minting a hook per token, not 1,094 distinct designs. The population that
+    matters is the <b>117</b> serving two or more pools and the
+    <b>35</b> serving ten or more.
+    Even after that discount, the two busiest hooks on the chain are not in the registry at all.
+  </div>
+
+  <p class="sub" style="margin-top:20px">Reproduce: <span class="mono">python3 src/discover.py</span>
+  with <span class="mono">CHAIN=unichain</span>. The scan aborts rather than publish a partial result,
+  because an undercount is the one error that would quietly invalidate the number.
+  Raw data: <a href="unichain-onchain.json">unichain-onchain.json</a></p>
+</section>
+
+
 <section>
   <h2>By chain</h2>
   <table>

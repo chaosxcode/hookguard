@@ -31,6 +31,30 @@ audit, not that none exists. That ambiguity is itself the gap — there is no
 machine-readable way for a router, LP, or integrator to tell a reviewed hook
 from an unreviewed one.
 
+## The registry is opt-in — so how much does it miss?
+
+Registry coverage assumes hooks register themselves. Scanning **every
+`Initialize` event in Unichain's full history** — every pool ever created and
+the hook attached to it — measures the gap:
+
+| | |
+|---|---|
+| pools ever created on Unichain | **7,538** |
+| pools that attach a hook | **5,365** (71%) |
+| distinct hook contracts deployed | **1,211** |
+| of those, in Uniswap's registry | **15** |
+| **registry coverage** | **1.24%** |
+
+Stated carefully, because the raw number oversells it: 1,094 of the 1,211 serve
+exactly one pool — launchpads minting a hook per token, not 1,094 distinct
+designs. The population that matters is the **117** serving 2+ pools and the
+**35** serving 10+. Even after that discount, **the two busiest hooks on
+Unichain are not in the registry at all**.
+
+Reproduce with `CHAIN=unichain python3 src/discover.py`. The scan aborts rather
+than publish a partial result — an undercount is the one error that would
+quietly invalidate the number.
+
 ## What it checks
 
 `src/scan.py` analyses **concrete, deployable** hook contracts (abstract bases,
