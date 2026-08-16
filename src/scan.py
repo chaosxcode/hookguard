@@ -50,6 +50,15 @@ def _validates_pool(src):
         r'(!=|==)[^;]{0,300}?(revert|require)', src, re.S | re.I)
         or re.search(
         r'(revert|require)[^;]{0,300}?key_?\.\s*(currency0|currency1|fee|tickSpacing)',
+        src, re.S | re.I)
+        # A per-pool registration flag checked with a revert is the same guard by
+        # another name: an attacker-created pool is simply not registered, so the
+        # callback bounces. SwayHookJIT does exactly this via PoolNotInitialized.
+        or re.search(
+        r'(revert|require)[^;]{0,160}?(NotInitialized|NotRegistered|NotSupported|'
+        r'NotAllowed|UnknownPool|InvalidPool|PoolNotFound)', src, re.S | re.I)
+        or re.search(
+        r'!\s*\w+\.\s*(isInitialized|initialized|registered|enabled|active)\b[^;]{0,80}revert',
         src, re.S | re.I))
 
 def body_of(src, brace_pos):
@@ -145,11 +154,12 @@ def analyze(path):
         holds_funds = bool(re.search(r'(safeTransfer|transferFrom|\.transfer\(|take\(|settle\(|mint\(|burn\()', src))
         pool_state  = bool(re.search(r'mapping\s*\(\s*PoolId', src))
         if holds_funds or pool_state:
-            F.append(('HIGH','PERMISSIONLESS_ATTACHMENT',
-                'No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. '
-                'v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at '
-                'this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager '
-                'called you, NOT that the pool is one you trust.', decl_line))
+            F.append(('MEDIUM','PERMISSIONLESS_ATTACHMENT',
+                'No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId '
+                'state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. '
+                'onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. '
+                'Whether that is exploitable depends on what an attacker-chosen pool can reach — this flags the '
+                'question, it does not answer it. Confirm the open attachment is intended.', decl_line))
         else:
             F.append(('INFO','PERMISSIONLESS_BY_DESIGN',
                 'Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so '

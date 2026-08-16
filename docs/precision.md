@@ -35,18 +35,18 @@ Across **272** hook contracts:
 
 | Rule | Severity | Contracts | % of corpus |
 |---|---|---:|---:|
-| `PERMISSIONLESS_ATTACHMENT` | HIGH | 85 | 31.2% |
-| `PERMISSIONLESS_BY_DESIGN` | INFO | 29 | 10.7% |
+| `PERMISSIONLESS_ATTACHMENT` | MEDIUM | 71 | 26.1% |
+| `PERMISSIONLESS_BY_DESIGN` | INFO | 23 | 8.5% |
 | `UNBOUNDED_DYNAMIC_FEE` | MEDIUM | 30 | 11.0% |
 | `MISSING_POOLMANAGER_GUARD` | HIGH | 10 | 3.7% |
 | `REENTRANCY_SURFACE` | MEDIUM | 2 | 0.7% |
 | `UPGRADEABLE_HOOK` | HIGH | 1 | 0.4% |
 
-**137 of 272 contracts (50%) produce nothing at all.** That is the number that
+**153 of 272 contracts (56%) produce nothing at all, and only 11 (4.0%) carry any HIGH finding at all.** That is the number that
 matters. A scanner which flags everything is worthless; half of all real deployed hooks coming back
 silent is evidence the rules discriminate.
 
-## Four false-positive classes, found by reading the corpus
+## Five false-positive classes, found by reading the corpus
 
 ### 1. Inert callbacks
 
@@ -101,7 +101,14 @@ and the clean rate rose from 44% to **50%**.
 Had this gone out unverified, it would have told a named developer his hook had
 a HIGH severity issue that he had explicitly already solved.
 
-### 4. Non-hooks in the same source bundle
+### 4. Pool validation via a registration flag
+
+`SwayHookJIT` reverts `PoolNotInitialized()` for any pool absent from its own
+`vaults` mapping. Attacker-created pools bounce off it. That is the same guard
+as an allowlist, expressed as a per-pool registration flag — a fifth spelling of
+the same idea, and the rule missed it too.
+
+### 5. Non-hooks in the same source bundle
 
 More serious, and it invalidated numbers published earlier the same day.
 
@@ -124,9 +131,35 @@ A contract now only qualifies if it declares `getHookPermissions()` or inherits
 clean rate and 43.5% for `PERMISSIONLESS_ATTACHMENT`. Those figures counted
 non-hooks and were too high. The numbers above supersede them.
 
-Both fixtures behave identically through all four fixes — `GuardedHook` stays at
+Both fixtures behave identically through all five fixes — `GuardedHook` stays at
 zero findings, `RiskyHook` still trips all four of its rules. No fix cost a true
 detection, which is the only kind worth making.
+
+## The rule that could not survive verification
+
+`PERMISSIONLESS_ATTACHMENT` was the highest-firing rule and it has now been
+**wrong in half of every finding I hand-checked**. Not because the detection is
+inaccurate — the flagged hooks genuinely have no `beforeInitialize` gate — but
+because there turned out to be at least five distinct, legitimate ways to
+validate a pool, and each hand-check found another one.
+
+Two conclusions followed, and both are implemented:
+
+1. Validation detection now covers currency comparison, PoolId allowlists,
+   registration flags, and named rejection errors.
+2. **The rule is downgraded from HIGH to MEDIUM**, and reworded. It no longer
+   asserts that an attacker can corrupt state. It says the hook can be attached
+   by any pool, that whether this is exploitable depends on what such a pool can
+   reach, and that the author should confirm the open attachment is intended.
+
+That last part matters. Deciding whether an attacker-chosen pool can cause harm
+requires reading each contract's full logic — audit work. Claiming HIGH severity
+for something this tool cannot determine was overreach, and shipping it at HIGH
+would have failed builds on a claim it could not support.
+
+`docs/precision.md` previously said the next step was to "retire or downgrade
+any rule that cannot survive." This is that, applied to the tool's own flagship
+rule.
 
 ## What this still does not establish
 
@@ -137,15 +170,12 @@ or an auditor — not me reading my own tool's output and marking my own homewor
 What it does establish:
 
 - rule-by-rule firing rates on real deployed code rather than fixtures
-- that 50% of the corpus comes back clean
-- four false-positive classes, found by reading source, characterised and fixed
+- that 56% of the corpus comes back clean and only 4% carries a HIGH finding
+- five false-positive classes, found by reading source, characterised and fixed
 - that published numbers get corrected when they turn out to be wrong
 
-`PERMISSIONLESS_ATTACHMENT` at 31.2% still deserves scrutiny. It may be
-*correct* — v4 pool creation genuinely is permissionless, so a hook with no
-`beforeInitialize` gate genuinely can be attached by anyone. The open question
-is not whether the detection is accurate but whether it is **actionable**, and
-only hook authors can answer that.
+`PERMISSIONLESS_ATTACHMENT` now sits at 26.1% and MEDIUM, which is an honest
+place for it: the detection is accurate, the consequence is unproven.
 
 ## Next
 
