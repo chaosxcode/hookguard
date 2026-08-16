@@ -8,12 +8,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     34
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    216
    ]
   ],
   "declared": [
@@ -794,12 +788,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     29
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    165
    ]
   ],
   "declared": [],
@@ -1775,12 +1763,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     34
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    212
    ]
   ],
   "declared": [
@@ -1916,18 +1898,6 @@
     "PERMISSIONLESS_BY_DESIGN",
     "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
     23
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterAddLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    115
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    130
    ]
   ],
   "declared": [
@@ -2167,12 +2137,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     34
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    216
    ]
   ],
   "declared": [
@@ -2521,18 +2485,6 @@
     "PERMISSIONLESS_BY_DESIGN",
     "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
     23
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterAddLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    115
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    130
    ]
   ],
   "declared": [
@@ -3088,12 +3040,6 @@
     "MISSING_POOLMANAGER_GUARD",
     "afterInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
     415
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    447
    ]
   ],
   "declared": [
@@ -3111,18 +3057,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     43
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    270
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    300
    ]
   ],
   "declared": [],
@@ -3372,18 +3306,6 @@
     "MISSING_POOLMANAGER_GUARD",
     "beforeAddLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
     545
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    609
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    642
    ]
   ],
   "declared": [],
@@ -3528,12 +3450,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     29
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    248
    ]
   ],
   "declared": [
@@ -3589,12 +3505,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     34
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    212
    ]
   ],
   "declared": [
@@ -3630,12 +3540,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust.",
     30
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    282
    ]
   ],
   "declared": [

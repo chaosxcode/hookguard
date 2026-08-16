@@ -3,9 +3,12 @@
 *2026-08-16. Reproduce with `python3 src/corpus.py && python3 src/scan.py corpus`.*
 
 The README claims HookGuard is biased toward precision. That was an assertion.
-This is the record of checking it against real deployed code — including the two
-false-positive classes the check found, and a correction to numbers that were
-published earlier the same day.
+This is the record of checking it against real deployed code — the three
+false-positive classes that check found, and a correction to numbers published
+earlier the same day.
+
+The third was found only because I sat down to verify a finding *before*
+sending it to the team it concerned. That is the argument for verifying first.
 
 ## Corpus
 
@@ -34,7 +37,7 @@ Across **272** hook contracts:
 | `PERMISSIONLESS_ATTACHMENT` | HIGH | 101 | 37.1% |
 | `PERMISSIONLESS_BY_DESIGN` | INFO | 30 | 11.0% |
 | `UNBOUNDED_DYNAMIC_FEE` | MEDIUM | 30 | 11.0% |
-| `MISSING_POOLMANAGER_GUARD` | HIGH | 20 | 7.4% |
+| `MISSING_POOLMANAGER_GUARD` | HIGH | 10 | 3.7% |
 | `REENTRANCY_SURFACE` | MEDIUM | 2 | 0.7% |
 | `UPGRADEABLE_HOOK` | HIGH | 1 | 0.4% |
 
@@ -42,7 +45,7 @@ Across **272** hook contracts:
 matters. A scanner which flags everything is worthless; 44% of real deployed
 hooks coming back silent is evidence the rules discriminate.
 
-## Two false-positive classes, found by reading the corpus
+## Three false-positive classes, found by reading the corpus
 
 ### 1. Inert callbacks
 
@@ -58,7 +61,24 @@ return a selector without mutating state.
 
 That contract went from **11 findings to 2**.
 
-### 2. Non-hooks in the same source bundle
+### 2. Named return variables read as state writes
+
+Verifying a finding before contacting Arrakis, by hand: their `beforeSwap` was
+flagged for a missing PoolManager guard. Reading it, the function assigns two
+**named return variables** and calls one `internal view` helper. It writes
+nothing. Calling it directly from anywhere changes no state, so the finding was
+wrong.
+
+The inert check had counted `funcSelector = IHooks.beforeSwap.selector;` as a
+mutation. Assignments whose target is a declared return name or a local are now
+ignored, and any callback declared `view`/`pure` is inert by definition.
+
+`MISSING_POOLMANAGER_GUARD` went from 20 contracts (7.4%) to **10 (3.7%)** —
+half its findings were this class. It also correctly stopped flagging the
+oracle-reading `beforeSwap` in our own risky fixture, which reads and returns
+without writing.
+
+### 3. Non-hooks in the same source bundle
 
 More serious, and it invalidated numbers published earlier the same day.
 
@@ -95,7 +115,7 @@ What it does establish:
 
 - rule-by-rule firing rates on real deployed code rather than fixtures
 - that 44% of the corpus comes back clean
-- two false-positive classes, found by reading source, characterised and fixed
+- three false-positive classes, found by reading source, characterised and fixed
 - that published numbers get corrected when they turn out to be wrong
 
 `PERMISSIONLESS_ATTACHMENT` at 37.1% still deserves scrutiny. It may be

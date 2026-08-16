@@ -40,19 +40,44 @@ def body_of(src, brace_pos):
         i += 1
     return src[brace_pos:]
 
-def is_inert(body):
-    """True if a callback cannot desync anything: it either reverts
-    unconditionally, or is a stub that only returns its selector.
+def is_inert(sig, body):
+    """True if a callback cannot desync anything.
 
-    Hooks implementing IHooks directly must define all ten callbacks even when
-    they only support two. The unused eight typically revert. Flagging those for
-    a missing PoolManager guard is noise — there is no state behind them — and a
-    scanner that reports ten findings on one contract gets muted."""
+    Three ways a callback is harmless to call directly:
+      1. it reverts unconditionally,
+      2. it is declared view/pure,
+      3. it writes nothing to storage.
+
+    (3) is the subtle one. Hooks assign to NAMED RETURN VARIABLES
+    (`funcSelector = IHooks.beforeSwap.selector;`) and to locals, neither of
+    which is state. Counting those as mutation flagged Arrakis's read-only
+    beforeSwap, which only reads a view function. Assignments whose target is a
+    declared return name or a local are therefore ignored."""
     inner = body[1:-1]
+
     if re.search(r'\brevert\b', inner) and not re.search(r'\bif\b|\brequire\b', inner):
-        return True                                   # unconditional revert
-    mutates = re.search(r'[^=!<>]=[^=]|\.call|\.transfer|safeTransfer|delete\s|\+\+|--', inner)
-    return not mutates                                # pure selector stub
+        return True                                       # unconditional revert
+    if re.search(r'\b(view|pure)\b', sig):
+        return True                                       # cannot write by definition
+
+    # names that are NOT storage: declared returns, and locally declared vars
+    rc = re.search(r'returns\s*\(([^)]*)\)', sig, re.S)
+    safe = set()
+    if rc:
+        for part in rc.group(1).split(','):
+            w = part.strip().split()
+            if len(w) >= 2:
+                safe.add(w[-1])
+    for m in re.finditer(r'\b(?:uint\d*|int\d*|bool|address|bytes\d*|string|[A-Z]\w*)\s+'
+                         r'(?:memory|calldata|storage\s)?\s*(\w+)\s*=', inner):
+        safe.add(m.group(1))
+
+    for m in re.finditer(r'(?:^|[;{}\n])\s*([A-Za-z_]\w*)\s*(?:\[[^\]]*\])?\s*(?:\.\w+)?\s*=[^=]', inner):
+        if m.group(1) not in safe:
+            return False                                  # a real storage write
+    if re.search(r'\.call|\.transfer|safeTransfer|\bdelete\s|\+\+|--', inner):
+        return False
+    return True
 
 def analyze(path):
     raw = open(path, encoding='utf-8', errors='ignore').read()
@@ -112,7 +137,7 @@ def analyze(path):
         for c in CALLBACKS:
             m = re.search(rf'function\s+{c}\s*\([^)]*\)([^{{]*)\{{', src, re.S)
             if m and not re.search(r'onlyPoolManager|onlyByPoolManager|poolManagerOnly|msg\.sender\s*==\s*address\(\s*poolManager', m.group(1)+src[m.end():m.end()+200]) \
-               and not is_inert(body_of(src, m.end()-1)):
+               and not is_inert(m.group(0), body_of(src, m.end()-1)):
                 F.append(('HIGH','MISSING_POOLMANAGER_GUARD',
                     f'{c}() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. '
                     'Anyone can call the callback directly and desync hook state.', line_of(src, m.start())))
