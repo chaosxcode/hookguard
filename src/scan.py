@@ -57,8 +57,15 @@ def is_inert(body):
 def analyze(path):
     raw = open(path, encoding='utf-8', errors='ignore').read()
     src = strip_comments(raw)
-    # only look at things that are actually hooks
-    if not re.search(r'getHookPermissions|IHooks|BaseHook', src):
+    # Only analyse things that ARE hooks. Matching a bare mention of IHooks is
+    # far too loose: verified-source bundles ship the whole project, so sibling
+    # contracts that merely *import* IHooks were being analysed as hooks and
+    # inflating every count. A hook either declares its permissions or inherits
+    # a hook base in its `is` clause.
+    is_clause = re.search(r'contract\s+\w+\s+is\s+([^{]+)\{', src)
+    inherits = is_clause.group(1) if is_clause else ''
+    if not (re.search(r'function\s+getHookPermissions\s*\(', src)
+            or re.search(r'\b(BaseHook|IHooks)\b', inherits)):
         return None
     # Only analyse CONCRETE, DEPLOYABLE hooks. Abstract bases, interfaces, mocks and
     # tests are templates or scaffolding — flagging them is noise, and a scanner that

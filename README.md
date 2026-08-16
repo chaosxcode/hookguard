@@ -61,12 +61,12 @@ python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 
 ## Does it actually discriminate?
 
-Measured against **338 real deployed hooks** (verified source pulled from
-Sourcify), not fixtures: **36% come back completely clean**, and one
-false-positive class was found by reading source and fixed — callbacks that
-revert unconditionally are no longer flagged for a missing PoolManager guard,
-which took the worst single contract from 11 findings to 2 without any loss of
-detection.
+Measured against **272 real deployed hooks** (verified source pulled from
+Sourcify), not fixtures: **44% come back completely clean**. Two false-positive
+classes were found by reading that corpus and fixed — callbacks that revert
+unconditionally are no longer flagged for a missing PoolManager guard, and
+sibling contracts that merely *import* `IHooks` are no longer treated as hooks
+at all. Neither fix cost any detection: both fixtures behave identically.
 
 Full method, per-rule firing rates, and what it does *not* establish:
 [docs/precision.md](docs/precision.md).
