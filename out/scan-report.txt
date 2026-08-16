@@ -1,0 +1,75 @@
+HookGuard source scan — 15 hook contracts analysed
+==========================================================================
+
+  AfterSwapDonationHook   (../../../../tmp/realhooks/UniswapHook-Donations/src/HookDonation.sol)
+    permissions: afterSwap
+    [HIGH  ] PERMISSIONLESS_ATTACHMENT
+             No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create
+
+  SwapHelper   (../../../../tmp/realhooks/UniswapHook-Donations/src/SwapHelper.sol)
+    [HIGH  ] PERMISSIONLESS_ATTACHMENT
+             No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create
+
+  DynamicSigmoidFeesHook   (../../../../tmp/realhooks/sigmoid-fees-hook/src/DynamicSigmoidFeesHook.sol)
+    permissions: beforeInitialize, beforeSwap
+    [MEDIUM] UNBOUNDED_DYNAMIC_FEE
+             Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitr
+
+  TradingDaysHook   (../../../../tmp/realhooks/trading-days/src/TradingDaysHook.sol)
+    [INFO  ] PERMISSIONLESS_BY_DESIGN
+             Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional — confirm it is.
+
+  TradingDaysImplementation   (../../../../tmp/realhooks/trading-days/src/implementation/TradingDaysImplementation.sol)
+    [INFO  ] PERMISSIONLESS_BY_DESIGN
+             Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional — confirm it is.
+
+  LiquidityBootstrappingHooks   (../../../../tmp/realhooks/uni-lbp/src/LiquidityBootstrappingHooks.sol)
+    [HIGH  ] PERMISSIONLESS_ATTACHMENT
+             No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create
+
+  CounterHook   (../../../../tmp/realhooks/uniswap-v4-hooks/src/hooks/CounterHook.sol)
+    [INFO  ] PERMISSIONLESS_BY_DESIGN
+             Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional — confirm it is.
+
+  DiscountFeeHook   (../../../../tmp/realhooks/uniswap-v4-hooks/src/hooks/DiscountFeeHook.sol)
+    [INFO  ] PERMISSIONLESS_BY_DESIGN
+             Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional — confirm it is.
+
+  DynamicFeeHook   (../../../../tmp/realhooks/uniswap-v4-hooks/src/hooks/DynamicFeeHook.sol)
+    [INFO  ] PERMISSIONLESS_BY_DESIGN
+             Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional — confirm it is.
+
+  HookCoin   (../../../../tmp/realhooks/uniswap-v4-hooks/src/hooks/HookCoin.sol)
+    [HIGH  ] PERMISSIONLESS_ATTACHMENT
+             No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create
+    [HIGH  ] UPGRADEABLE_HOOK
+             Upgradeable/delegatecall pattern. The hook ADDRESS permanently encodes permissions and pools cannot detach, but the implementation can be swapped — th
+
+  MyHook   (../../../../tmp/realhooks/uniswap-v4-hooks/src/hooks/MyHook.sol)
+    [INFO  ] PERMISSIONLESS_BY_DESIGN
+             Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional — confirm it is.
+
+  NoHook   (../../../../tmp/realhooks/uniswap-v4-hooks/src/hooks/NoHook.sol)
+    [INFO  ] PERMISSIONLESS_BY_DESIGN
+             Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional — confirm it is.
+
+  StopLoss   (../../../../tmp/realhooks/v4-stoploss/src/StopLoss.sol)
+    [HIGH  ] PERMISSIONLESS_ATTACHMENT
+             No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create
+    [HIGH  ] MISSING_POOLMANAGER_GUARD
+             afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state
+
+  StopLossImplementation   (../../../../tmp/realhooks/v4-stoploss/src/implementation/StopLossImplementation.sol)
+    [INFO  ] PERMISSIONLESS_BY_DESIGN
+             Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional — confirm it is.
+
+  Counter   (../../../../tmp/v4t/src/Counter.sol)
+    permissions: beforeAddLiquidity, beforeRemoveLiquidity, beforeSwap, afterSwap
+    [HIGH  ] PERMISSIONLESS_ATTACHMENT
+             No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create
+
+==========================================================================
+  contracts analysed : 15
+  contracts flagged  : 7
+  findings           : HIGH 8  MEDIUM 1  LOW 0  INFO 8
+  wrote out/scan.json

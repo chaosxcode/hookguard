@@ -1,0 +1,36 @@
+HookGuard — risk pass over 486 registered Uniswap v4 hooks
+==========================================================================
+  published audit URL :   29 / 486  ( 6.0%)
+  verified source     :  486 / 486  (100.0%)
+  upgradeable         :   20 / 486  ( 4.1%)
+  value-moving (delta):  340 / 486  (70.0%)
+  CRITICAL combo      :    3 / 486  ( 0.6%)   <- value-moving + upgradeable + unaudited
+
+  value-moving AND unaudited     : 315
+  value-moving AND unverified    : 0
+
+  by chain (count / unaudited):
+    ethereum      171  unaudited  162 (94.7%)
+    base          162  unaudited  154 (95.1%)
+    robinhood      50  unaudited   50 (100.0%)
+    arbitrum       21  unaudited   19 (90.5%)
+    bnb            20  unaudited   15 (75.0%)
+    unichain       18  unaudited   17 (94.4%)
+    polygon        11  unaudited    9 (81.8%)
+    optimism       11  unaudited   10 (90.9%)
+
+  TOP 12 BY RISK SCORE:
+     25  Angstrom Hook                  base      0x631352aa…  VALUE_MOVING
+     25  AngstromL2                     base      0x631352Aa…  VALUE_MOVING
+     25  AngstromL2                     base      0x7fa49d29…  VALUE_MOVING
+     25  AngstromL2                     base      0x7Fa49D29…  VALUE_MOVING
+     25  AngstromL2                     base      0xcd256a2f…  VALUE_MOVING
+     25  Angstrom L2                    base      0xCD256a2f…  VALUE_MOVING
+     20  NFTXV4Hook                     ethereum  0xd2094b5c…  VALUE_MOVING
+     19  Flaunch POSM v4 (Base)         base      0x23321f11…  VALUE_MOVING
+     19  Flaunch POSM v1                base      0x51bba152…  VALUE_MOVING
+     19  Flaunch POSM v3 (Base)         base      0xb903b0ab…  VALUE_MOVING
+     19  Flaunch POSM v2 (Base)         base      0xf785bb58…  VALUE_MOVING
+     19  DeathSTRHookV2                 ethereum  0xb7945204…  VALUE_MOVING
+
+  wrote out/risk.json (486 hooks scored)

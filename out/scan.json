@@ -1,0 +1,217 @@
+[
+ {
+  "file": "/tmp/realhooks/UniswapHook-Donations/src/HookDonation.sol",
+  "contract": "AfterSwapDonationHook",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust."
+   ]
+  ],
+  "declared": [
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/UniswapHook-Donations/src/SwapHelper.sol",
+  "contract": "SwapHelper",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/sigmoid-fees-hook/src/DynamicSigmoidFeesHook.sol",
+  "contract": "DynamicSigmoidFeesHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily."
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/trading-days/src/TradingDaysHook.sol",
+  "contract": "TradingDaysHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/trading-days/src/implementation/TradingDaysImplementation.sol",
+  "contract": "TradingDaysImplementation",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/uni-lbp/src/LiquidityBootstrappingHooks.sol",
+  "contract": "LiquidityBootstrappingHooks",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/uniswap-v4-hooks/src/hooks/CounterHook.sol",
+  "contract": "CounterHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/uniswap-v4-hooks/src/hooks/DiscountFeeHook.sol",
+  "contract": "DiscountFeeHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/uniswap-v4-hooks/src/hooks/DynamicFeeHook.sol",
+  "contract": "DynamicFeeHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/uniswap-v4-hooks/src/hooks/HookCoin.sol",
+  "contract": "HookCoin",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust."
+   ],
+   [
+    "HIGH",
+    "UPGRADEABLE_HOOK",
+    "Upgradeable/delegatecall pattern. The hook ADDRESS permanently encodes permissions and pools cannot detach, but the implementation can be swapped \u2014 the upgrade admin is part of the trust boundary."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/uniswap-v4-hooks/src/hooks/MyHook.sol",
+  "contract": "MyHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/uniswap-v4-hooks/src/hooks/NoHook.sol",
+  "contract": "NoHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/v4-stoploss/src/StopLoss.sol",
+  "contract": "StopLoss",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust."
+   ],
+   [
+    "HIGH",
+    "MISSING_POOLMANAGER_GUARD",
+    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/realhooks/v4-stoploss/src/implementation/StopLossImplementation.sol",
+  "contract": "StopLossImplementation",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is."
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "/tmp/v4t/src/Counter.sol",
+  "contract": "Counter",
+  "findings": [
+   [
+    "HIGH",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate or pool validation, AND the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless: anyone can create a pool with attacker-chosen tokens pointing at this hook and drive its callbacks to corrupt that state. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust."
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ }
+]
