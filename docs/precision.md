@@ -7,8 +7,9 @@ This is the record of checking it against real deployed code — the three
 false-positive classes that check found, and a correction to numbers published
 earlier the same day.
 
-The third was found only because I sat down to verify a finding *before*
-sending it to the team it concerned. That is the argument for verifying first.
+Two of the four were found only because I sat down to verify findings *before*
+sending them to the teams they concerned. Both would have been wrong. That is
+the entire argument for verifying first.
 
 ## Corpus
 
@@ -34,18 +35,18 @@ Across **272** hook contracts:
 
 | Rule | Severity | Contracts | % of corpus |
 |---|---|---:|---:|
-| `PERMISSIONLESS_ATTACHMENT` | HIGH | 101 | 37.1% |
-| `PERMISSIONLESS_BY_DESIGN` | INFO | 30 | 11.0% |
+| `PERMISSIONLESS_ATTACHMENT` | HIGH | 85 | 31.2% |
+| `PERMISSIONLESS_BY_DESIGN` | INFO | 29 | 10.7% |
 | `UNBOUNDED_DYNAMIC_FEE` | MEDIUM | 30 | 11.0% |
 | `MISSING_POOLMANAGER_GUARD` | HIGH | 10 | 3.7% |
 | `REENTRANCY_SURFACE` | MEDIUM | 2 | 0.7% |
 | `UPGRADEABLE_HOOK` | HIGH | 1 | 0.4% |
 
-**120 of 272 contracts (44%) produce nothing at all.** That is the number that
-matters. A scanner which flags everything is worthless; 44% of real deployed
-hooks coming back silent is evidence the rules discriminate.
+**137 of 272 contracts (50%) produce nothing at all.** That is the number that
+matters. A scanner which flags everything is worthless; half of all real deployed hooks coming back
+silent is evidence the rules discriminate.
 
-## Three false-positive classes, found by reading the corpus
+## Four false-positive classes, found by reading the corpus
 
 ### 1. Inert callbacks
 
@@ -78,7 +79,29 @@ half its findings were this class. It also correctly stopped flagging the
 oracle-reading `beforeSwap` in our own risky fixture, which reads and returns
 without writing.
 
-### 3. Non-hooks in the same source bundle
+### 3. Pool validation that isn't an allowlist
+
+Preparing to contact the author of `WsgemBackstopHook`, I read it. It has no
+`beforeInitialize` gate — which is what the rule fires on — but its `beforeSwap`
+opens with:
+
+```solidity
+if (Currency.unwrap(key.currency0) != Currency.unwrap(currency0)
+    || Currency.unwrap(key.currency1) != Currency.unwrap(currency1))
+    revert PoolNotSupported();
+```
+
+An attacker can initialise a pool against that hook, and **every swap reverts**.
+The author handled it. The rule only recognised PoolId allowlists, so it missed
+validation by currency comparison — a perfectly ordinary way to do the same job.
+
+`PERMISSIONLESS_ATTACHMENT` went from 101 contracts (37.1%) to **85 (31.2%)**,
+and the clean rate rose from 44% to **50%**.
+
+Had this gone out unverified, it would have told a named developer his hook had
+a HIGH severity issue that he had explicitly already solved.
+
+### 4. Non-hooks in the same source bundle
 
 More serious, and it invalidated numbers published earlier the same day.
 
@@ -101,7 +124,7 @@ A contract now only qualifies if it declares `getHookPermissions()` or inherits
 clean rate and 43.5% for `PERMISSIONLESS_ATTACHMENT`. Those figures counted
 non-hooks and were too high. The numbers above supersede them.
 
-Both fixtures behave identically through all three fixes — `GuardedHook` stays at
+Both fixtures behave identically through all four fixes — `GuardedHook` stays at
 zero findings, `RiskyHook` still trips all four of its rules. No fix cost a true
 detection, which is the only kind worth making.
 
@@ -114,11 +137,11 @@ or an auditor — not me reading my own tool's output and marking my own homewor
 What it does establish:
 
 - rule-by-rule firing rates on real deployed code rather than fixtures
-- that 44% of the corpus comes back clean
-- three false-positive classes, found by reading source, characterised and fixed
+- that 50% of the corpus comes back clean
+- four false-positive classes, found by reading source, characterised and fixed
 - that published numbers get corrected when they turn out to be wrong
 
-`PERMISSIONLESS_ATTACHMENT` at 37.1% still deserves scrutiny. It may be
+`PERMISSIONLESS_ATTACHMENT` at 31.2% still deserves scrutiny. It may be
 *correct* — v4 pool creation genuinely is permissionless, so a hook with no
 `beforeInitialize` gate genuinely can be attached by anyone. The open question
 is not whether the detection is accurate but whether it is **actionable**, and

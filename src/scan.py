@@ -29,6 +29,29 @@ def line_of(src, pos):
     """1-indexed line number for a character offset."""
     return src.count('\n', 0, pos) + 1
 
+def _validates_pool(src):
+    """True if the hook checks the incoming PoolKey against its own expectations
+    and rejects pools it does not recognise.
+
+    An allowlist keyed by PoolId is only one way to do this. The common
+    alternative is comparing the key's currencies (or fee/tickSpacing) against
+    stored immutables and reverting — e.g.
+
+        if (Currency.unwrap(key.currency0) != Currency.unwrap(currency0)
+            || Currency.unwrap(key.currency1) != Currency.unwrap(currency1))
+            revert PoolNotSupported();
+
+    A hook doing that is not attachable in any meaningful sense: an attacker can
+    initialise a pool against it, but every callback reverts. Treating that as
+    an ungated hook told a developer he had a HIGH severity issue he had in fact
+    already handled."""
+    return bool(re.search(
+        r'key_?\.\s*(currency0|currency1|fee|tickSpacing|hooks)\b[^;]{0,300}?'
+        r'(!=|==)[^;]{0,300}?(revert|require)', src, re.S | re.I)
+        or re.search(
+        r'(revert|require)[^;]{0,300}?key_?\.\s*(currency0|currency1|fee|tickSpacing)',
+        src, re.S | re.I))
+
 def body_of(src, brace_pos):
     """Return the {...} block starting at brace_pos, brace-matched."""
     depth, i = 0, brace_pos
@@ -114,7 +137,8 @@ def analyze(path):
 
     # R1 permissionless pool attachment: anyone can create a pool pointing at this hook
     if not declared.get('beforeInitialize') and \
-       not re.search(r'(allowlist|allowList|whitelist|authorizedPool|validPool|onlyValidPool|poolId\s*==|PoolIdLibrary\.toId)', src, re.I):
+       not re.search(r'(allowlist|allowList|whitelist|authorizedPool|validPool|onlyValidPool|poolId\s*==|PoolIdLibrary\.toId)', src, re.I) and \
+       not _validates_pool(src):
         # Severity is driven by what an attacker-created pool could actually corrupt.
         # A stateless observer hook is fine being permissionless — that is often the design.
         # A hook holding funds or per-pool accounting is not.

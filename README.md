@@ -62,11 +62,12 @@ python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 ## Does it actually discriminate?
 
 Measured against **272 real deployed hooks** (verified source pulled from
-Sourcify), not fixtures: **44% come back completely clean**. Three false-positive
+Sourcify), not fixtures: **50% come back completely clean**. Four false-positive
 classes were found by reading that corpus and fixed: callbacks that revert
-unconditionally, callbacks that only assign named return variables, and sibling
-contracts that merely *import* `IHooks`. `MISSING_POOLMANAGER_GUARD` dropped
-from 7.4% of the corpus to 3.7% as a result, with no loss of true detections.
+unconditionally, callbacks that only assign named return variables, hooks that
+validate pools by comparing currencies rather than by PoolId allowlist, and
+sibling contracts that merely *import* `IHooks`. Two of the four were caught
+only by verifying a finding before contacting its author.
 
 Full method, per-rule firing rates, and what it does *not* establish:
 [docs/precision.md](docs/precision.md).
