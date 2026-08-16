@@ -59,6 +59,47 @@ python3 src/risk.py                 # registry-wide risk profile -> out/risk.jso
 python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 ```
 
+## Use it in CI
+
+Add this to `.github/workflows/hookguard.yml` in your hook repo. It runs on
+every pull request and annotates the offending lines.
+
+```yaml
+name: hookguard
+on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write   # only needed for the summary comment
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chaosxcode/hookguard@v1
+        with:
+          paths: src
+```
+
+| Input | Default | Meaning |
+|---|---|---|
+| `paths` | `src` | Space-separated paths. Directories are searched recursively for `.sol`. |
+| `fail-on` | `HIGH` | Severity that fails the check: `HIGH`, `MEDIUM`, `LOW`, or `never`. |
+| `comment` | `true` | Maintain one PR comment, edited in place. Needs `pull-requests: write`. |
+| `json-out` | *(none)* | Write machine-readable results to this path. |
+
+Outputs `high`, `total` and `contracts` for downstream steps.
+
+**On `fail-on`.** The default fails the check only on HIGH. HookGuard is a
+heuristic pattern scanner, so blocking a merge on a MEDIUM would be overreach —
+MEDIUM and below are advisory. Set `fail-on: never` if you want the annotations
+without a gate, which is the right setting while you decide whether you trust it.
+
+**Forks.** Pull requests from forks get a read-only token, so the comment step
+is skipped automatically. Annotations and the job summary still appear; the run
+does not fail because of it.
+
 ## Status
 
 Early. Heuristic, regex-based, deliberately biased toward precision over recall.

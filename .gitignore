@@ -7,3 +7,7 @@ X-POST.md
 X-THREAD-TO-POST.txt
 HookGuard-Deck.pdf
 hookguard-deck.html
+
+# python
+__pycache__/
+*.pyc

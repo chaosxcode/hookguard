@@ -1,0 +1,58 @@
+name: 'HookGuard'
+description: 'Risk scan for Uniswap v4 hooks — flags documented v4 risk patterns on every pull request.'
+author: 'chaosxcode'
+
+branding:
+  icon: 'shield'
+  color: 'orange'
+
+inputs:
+  paths:
+    description: 'Space-separated paths to scan. Directories are searched recursively for .sol files.'
+    required: false
+    default: 'src'
+  fail-on:
+    description: 'Severity that fails the check: HIGH, MEDIUM, LOW, or never. Default HIGH — HookGuard is a heuristic, so failing a build on a MEDIUM would be overreach.'
+    required: false
+    default: 'HIGH'
+  comment:
+    description: 'Post a summary comment on the pull request, edited in place rather than duplicated. Requires pull-requests: write.'
+    required: false
+    default: 'true'
+  json-out:
+    description: 'Optional path to write machine-readable results to.'
+    required: false
+    default: ''
+
+outputs:
+  high:
+    description: 'Number of HIGH findings.'
+    value: ${{ steps.hookguard.outputs.high }}
+  total:
+    description: 'Total number of findings.'
+    value: ${{ steps.hookguard.outputs.total }}
+  contracts:
+    description: 'Number of hook contracts analysed.'
+    value: ${{ steps.hookguard.outputs.contracts }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Run HookGuard
+      id: hookguard
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+        HG_PATHS: ${{ inputs.paths }}
+        HG_FAIL_ON: ${{ inputs.fail-on }}
+        HG_COMMENT: ${{ inputs.comment }}
+        HG_JSON_OUT: ${{ inputs.json-out }}
+      run: |
+        args=($HG_PATHS --fail-on "$HG_FAIL_ON" --comment "$HG_COMMENT")
+        if [ -n "$HG_JSON_OUT" ]; then args+=(--json-out "$HG_JSON_OUT"); fi
+        python3 "${{ github.action_path }}/src/ci.py" "${args[@]}"
