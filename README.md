@@ -61,8 +61,8 @@ python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 
 ## Does it actually discriminate?
 
-Measured against **170 real deployed hooks** (verified source pulled from
-Sourcify), not fixtures: **32% come back completely clean**, and one
+Measured against **338 real deployed hooks** (verified source pulled from
+Sourcify), not fixtures: **36% come back completely clean**, and one
 false-positive class was found by reading source and fixed — callbacks that
 revert unconditionally are no longer flagged for a missing PoolManager guard,
 which took the worst single contract from 11 findings to 2 without any loss of
