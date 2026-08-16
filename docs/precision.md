@@ -101,9 +101,9 @@ A contract now only qualifies if it declares `getHookPermissions()` or inherits
 clean rate and 43.5% for `PERMISSIONLESS_ATTACHMENT`. Those figures counted
 non-hooks and were too high. The numbers above supersede them.
 
-Both fixtures behave identically through both fixes — `GuardedHook` stays at
-zero findings, `RiskyHook` still trips all four of its rules. Neither fix cost
-any detection, which is the only kind worth making.
+Both fixtures behave identically through all three fixes — `GuardedHook` stays at
+zero findings, `RiskyHook` still trips all four of its rules. No fix cost a true
+detection, which is the only kind worth making.
 
 ## What this still does not establish
 
