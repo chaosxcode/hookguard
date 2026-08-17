@@ -252,6 +252,27 @@ footer a{color:var(--mu)}
   <b>35</b> used by ten or more. Even so:
   <b>the second and third busiest hooks on Unichain aren't on the list at all.</b></div>
 
+  
+  <div class="g3">
+    <div class="mini reveal"><div class="mn mono" data-count="30">0</div><div class="ml">unlisted hooks in 10+ pools</div></div>
+    <div class="mini reveal"><div class="mn mono" data-count="5">0</div><div class="ml">of those publish source — 17%</div></div>
+    <div class="mini reveal"><div class="mn mono" data-count="486">0</div><div class="ml">listed hooks publish source — 100%</div></div>
+  </div>
+
+  <div class="note reveal"><b>The ones off the list mostly can't be checked at all.</b>
+  Every hook on the registry publishes its source, because publishing is effectively how you get
+  listed — that 100% describes the sign-up form, not the ecosystem. Off the list,
+  <b>25 of the 30</b> hooks sitting in the swap path of
+  10 or more live pools publish nothing. No source to audit, to scan, or to read.
+  That is the ceiling on every source-level tool in v4 — <b>this one included</b>. The
+  5 that do publish aren't obscure: PrediXHookProxyV2, UniMemeHook, BunniHook, PolymarketHook, UniswapCupHook.</div>
+
+  <div class="note reveal"><b>And the busiest one is a proxy.</b>
+  PrediXHookProxyV2, attached to 1,034 pools, is upgradeable. The permission bits in a
+  hook's address are fixed forever and a live pool cannot detach from its hook — but the code behind
+  that address can still be swapped. Whoever holds the upgrade key is part of the trust boundary of
+  every one of those pools.</div>
+
   <p class="foot reveal">Check it yourself: <span class="mono">CHAIN=unichain python3 src/discover.py</span>
    · it refuses to publish a partial scan, because undercounting is the one mistake that would quietly
    make this number a lie · <a href="unichain-onchain.json">raw data</a></p>

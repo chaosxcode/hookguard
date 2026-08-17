@@ -11,13 +11,16 @@ import json, os, shutil, collections
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC  = os.path.join(ROOT, "out", "risk.json")
 UNIF = os.path.join(ROOT, "out", "unichain-onchain.json")
+VERF = os.path.join(ROOT, "out", "unichain-unregistered-top.json")
 DOCS = os.path.join(ROOT, "docs")
 
 hooks = json.load(open(SRC))
 uni   = json.load(open(UNIF)) if os.path.exists(UNIF) else None
+ver   = json.load(open(VERF)) if os.path.exists(VERF) else None
 os.makedirs(DOCS, exist_ok=True)
 shutil.copyfile(SRC, os.path.join(DOCS, "risk.json"))
 if uni: shutil.copyfile(UNIF, os.path.join(DOCS, "unichain-onchain.json"))
+if ver: shutil.copyfile(VERF, os.path.join(DOCS, "unichain-unregistered-top.json"))
 
 N            = len(hooks)
 audited      = sum(1 for h in hooks if h["audited"])
@@ -68,6 +71,32 @@ chain_html = "".join(
    <div class="cnum mono">{n}</div><div class="cpct mono">{p:.0f}%</div></div>'''
  for c, n, un, p in chain_rows)
 
+if not ver:
+    ver_html = ""
+else:
+    _named = [r["name"] for r in ver["hooks"] if r["verified"] and r["name"]]
+    _proxy = next((r for r in ver["hooks"] if r["verified"] and r["proxy"]), None)
+    ver_html = f"""
+  <div class="g3">
+    <div class="mini reveal"><div class="mn mono" data-count="{ver['candidates']}">0</div><div class="ml">unlisted hooks in {ver['minPools']}+ pools</div></div>
+    <div class="mini reveal"><div class="mn mono" data-count="{ver['verified']}">0</div><div class="ml">of those publish source — {ver['verifiedPct']:.0f}%</div></div>
+    <div class="mini reveal"><div class="mn mono" data-count="{N}">0</div><div class="ml">listed hooks publish source — 100%</div></div>
+  </div>
+
+  <div class="note reveal"><b>The ones off the list mostly can't be checked at all.</b>
+  Every hook on the registry publishes its source, because publishing is effectively how you get
+  listed — that 100% describes the sign-up form, not the ecosystem. Off the list,
+  <b>{ver['checked'] - ver['verified']} of the {ver['checked']}</b> hooks sitting in the swap path of
+  {ver['minPools']} or more live pools publish nothing. No source to audit, to scan, or to read.
+  That is the ceiling on every source-level tool in v4 — <b>this one included</b>. The
+  {ver['verified']} that do publish aren't obscure: {', '.join(_named)}.</div>
+{"" if not _proxy else f'''
+  <div class="note reveal"><b>And the busiest one is a proxy.</b>
+  {_proxy["name"]}, attached to {_proxy["pools"]:,} pools, is upgradeable. The permission bits in a
+  hook's address are fixed forever and a live pool cannot detach from its hook — but the code behind
+  that address can still be swapped. Whoever holds the upgrade key is part of the trust boundary of
+  every one of those pools.</div>'''}"""
+
 uni_html = "" if not uni else f"""
 <section id="coverage"><div class="wrap">
   <div class="shead reveal"><span class="sk">02</span><h2>The list only shows the ones that signed up</h2></div>
@@ -94,6 +123,8 @@ uni_html = "" if not uni else f"""
   The ones that matter are the <b>{uni['hooksServingMultiplePools']}</b> used by two or more pools, and the
   <b>{uni['hooksServingTenPlusPools']}</b> used by ten or more. Even so:
   <b>the second and third busiest hooks on Unichain aren't on the list at all.</b></div>
+
+  {ver_html}
 
   <p class="foot reveal">Check it yourself: <span class="mono">CHAIN=unichain python3 src/discover.py</span>
    · it refuses to publish a partial scan, because undercounting is the one mistake that would quietly
