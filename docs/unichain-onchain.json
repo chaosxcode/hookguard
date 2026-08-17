@@ -1,9 +1,9 @@
 {
  "chain": "unichain",
  "poolManager": "0x1F98400000000000000000000000000000000004",
- "scannedToBlock": 56148297,
- "poolsCreated": 7538,
- "poolsWithHook": 5365,
+ "scannedToBlock": 56239927,
+ "poolsCreated": 7539,
+ "poolsWithHook": 5366,
  "poolsWithoutHook": 2173,
  "distinctHooks": 1211,
  "registryHooks": 17,
@@ -1691,7 +1691,7 @@
    "firstBlock": 21517151
   },
   "0xbc6e5abda425309c2534bc2bc92562f5419ce8cc": {
-   "pools": 1301,
+   "pools": 1302,
    "firstBlock": 21517156
   },
   "0xd73fac0a78dadb89aa82842f821aa25177aa0080": {

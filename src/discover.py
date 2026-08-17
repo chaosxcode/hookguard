@@ -25,6 +25,7 @@ RPC = os.environ.get("RPC_URL", RPC)
 # keccak("Initialize(bytes32,address,address,uint24,int24,address,uint160,int24)")
 TOPIC = "0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438"
 STEP  = 10_000                                          # public RPC range cap
+WORKERS = int(os.environ.get("WORKERS", "8"))           # lower it on flaky RPCs
 HDRS  = {"Content-Type": "application/json", "User-Agent": "curl/8.5.0", "Accept": "*/*"}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -177,8 +178,11 @@ def main():
             if e["firstBlock"] is None or bn < e["firstBlock"]:
                 e["firstBlock"] = bn
 
+    # Public endpoints throttle: too much concurrency turns into failed ranges,
+    # and a failed range aborts the whole scan rather than undercount. Lower it
+    # for a flaky provider instead of editing this file.
     failed, done = 0, 0
-    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as ex:
         for out in ex.map(fetch, ranges):
             done += 1
             if out is None:

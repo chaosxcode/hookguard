@@ -39,8 +39,8 @@ the hook attached to it — measures the gap:
 
 | | |
 |---|---|
-| pools ever created on Unichain | **7,538** |
-| pools that attach a hook | **5,365** (71%) |
+| pools ever created on Unichain | **7,539** |
+| pools that attach a hook | **5,366** (71%) |
 | distinct hook contracts deployed | **1,211** |
 | of those, in Uniswap's registry | **15** |
 | **registry coverage** | **1.24%** |
