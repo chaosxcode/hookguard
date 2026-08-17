@@ -60,10 +60,53 @@ def fetch(rng, depth=0):
     return None
 
 
+def has_code(block):
+    res = rpc("eth_getCode", [PM, hex(block)])
+    if "error" in res:
+        raise RuntimeError(res["error"])
+    return len(res.get("result", "0x")) > 2
+
+
+def start_block(latest):
+    """First block where the PoolManager has code, so the scan skips the history
+    that predates it. On Base that is most of the chain.
+
+    A pruned node answers "no code" for every old block, which would put the
+    start far too late and silently undercount -- the one error this script
+    exists to avoid. So the guess is verified: the range immediately before it
+    must contain zero Initialize events. Anything unexpected falls back to 0,
+    which is slower and always correct."""
+    try:
+        if not has_code(latest):
+            sys.exit(f"ABORT: no PoolManager code at {PM} on {CHAIN}")
+        if has_code(0):
+            return 0
+        lo, hi = 0, latest
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if has_code(mid):
+                hi = mid
+            else:
+                lo = mid + 1
+    except Exception as e:
+        print(f"  could not locate deployment ({type(e).__name__}), scanning from 0", flush=True)
+        return 0
+
+    probe_lo = max(0, lo - STEP)
+    before = fetch((probe_lo, max(probe_lo, lo - 1)))
+    if before is None or before:
+        print(f"  deployment probe at {lo:,} did not verify, scanning from 0", flush=True)
+        return 0
+    return (lo // STEP) * STEP
+
+
 def main():
     latest = int(rpc("eth_blockNumber", [])["result"], 16)
-    ranges = [(b, min(b + STEP - 1, latest)) for b in range(0, latest + 1, STEP)]
-    print(f"scanning blocks 0 -> {latest:,} in {len(ranges)} queries", flush=True)
+    first  = start_block(latest)
+    ranges = [(b, min(b + STEP - 1, latest)) for b in range(first, latest + 1, STEP)]
+    skipped = first // STEP
+    print(f"scanning blocks {first:,} -> {latest:,} in {len(ranges)} queries"
+          + (f" ({skipped:,} pre-deployment ranges skipped)" if skipped else ""), flush=True)
 
     logs, failed, done = [], 0, 0
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
