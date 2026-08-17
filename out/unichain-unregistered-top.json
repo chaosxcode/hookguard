@@ -1,0 +1,252 @@
+{
+ "chain": "unichain",
+ "minPools": 10,
+ "candidates": 30,
+ "checked": 30,
+ "verified": 5,
+ "verifiedPct": 16.7,
+ "proxies": 1,
+ "errors": 0,
+ "hooks": [
+  {
+   "address": "0x2ea5eac8a4e31f0889e86fc135c5eae8e0b16ae0",
+   "pools": 1034,
+   "name": "PrediXHookProxyV2",
+   "verified": true,
+   "proxy": true,
+   "error": null
+  },
+  {
+   "address": "0xb4960cd4f9147f9e37a7aa9005df7156f61e4444",
+   "pools": 777,
+   "name": "UniMemeHook",
+   "verified": true,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x782d2a5624cfac246fd8f001ccd4d7582a0b8444",
+   "pools": 165,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x000052423c1db6b7ff8641b85a7eefc7b2791888",
+   "pools": 50,
+   "name": "BunniHook",
+   "verified": true,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xad9df9f8c82f7972c972eb9658415ae4bc994888",
+   "pools": 48,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x0fd7295d9ccb18b17646b64acf9316b7e75a4888",
+   "pools": 34,
+   "name": "PolymarketHook",
+   "verified": true,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xd0b13c0161accade6c82396a80cc0e69fc936044",
+   "pools": 32,
+   "name": "UniswapCupHook",
+   "verified": true,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x0000fe59823933ac763611a69c88f91d45f81888",
+   "pools": 27,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xeef4bcb508592d5dba376237f54734b257d5bfcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xb17915889c171df49e45d46cf7f4b6c1b19cbfcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x1e7a4e1a47cb8995377cd688c15c767692a27fcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x02cae36ad46113dd89b37c1971644094e0c5bfcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xd64ac246ffe3baea00c6ac195b5c049bbd327fcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x468b7e5503175086c76bfb4ddb4432d825d1ffcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x5674b3e5b52b95afa94e3d76a636f8d3ced6bfcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xb2607d337653d1ee5de4410b016f17a313a6ffcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x0274bb537bc0c7084e8a0e2cc45cd4ca3375bfcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xaa7ed352075dede03375c3ca66c5541b468f3fcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x18f818be71d67fc5ff60838ce79c8713508d3fcf",
+   "pools": 15,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x12a41c32fa78c99b98c69750f9d0f6649b0dbfcf",
+   "pools": 14,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xf35b0ebaf0501f9112dd171f1c19ace6d35abfcf",
+   "pools": 14,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x3d7f8f8f6a692cfed026655c1fa25d2c1935ffcf",
+   "pools": 14,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x5867cc3cc3943bf60fd98da8763ef1ef2b893fcf",
+   "pools": 14,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x68eb2c751e15a898455d7d7b7a6e5936a19b3fcf",
+   "pools": 14,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xb249770a1a3ae3081513629d1c33c790fc8c5088",
+   "pools": 13,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xeb8827c5781ed8f3d2b0544606a8c8c9350e4888",
+   "pools": 12,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0x38be9482eebec99aef5972b8c2a4f5ff35408888",
+   "pools": 12,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xcb9903081b324b3a743e536d451705f9e1450880",
+   "pools": 11,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xe3e35e477f4d9171ead87356bce50051e35d0888",
+   "pools": 10,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  },
+  {
+   "address": "0xd689a5868492eccce3f0bc499864618229cc4088",
+   "pools": 10,
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "error": null
+  }
+ ]
+}

@@ -55,6 +55,41 @@ Reproduce with `CHAIN=unichain python3 src/discover.py`. The scan aborts rather
 than publish a partial result — an undercount is the one error that would
 quietly invalidate the number.
 
+## The hooks off the registry are also the unverified ones
+
+Coverage is the smaller half of the problem. Taking the **30 unregistered
+Unichain hooks that serve 10+ pools** — the population left after discounting
+launchpad one-offs — and asking the block explorer whether each has published
+source:
+
+| | |
+|---|---|
+| registry hooks with verified source | **486 / 486 (100%)** |
+| busiest unregistered hooks with verified source | **5 / 30 (17%)** |
+
+The registry is 100% verified because publishing source is effectively a
+condition of being listed. That number describes the listing process, not the
+ecosystem. Off the registry, 25 of the 30 hooks sitting in the swap path of 10
+or more live pools each have no published source at all — nothing to audit,
+nothing to scan, nothing for an integrator to read.
+
+The five that do publish source are not obscure: `PrediXHookProxyV2` (1,034
+pools), `UniMemeHook` (777), `BunniHook` (50), `PolymarketHook` (34) and
+`UniswapCupHook` (32). Recognisable names are the exception off-registry, not
+the rule.
+
+This is the ceiling on every source-level tool in v4, including this one.
+HookGuard's own scanner needs source; on the hooks that most need checking,
+there isn't any. Bytecode-level analysis is the only thing that reaches them.
+
+The single busiest unregistered hook on Unichain, `PrediXHookProxyV2` at
+**1,034 pools**, is a verified *proxy* — the address bits fix its permissions
+forever and pools cannot detach, but the implementation behind it can still be
+swapped.
+
+Reproduce with `python3 src/verify_status.py`. Data:
+[`out/unichain-unregistered-top.json`](out/unichain-unregistered-top.json).
+
 ## What it checks
 
 `src/scan.py` analyses **concrete, deployable** hook contracts (abstract bases,
