@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="HookGuard logo: a hook glyph coloured with the risk scale from green to red">
+  <defs>
+    <linearGradient id="risk" x1="0" y1="0.05" x2="0" y2="0.95">
+      <stop offset="0" stop-color="#3DD68C"/>
+      <stop offset="0.45" stop-color="#F5C451"/>
+      <stop offset="0.78" stop-color="#FF6B3D"/>
+      <stop offset="1" stop-color="#FF007A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1000" fill="#12161E"/>
+  <path d="M665 270 L665 565 A165 165 0 0 1 500 730 A165 165 0 0 1 335 565 L335 475"
+        fill="none" stroke="url(#risk)" stroke-width="112" stroke-linecap="round"/>
+</svg>
