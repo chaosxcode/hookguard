@@ -28,7 +28,45 @@ author conversation settles the question fastest.
 | BunniHook (`0x00005242…`) | 50 | **resolved — false positive**. `BunniHookLogic.beforeSwap` reverts `BunniHook__InvalidSwap` when `slot0.sqrtPriceX96 == 0`, which is exactly the state of any pool unknown to Bunni. Author handled it; same shape as the Wsgem precedent. Manual clearance recorded here — single-file analysis cannot see library-level guards, which is a known scanner ceiling (roadmap item). |
 | UniMemeHook (`0xb496…`) | 777 | superseded — registered post-snapshot; listing documents the fee design. No contact channel (deployer field empty). Monitoring. |
 
-### Wave 2 method note
+### Wave 3: proactive scans of active v4 repos (Aug 23)
+
+Instead of waiting to be found, we went to the hooks: every actively-developed
+v4 hook repository surfaced by search had its first-party source pulled and
+run through the scanner at HEAD. Results posted as issues — advisories where
+findings survived hand-verification, clean-bill notes with a one-line CI
+install where nothing fired:
+
+| repo | scan result | contact |
+|---|---|---|
+| Mrwicks00/Spiderman-Homecoming | MEDIUM `PERMISSIONLESS_ATTACHMENT` — verified | [advisory #1](https://github.com/Mrwicks00/Spiderman-Homecoming/issues/1) |
+| impetus82/airbag-hook | MEDIUM `PERMISSIONLESS_ATTACHMENT` — unknown-pool behavior flagged as unverifiable inline; **their file layout also exposed a scanner bug (fixed)** | [advisory #1](https://github.com/impetus82/airbag-hook/issues/1) |
+| OKMEME001/okmeme-v4-contracts | clean (`OkMemeTaxHook`) | [invite #1](https://github.com/OKMEME001/okmeme-v4-contracts/issues/1) |
+| sp0oby/woolfi | clean (`WoolFiHook`) | [invite #2](https://github.com/sp0oby/woolfi/issues/2) |
+| MeltedMindz/relicsv4 | clean (`RelicsV4Hook`) | [invite #2](https://github.com/MeltedMindz/relicsv4/issues/2) |
+| Shenhan01-sys/fluxa-hook | clean (`FluxaHook`) | [invite #1](https://github.com/Shenhan01-sys/fluxa-hook/issues/1) |
+| voladelta/fuse-hook | clean (`FuseHook`) | [invite #1](https://github.com/voladelta/fuse-hook/issues/1) |
+| Hookr-fun/hookr-contracts | clean (`HookrHook`) — launchpad, high leverage | [invite #1](https://github.com/Hookr-fun/hookr-contracts/issues/1) |
+
+Plus two install PRs opened directly ([v4hook-starter#1](https://github.com/voladelta/v4hook-starter/pull/1),
+[priority_fee_pulse_hook#1](https://github.com/no-hive/priority_fee_pulse_hook/pull/1))
+and one collaboration probe ([dngr2/v4-hookguard#1](https://github.com/dngr2/v4-hookguard/issues/1)).
+
+Running totals: **13 external contacts** across advisories, invites and PRs;
+4 open advisories awaiting author confirmation; 6 projects scanned clean.
+
+### Scanner corrections earned by this wave
+
+- **Abstract-base qualification**: files whose first declaration was
+  `abstract contract …` were skipped entirely — hookathon-style direct-IHooks
+  repos were invisible. Now the first *concrete* contract is anchored and
+  analyzed (+34 contracts to the corpus, 306 total).
+- **Phantom `getHookPermissions` bodies**: an abstract's bodyless declaration
+  could adopt a distant brace, yielding empty or wrong permission sets — which
+  silently suppressed rules scoped to declared callbacks. Structural matching
+  applied; fixtures unchanged, four previously-clean contracts now correctly
+  flagged, zero flagged-to-clean regressions.
+
+## Wave 2 method note
 
 Channel hunt across the remaining 45 unique-name `PERMISSIONLESS_ATTACHMENT`
 contracts (code search + two-stage verification: constant overlap, then

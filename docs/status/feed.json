@@ -99,19 +99,19 @@
   }
  },
  "scanner": {
-  "contractsMeasured": 301,
-  "clean": 169,
-  "cleanPct": 56.1,
+  "contractsMeasured": 306,
+  "clean": 170,
+  "cleanPct": 55.6,
   "severity": {
    "HIGH": 2,
-   "MEDIUM": 120,
+   "MEDIUM": 124,
    "LOW": 0,
    "INFO": 25
   },
   "rules": {
-   "PERMISSIONLESS_ATTACHMENT": 84,
+   "PERMISSIONLESS_ATTACHMENT": 85,
    "PERMISSIONLESS_BY_DESIGN": 25,
-   "UNBOUNDED_DYNAMIC_FEE": 33,
+   "UNBOUNDED_DYNAMIC_FEE": 36,
    "REENTRANCY_SURFACE": 2,
    "UPGRADEABLE_HOOK": 2,
    "REVERT_DOS_RISK": 1
@@ -1405,6 +1405,32 @@
      "label": "no audit URL recorded",
      "delta": 10,
      "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "base",
+   "address": "0x5798a5e371346c8e4af1dbc166549d360e008044",
+   "name": "AdaptiveBurnHookV4",
+   "findings": 1,
+   "high": 0,
+   "advisory": true,
+   "source": true,
+   "score": 17,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    },
+    {
+     "key": "medium_finding",
+     "label": "1\u00d7 MEDIUM finding(s)",
+     "delta": 7,
+     "detail": "accurate detections awaiting author confirmation"
     }
    ]
   },
@@ -2949,6 +2975,26 @@
   },
   {
    "chain": "ethereum",
+   "address": "0x000b70f7cd351f7479d1aa6f1354d32ed8821080",
+   "name": "PoolTraderHook",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "ethereum",
    "address": "0x0089938dc53258d2bbbb666043abe812a3c18440",
    "name": "PokemonPegHook",
    "findings": 1,
@@ -4019,6 +4065,58 @@
      "label": "no audit URL recorded",
      "delta": 10,
      "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "ethereum",
+   "address": "0x62ee80f068dce30ea4a275e91bb733fb17fd0ac0",
+   "name": "ImmutableState",
+   "findings": 1,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 17,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    },
+    {
+     "key": "medium_finding",
+     "label": "1\u00d7 MEDIUM finding(s)",
+     "delta": 7,
+     "detail": "accurate detections awaiting author confirmation"
+    }
+   ]
+  },
+  {
+   "chain": "ethereum",
+   "address": "0x636c050296b5cc528d8785169bf8923716fca9cc",
+   "name": "ArtCoinsHookSkimFee",
+   "findings": 1,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 17,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    },
+    {
+     "key": "medium_finding",
+     "label": "1\u00d7 MEDIUM finding(s)",
+     "delta": 7,
+     "detail": "accurate detections awaiting author confirmation"
     }
    ]
   },
@@ -5260,6 +5358,32 @@
    "chain": "ethereum",
    "address": "0xec2f73f678421e0374811bb980afc29eb1f510c0",
    "name": "GoalRushHook",
+   "findings": 1,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 17,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    },
+    {
+     "key": "medium_finding",
+     "label": "1\u00d7 MEDIUM finding(s)",
+     "delta": 7,
+     "detail": "accurate detections awaiting author confirmation"
+    }
+   ]
+  },
+  {
+   "chain": "ethereum",
+   "address": "0xede8ec3dbb11055a736612e174ab7b0b41028ac0",
+   "name": "ImmutableState",
    "findings": 1,
    "high": 0,
    "advisory": false,

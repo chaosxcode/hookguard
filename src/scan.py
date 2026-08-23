@@ -113,31 +113,42 @@ def is_inert(sig, body):
 
 def analyze(path):
     raw = open(path, encoding='utf-8', errors='ignore').read()
-    src = strip_comments(raw)    # Only analyse things that ARE hooks. Matching a bare mention of IHooks is
+    src = strip_comments(raw)
+    # Only analyse things that ARE hooks. Matching a bare mention of IHooks is
     # far too loose: verified-source bundles ship the whole project, so sibling
     # contracts that merely *import* IHooks were being analysed as hooks and
     # inflating every count. A hook either declares its permissions or inherits
     # a hook base in its `is` clause.
-    is_clause = re.search(r'contract\s+\w+\s+is\s+([^{]+)\{', src)
-    inherits = is_clause.group(1) if is_clause else ''
+    #
+    # Bundles frequently define an abstract base ABOVE the concrete hook in the
+    # same file (hookathon style: `abstract contract AirbagHookBase is IHooks`,
+    # then `contract AirbagHook is AirbagHookBase`). Skipping "the" abstract
+    # used to mean skipping the whole file; instead, take the first CONCRETE
+    # contract declaration and anchor everything downstream to it.
+    cm = None
+    for m in re.finditer(r'(abstract\s+)?contract\s+(\w+)', src):
+        if not m.group(1):
+            cm = m
+            break
+    if not cm:
+        return None                                   # abstract base / no concrete hook
+    name = cm.group(2)
+    is_clause_m = re.search(rf'contract\s+{name}\s+is\s+([^;{{]+)\{{', src)
+    inherits = is_clause_m.group(1) if is_clause_m else ''
     if not (re.search(r'function\s+getHookPermissions\s*\(', src)
             or re.search(r'\b(BaseHook|IHooks)\b', inherits)):
         return None
-    # Only analyse CONCRETE, DEPLOYABLE hooks. Abstract bases, interfaces, mocks and
-    # tests are templates or scaffolding — flagging them is noise, and a scanner that
-    # fires on everything trains people to ignore it. Precision over recall.
-    cm = re.search(r'(abstract\s+)?contract\s+(\w+)', src)
-    if not cm or cm.group(1):
-        return None                                   # abstract base
-    name = cm.group(2)
     low = path.lower()
     if any(k in low for k in ('/mocks/', '/mock/', '/test/', '/tests/')) or \
        re.search(r'(Mock|Test|Harness|Example)$', name):
         return None                                   # not deployed
     F = []
     decl_line = line_of(src, cm.start())
-    perms = re.search(r'getHookPermissions\s*\([^)]*\)[^{]*\{(.*?)\n\s*\}', src, re.S)
-    pblock = perms.group(1) if perms else ''
+    # Structural match: a real getHookPermissions body, never the abstract
+    # declaration above it (whose trailing ';' used to let the match adopt a
+    # distant brace and silently drop every declared permission).
+    perms = re.search(r'function\s+getHookPermissions\s*\([^)]*\)([^;{]*)\{(.*?)\n\s*\}', src, re.S)
+    pblock = perms.group(2) if perms else ''
     declared = {c: bool(re.search(rf'\b{c}\s*:\s*true', pblock)) for c in CALLBACKS}
     ret_delta = {k: bool(re.search(rf'\b{k}\s*:\s*true', pblock)) for k in
                  ['beforeSwapReturnsDelta','afterSwapReturnsDelta',

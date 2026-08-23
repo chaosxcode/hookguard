@@ -1,0 +1,27 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x62ee80f068dce30ea4a275e91bb733fb17fd0ac0",
+ "name": "ImmutableState",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true,
+ "score": 17,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
+  },
+  {
+   "key": "medium_finding",
+   "label": "1\u00d7 MEDIUM finding(s)",
+   "delta": 7,
+   "detail": "accurate detections awaiting author confirmation"
+  }
+ ]
+}

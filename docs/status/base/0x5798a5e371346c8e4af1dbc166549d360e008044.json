@@ -1,0 +1,27 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x5798a5e371346c8e4af1dbc166549d360e008044",
+ "name": "AdaptiveBurnHookV4",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true,
+ "score": 17,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
+  },
+  {
+   "key": "medium_finding",
+   "label": "1\u00d7 MEDIUM finding(s)",
+   "delta": 7,
+   "detail": "accurate detections awaiting author confirmation"
+  }
+ ]
+}

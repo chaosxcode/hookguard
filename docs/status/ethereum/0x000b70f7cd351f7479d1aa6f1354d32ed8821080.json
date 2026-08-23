@@ -1,0 +1,21 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x000b70f7cd351f7479d1aa6f1354d32ed8821080",
+ "name": "PoolTraderHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true,
+ "score": 10,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
+  }
+ ]
+}

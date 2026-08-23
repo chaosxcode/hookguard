@@ -186,10 +186,10 @@ python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 
 ## Does it actually discriminate?
 
-Measured against **301 real deployed hooks** — registry bundles across nine
+Measured against **306 real deployed hooks** — registry bundles across nine
 chains, plus the source-publishing production hooks that were *never*
 registered (Unichain's off-registry hooks, up to 1,034 pools) — not fixtures:
-**56% come back completely clean**, and only **2 carry any HIGH
+**56% come back completely clean** (170/306; the corpus grew today when a scanner bug that skipped abstract-first hook files was fixed), and only **2 carry any HIGH
 finding** (<1%), both the upgradeable-proxy class. One of the two is proven,
 not inferred: the proxy's implementation was read out of its EIP-1967 slot
 on-chain.

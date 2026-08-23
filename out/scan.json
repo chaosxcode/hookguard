@@ -70,7 +70,10 @@
     25
    ]
   ],
-  "declared": [],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -396,7 +399,10 @@
     21
    ]
   ],
-  "declared": [],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -592,7 +598,10 @@
     25
    ]
   ],
-  "declared": [],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -701,6 +710,22 @@
   "contract": "DeliHook",
   "findings": [],
   "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x5798a5e371346c8e4af1dbc166549d360e008044/AdaptiveBurnHookV4.sol",
+  "contract": "AdaptiveBurnHookV4",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    311
+   ]
+  ],
+  "declared": [
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -873,7 +898,10 @@
   "file": "corpus/base/0x70e163cf92b4565a0eeba7d12d2cfcebd51c40cc/FloorHook.sol",
   "contract": "FloorHook",
   "findings": [],
-  "declared": [],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -1690,6 +1718,16 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/ethereum/0x000b70f7cd351f7479d1aa6f1354d32ed8821080/poolFeeController.sol",
+  "contract": "PoolTraderHook",
+  "findings": [],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/ethereum/0x0089938dc53258d2bbbb666043abe812a3c18440/PokemonPegHook.sol",
   "contract": "PokemonPegHook",
   "findings": [
@@ -2083,7 +2121,11 @@
   "file": "corpus/ethereum/0x3a9f9e9fcb1377de2c2f88ea0d8166e92bbf60c0/PriceImpactDynamicFeeHook.sol",
   "contract": "PriceImpactDynamicFeeHook",
   "findings": [],
-  "declared": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -2175,7 +2217,10 @@
     25
    ]
   ],
-  "declared": [],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -2281,7 +2326,14 @@
     1559
    ]
   ],
-  "declared": [],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -2317,6 +2369,45 @@
   "declared": [
    "beforeInitialize",
    "afterAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/ethereum/0x62ee80f068dce30ea4a275e91bb733fb17fd0ac0/FairTradeHook.sol",
+  "contract": "ImmutableState",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    1587
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/ethereum/0x636c050296b5cc528d8785169bf8923716fca9cc/ArtCoinsHookSkimFee.sol",
+  "contract": "ArtCoinsHookSkimFee",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    771
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
    "afterSwap"
   ],
   "returnsDelta": []
@@ -2701,7 +2792,9 @@
     27
    ]
   ],
-  "declared": [],
+  "declared": [
+   "beforeSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -2946,7 +3039,13 @@
   "file": "corpus/ethereum/0xd5bd98d3cc0e1b92bd31bb1bb80422b084ae6acc/Hook.sol",
   "contract": "Hook",
   "findings": [],
-  "declared": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -3066,6 +3165,25 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/ethereum/0xede8ec3dbb11055a736612e174ab7b0b41028ac0/FairTradeHook.sol",
+  "contract": "ImmutableState",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    1587
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/ethereum/0xef2debe958d3d3b8cb8bf489961bddf23ca20040/ShitGiftHook.sol",
   "contract": "ShitGiftHook",
   "findings": [
@@ -3097,7 +3215,14 @@
   "file": "corpus/ethereum/0xf3cec75e9c06629b89c3cbc443792bd6ea436aec/PerpLandHook.sol",
   "contract": "PerpLandHook",
   "findings": [],
-  "declared": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeDonate"
+  ],
   "returnsDelta": []
  },
  {
@@ -3585,7 +3710,12 @@
   "file": "corpus/robinhood/0x2baa91b984d93626adaab071b0491d47a7b868cc/LaunchHook.sol",
   "contract": "LaunchHook",
   "findings": [],
-  "declared": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -3646,7 +3776,10 @@
     37
    ]
   ],
-  "declared": [],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -3660,7 +3793,10 @@
     35
    ]
   ],
-  "declared": [],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {
@@ -3869,7 +4005,13 @@
   "file": "corpus/unichain/0x74c3c5743a9adade396538fd563c4934d0a7d5c0/GridHook.sol",
   "contract": "GridHook",
   "findings": [],
-  "declared": [],
+  "declared": [
+   "afterInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
   "returnsDelta": []
  },
  {

@@ -229,6 +229,16 @@ Unichain hook serving 2+ pools added ten more source bundles, moving the
 corpus to **301 contracts / 56.1% clean** with the same two HIGH findings.
 Nothing above shifted by more than a point.
 
+*Addendum, evening:* proactive scanning of active v4 repositories surfaced a
+qualification bug with real reach — files whose first declaration was
+`abstract contract …` were skipped entirely, so hookathon-style direct-IHooks
+repos never entered the corpus. Fixed by anchoring to the first *concrete*
+contract, plus the same structural treatment for `getHookPermissions` (whose
+abstract declaration could previously adopt a distant brace, yielding empty
+permission sets and silently suppressed rules). Corpus: **306 contracts,
+170 clean (55.6%), still exactly 2 HIGH**. Four previously-clean contracts now
+flag; zero flagged-to-clean regressions.
+
 ### Three more false-positive classes, found by hand-checking every new HIGH
 
 Finishing the corpus briefly took HIGH findings from 11 to 29. Every one of
