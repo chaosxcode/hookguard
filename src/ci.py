@@ -37,7 +37,8 @@ def collect(paths):
             files += glob.glob(os.path.join(p, "**", "*.sol"), recursive=True)
         elif p.endswith(".sol"):
             files.append(p)
-    return [r for r in (scan.analyze(f) for f in sorted(set(files))) if r]
+    files = sorted(set(files))
+    return files, [r for r in (scan.analyze(f) for f in files) if r]
 
 
 def rel(path):
@@ -152,9 +153,20 @@ def main():
     a = ap.parse_args()
     paths = a.paths or ["src"]
 
-    results = collect(paths)
+    files, results = collect(paths)
     counts = summarise(results)
     annotate(results)
+
+    if not files:
+        # First-time adopters point `paths` at the wrong directory and get a
+        # silent green check with zero information. Say something useful.
+        print("::warning::no Solidity files found under: "
+              f"{', '.join(paths)} — set `paths:` to your hook contracts folder")
+    elif not results:
+        print(f"::warning::{len(files)} .sol file(s) found but no concrete hook "
+              "contracts — a contract qualifies if it declares "
+              "getHookPermissions() or inherits BaseHook/IHooks; abstracts, "
+              "interfaces, mocks and tests are skipped by design")
 
     md = markdown(results, counts, len(results))
     print("\n" + md.replace("<sub>", "").replace("</sub>", "") + "\n")
