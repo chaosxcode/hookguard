@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x5d8a61fa2ced43eeabffc00c85f705e3e08c28c4",
+ "name": "NFTStrategyRangeHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

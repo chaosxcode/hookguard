@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x3ba779bad405d9b68a7a7a86ff6916c806a200cc",
+ "name": "MemeStrategyHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

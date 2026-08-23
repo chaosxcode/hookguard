@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xd53006d1e3110fd319a79aeec4c527a0d265e080",
+ "name": "VirtualLBPStrategyBasic",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

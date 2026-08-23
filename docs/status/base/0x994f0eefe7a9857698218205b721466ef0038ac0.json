@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x994f0eefe7a9857698218205b721466ef0038ac0",
+ "name": "SwayHookJIT",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0xc92338e0713a1f38d06b77976e6bdd1928734888",
+ "name": "AssetToAssetSwapHookForERC4626",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

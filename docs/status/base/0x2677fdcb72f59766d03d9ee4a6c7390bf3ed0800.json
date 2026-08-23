@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x2677fdcb72f59766d03d9ee4a6c7390bf3ed0800",
+ "name": "DCAHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

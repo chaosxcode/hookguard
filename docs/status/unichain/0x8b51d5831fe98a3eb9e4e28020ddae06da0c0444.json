@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0x8b51d5831fe98a3eb9e4e28020ddae06da0c0444",
+ "name": "UniMemeHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0xbb7784a4d481184283ed89619a3e3ed143e1adc0",
+ "name": "UniswapV4MulticurveInitializerHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xec2f73f678421e0374811bb980afc29eb1f510c0",
+ "name": "GoalRushHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

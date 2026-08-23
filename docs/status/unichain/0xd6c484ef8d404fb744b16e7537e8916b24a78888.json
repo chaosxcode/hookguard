@@ -1,0 +1,15 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0xd6c484ef8d404fb744b16e7537e8916b24a78888",
+ "name": "",
+ "source": false,
+ "pools": 2,
+ "proxy": false,
+ "delegatecall": false,
+ "selfdestruct": false,
+ "permBits": 3,
+ "findings": null,
+ "high": null,
+ "advisory": false
+}

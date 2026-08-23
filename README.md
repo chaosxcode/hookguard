@@ -224,3 +224,7 @@ Early. Heuristic, regex-based, deliberately biased toward precision over recall.
 Findings are starting points for review, not verdicts.
 
 Where this is going: [docs/ROADMAP.md](docs/ROADMAP.md).
+
+**Live status feed:** every known hook now has a machine-readable record at
+`docs/status/<chain>/<address>.json`, one aggregate `feed.json`, and a
+dashboard to read it all — [docs/status/index.html](docs/status/index.html).

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x34052720fd88197718251765fe03611d740c00cc",
+ "name": "PAMHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

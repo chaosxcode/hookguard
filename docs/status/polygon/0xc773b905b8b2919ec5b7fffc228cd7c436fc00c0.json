@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "polygon",
+ "address": "0xc773b905b8b2919ec5b7fffc228cd7c436fc00c0",
+ "name": "LimitOrderHook",
+ "findings": 2,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x3226136d52beac0ecf777cedaca5c02a1373f0cc",
+ "name": "GeodeMiningHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

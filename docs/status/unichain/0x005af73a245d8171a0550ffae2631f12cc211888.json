@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0x005af73a245d8171a0550ffae2631f12cc211888",
+ "name": "BunniHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0xfee99b847f90d7a7f87e273097b72e33d3490440",
+ "name": "BpegRenderer",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x84129dc46b712614471131e8b9dadd64c7d21bc0",
+ "name": "EMADynamicFeeHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

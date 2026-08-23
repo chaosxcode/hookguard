@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xd2094b5cdb1a12b6274e4a4d3a252cd94c51efcc",
+ "name": "NFTXV4Hook",
+ "findings": 2,
+ "high": 1,
+ "advisory": false,
+ "source": true
+}

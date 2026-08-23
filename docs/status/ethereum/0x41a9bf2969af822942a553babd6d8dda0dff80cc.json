@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x41a9bf2969af822942a553babd6d8dda0dff80cc",
+ "name": "ETIMTaxHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

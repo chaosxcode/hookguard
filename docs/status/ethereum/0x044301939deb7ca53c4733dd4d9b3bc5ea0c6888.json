@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x044301939deb7ca53c4733dd4d9b3bc5ea0c6888",
+ "name": "FewETHHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

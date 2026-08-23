@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x121f94835dab08ebaf084809a97e525b69e400cc",
+ "name": "UniswapV4SwapFeeHookV1",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xa5db9bd1eac09894c680fe56bc5db26078c800cc",
+ "name": "UniagentHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

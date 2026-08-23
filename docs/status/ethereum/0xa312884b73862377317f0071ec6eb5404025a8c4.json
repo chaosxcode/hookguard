@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xa312884b73862377317f0071ec6eb5404025a8c4",
+ "name": "ENSWheelHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

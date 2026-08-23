@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x46b8c74d89a647063311ad08c7456732d5e94888",
+ "name": "WontonHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

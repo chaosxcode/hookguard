@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x5e8a308b07194d115bcf78dac9a426c7b46ae444",
+ "name": "RecursiveStrategyHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

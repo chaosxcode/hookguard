@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0xff02680c7afe8c63e91c07efa985c81efa6b68c4",
+ "name": "StockTokenHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x1df8e3ce04a62922506e4ba303e1338583155044",
+ "name": "DiamondHandsHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

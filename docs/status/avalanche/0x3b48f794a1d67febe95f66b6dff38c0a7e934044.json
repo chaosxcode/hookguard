@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "avalanche",
+ "address": "0x3b48f794a1d67febe95f66b6dff38c0a7e934044",
+ "name": "StrategyFeeHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

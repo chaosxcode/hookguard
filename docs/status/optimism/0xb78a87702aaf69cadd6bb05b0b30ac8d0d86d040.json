@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "optimism",
+ "address": "0xb78a87702aaf69cadd6bb05b0b30ac8d0d86d040",
+ "name": "VolumeDynamicFeeHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x282b5e7d546b5e39963753d11b2bb6cd3c9da088",
+ "name": "MoonpotHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0x2ea5eac8a4e31f0889e86fc135c5eae8e0b16ae0",
+ "name": "PrediXHookProxyV2",
+ "findings": 1,
+ "high": 1,
+ "advisory": false,
+ "source": true
+}

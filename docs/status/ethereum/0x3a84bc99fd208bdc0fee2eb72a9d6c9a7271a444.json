@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x3a84bc99fd208bdc0fee2eb72a9d6c9a7271a444",
+ "name": "FWATokenHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

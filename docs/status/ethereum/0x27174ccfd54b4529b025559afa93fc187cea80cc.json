@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x27174ccfd54b4529b025559afa93fc187cea80cc",
+ "name": "QuasarHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

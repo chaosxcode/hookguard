@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x3cc9707a9b6dfbbb72e2bfeddc341f7de9cbbacc",
+ "name": "LendingHookV3",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

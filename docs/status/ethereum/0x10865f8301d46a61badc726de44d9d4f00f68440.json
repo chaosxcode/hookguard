@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x10865f8301d46a61badc726de44d9d4f00f68440",
+ "name": "UpegHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

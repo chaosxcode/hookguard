@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0x777ef319c338c6ffe32a2283f603db603e8f2a80",
+ "name": "YieldHarvestingHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

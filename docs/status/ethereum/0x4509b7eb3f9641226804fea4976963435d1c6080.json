@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x4509b7eb3f9641226804fea4976963435d1c6080",
+ "name": "StableStableHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

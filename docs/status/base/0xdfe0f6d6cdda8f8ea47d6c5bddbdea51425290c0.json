@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0xdfe0f6d6cdda8f8ea47d6c5bddbdea51425290c0",
+ "name": "HomelanderUniV4Plugin",
+ "findings": 3,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

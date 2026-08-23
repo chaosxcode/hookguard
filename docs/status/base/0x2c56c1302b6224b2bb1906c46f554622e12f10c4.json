@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x2c56c1302b6224b2bb1906c46f554622e12f10c4",
+ "name": "BVCCDynamicFeeHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

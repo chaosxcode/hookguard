@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0x91db9941a44c19a5409345c5f2f8a2c1f81ba888",
+ "name": "AsyncSwap",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

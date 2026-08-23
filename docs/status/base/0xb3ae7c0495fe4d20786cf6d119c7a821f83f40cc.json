@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0xb3ae7c0495fe4d20786cf6d119c7a821f83f40cc",
+ "name": "BurnOnSwapHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x95afbc0fccf974b41380f24e562f15b6dd90fac8",
+ "name": "DeliHookConstantProduct",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

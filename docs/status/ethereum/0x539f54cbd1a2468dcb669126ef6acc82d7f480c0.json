@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x539f54cbd1a2468dcb669126ef6acc82d7f480c0",
+ "name": "BloomHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

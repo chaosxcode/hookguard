@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "arbitrum",
+ "address": "0x986522646bf8f57d3b28c5808ede9b1e5cca0ac0",
+ "name": "FedzHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

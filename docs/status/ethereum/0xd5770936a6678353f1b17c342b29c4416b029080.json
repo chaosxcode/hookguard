@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xd5770936a6678353f1b17c342b29c4416b029080",
+ "name": "CustomFeeAntiMevHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x10adc30aadda3c3ba2ba7a6e7d13cdb1e28745cc",
+ "name": "RestakeHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

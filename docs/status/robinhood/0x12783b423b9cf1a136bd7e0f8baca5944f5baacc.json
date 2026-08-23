@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "robinhood",
+ "address": "0x12783b423b9cf1a136bd7e0f8baca5944f5baacc",
+ "name": "LaunchHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

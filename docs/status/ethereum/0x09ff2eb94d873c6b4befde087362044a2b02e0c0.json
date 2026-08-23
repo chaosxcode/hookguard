@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x09ff2eb94d873c6b4befde087362044a2b02e0c0",
+ "name": "UsdcWstGbpHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

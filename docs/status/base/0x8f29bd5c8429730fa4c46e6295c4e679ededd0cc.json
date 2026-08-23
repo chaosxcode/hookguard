@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x8f29bd5c8429730fa4c46e6295c4e679ededd0cc",
+ "name": "AegisHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "arbitrum",
+ "address": "0x486579de6391053df88a073cebd673dd545200cc",
+ "name": "DynamicFeeHookV2",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

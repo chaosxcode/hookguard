@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x66213c92f0a000a0e0dc21ad7faeb4cf528850c0",
+ "name": "UnigenHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x1e0c810a30fb82391df936602c1161421381b0c8",
+ "name": "SuperStrategy",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

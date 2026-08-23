@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "robinhood",
+ "address": "0x073b5b49b62b7478fb771f15a5161db37a1168c0",
+ "name": "PonzuV4Hook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x0f32ab7c446e24b442b85fe77f78e75e1219a080",
+ "name": "MoonsendFeeHook_ETH",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

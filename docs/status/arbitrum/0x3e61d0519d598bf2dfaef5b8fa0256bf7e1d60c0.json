@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "arbitrum",
+ "address": "0x3e61d0519d598bf2dfaef5b8fa0256bf7e1d60c0",
+ "name": "SafeSwapHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

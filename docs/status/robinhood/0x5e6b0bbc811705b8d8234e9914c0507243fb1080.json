@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "robinhood",
+ "address": "0x5e6b0bbc811705b8d8234e9914c0507243fb1080",
+ "name": "Friar",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

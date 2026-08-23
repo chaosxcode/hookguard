@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HookGuard — Status Feed</title>
+<style>
+:root{
+  --bg:#05060b; --surface:rgba(255,255,255,.035); --surface2:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.14);
+  --text:#eceaf4; --dim:#8f8fa8; --faint:#5c5c74;
+  --pink:#ff007a; --violet:#7b5bff; --cyan:#00d1ff; --green:#00e58f;
+  --amber:#ffb547; --red:#ff4d6b;
+  --grad:linear-gradient(120deg,#ff007a,#b44dff 45%,#00d1ff);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(900px 500px at 85% -10%,rgba(123,91,255,.14),transparent 60%),
+  radial-gradient(700px 420px at -10% 20%,rgba(255,0,122,.10),transparent 60%),
+  radial-gradient(800px 600px at 50% 120%,rgba(0,209,255,.07),transparent 60%);}
+body::after{content:"";position:fixed;inset:0;z-index:-1;opacity:.5;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0 1px,transparent 1px 72px),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.016) 0 1px,transparent 1px 72px);
+  mask-image:radial-gradient(1200px 800px at 50% 0%,#000 30%,transparent 100%);}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px 90px}
+.mono{font-family:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace}
+.num{font-family:ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+
+/* ---------- topbar ---------- */
+.topbar{display:flex;align-items:center;gap:14px;padding:26px 0 8px;position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg,rgba(5,6,11,.92),rgba(5,6,11,.75) 70%,transparent);
+  backdrop-filter:blur(10px)}
+.mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:none;
+  background:linear-gradient(135deg,rgba(255,0,122,.18),rgba(0,209,255,.14));
+  border:1px solid var(--border2);box-shadow:0 0 24px rgba(255,0,122,.25)}
+.brand{font-weight:650;letter-spacing:.02em;font-size:15px}
+.brand span{color:var(--dim);font-weight:400}
+.topbar .spacer{flex:1}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;
+  border:1px solid var(--border);background:var(--surface);color:var(--dim);font-size:12px;text-decoration:none}
+.pill:hover{color:var(--text);border-color:var(--border2)}
+.dot{width:7px;height:7px;border-radius:99px;background:var(--green);box-shadow:0 0 8px var(--green)}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 34px}
+.kicker{display:flex;align-items:center;gap:10px;color:var(--dim);font-size:11.5px;
+  letter-spacing:.24em;text-transform:uppercase;margin-bottom:18px}
+.kicker::before{content:"";width:26px;height:1px;background:var(--grad)}
+h1{font-size:clamp(38px,6vw,66px);line-height:1.02;font-weight:700;letter-spacing:-.03em}
+h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin-top:16px;max-width:720px;color:var(--dim);font-size:16px}
+.sub b{color:var(--text);font-weight:550}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+.card{position:relative;border-radius:16px;border:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  box-shadow:0 24px 70px -40px rgba(0,0,0,.75);transition:.25s ease}
+.card:hover{transform:translateY(-2px);border-color:var(--border2)}
+.kpi{padding:20px 20px 17px;overflow:hidden}
+.kpi::after{content:"";position:absolute;inset:auto -30% -60% auto;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,var(--kc,rgba(255,0,122,.13)),transparent 65%);pointer-events:none}
+.kpi .lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.kpi .val{font-size:42px;font-weight:700;letter-spacing:-.02em;margin-top:8px;line-height:1}
+.kpi .val small{font-size:19px;color:var(--dim);font-weight:500}
+.kpi .foot{margin-top:10px;font-size:12.5px;color:var(--faint)}
+.delta{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11.5px;
+  color:var(--green);background:rgba(0,229,143,.09);border:1px solid rgba(0,229,143,.22)}
+
+/* ---------- sections ---------- */
+section{margin-top:58px}
+.shead{display:flex;align-items:baseline;gap:16px;margin-bottom:20px}
+.shead h2{font-size:23px;font-weight:650;letter-spacing:-.015em}
+.shead .tag{color:var(--dim);font-size:12.5px}
+.grid2{display:grid;grid-template-columns:5fr 7fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.panel{padding:22px}
+.ptitle{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+
+/* donut */
+.donutwrap{display:flex;gap:22px;align-items:center}
+.legend{flex:1;display:flex;flex-direction:column;gap:10px}
+.lrow{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--dim)}
+.lrow b{color:var(--text);font-weight:600}
+.swatch{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:8px}
+
+/* chain bars */
+.bars{display:flex;flex-direction:column;gap:11px}
+.brow{display:grid;grid-template-columns:86px 1fr 92px;align-items:center;gap:12px;font-size:12.5px}
+.brow .cn{color:var(--dim)}
+.track{height:9px;border-radius:99px;background:rgba(255,255,255,.05);overflow:hidden;position:relative}
+.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,rgba(255,0,122,.65),rgba(123,91,255,.65));
+  transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.unaudited{position:absolute;top:0;right:0;height:100%;background:
+  repeating-linear-gradient(-45deg,rgba(255,181,71,.55) 0 3px,transparent 3px 6px);border-radius:99px}
+.brow .pv{text-align:right;color:var(--faint)}
+
+/* coverage gauge */
+.gaugewrap{display:flex;flex-direction:column;align-items:center;padding:6px 0 2px}
+.gauge{transform:rotate(-90deg)}
+.gval{font-size:46px;font-weight:700;letter-spacing:-.02em;margin-top:-118px;margin-bottom:78px}
+.gcap{color:var(--dim);font-size:12.5px;text-align:center;max-width:260px}
+
+/* banner */
+.banner{margin-top:14px;padding:14px 18px;border-radius:13px;display:flex;gap:12px;align-items:flex-start;
+  border:1px solid rgba(255,181,71,.28);background:linear-gradient(180deg,rgba(255,181,71,.08),rgba(255,181,71,.03))}
+.banner .ic{color:var(--amber);font-size:15px;line-height:1.5}
+.banner p{font-size:13.5px;color:#e8dcc8}
+.banner b{color:#ffd79a}
+
+/* census grid */
+.census{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:14px}
+.census>div{background:#08090f;padding:16px 18px}
+.census .v{font-size:27px;font-weight:650;letter-spacing:-.01em}
+.census .k{font-size:11px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+
+/* families */
+.fam{display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--border)}
+.fam:first-of-type{border-top:none}
+.chipset{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:3px 10px;border-radius:999px;font-size:11.5px;border:1px solid var(--border);
+  background:var(--surface);color:var(--dim)}
+.fam .meta{flex:1;font-size:13px}
+.fam .meta .n{font-weight:600}
+
+/* ledger */
+.lrow2{display:flex;align-items:flex-start;gap:14px;padding:15px 18px;border-top:1px solid var(--border)}
+.lrow2:first-of-type{border-top:none}
+.state{flex:none;display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:999px;font-size:11.5px;white-space:nowrap}
+.state.awaiting-response{color:var(--amber);background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.3)}
+.state.awaiting-response .dot{background:var(--amber);box-shadow:0 0 8px var(--amber);animation:pulse 1.6s infinite}
+.state.cleared-false-positive{color:var(--green);background:rgba(0,229,143,.07);border:1px solid rgba(0,229,143,.28)}
+.state.superseded{color:var(--dim);background:var(--surface);border:1px solid var(--border)}
+@keyframes pulse{50%{opacity:.35}}
+.lrow2 .who{flex:1}
+.lrow2 a{color:var(--text);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.25)}
+.lrow2 a:hover{color:var(--pink);border-color:var(--pink)}
+.note{font-size:12.5px;color:var(--faint);margin-top:3px}
+
+/* table */
+.tools{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+input[type=search],select{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  padding:9px 13px;border-radius:11px;font-size:13px;outline:none;min-width:230px}
+input[type=search]:focus,select:focus{border-color:rgba(123,91,255,.55)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{position:sticky;top:64px;background:rgba(7,8,13,.94);backdrop-filter:blur(8px);z-index:5;
+  text-align:left;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+  padding:11px 14px;border-bottom:1px solid var(--border);font-weight:500}
+.tbl td{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.045);white-space:nowrap}
+.tbl tr:hover td{background:rgba(255,255,255,.028)}
+.addr{cursor:pointer;color:#c9c6dd}
+.addr:hover{color:var(--cyan)}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:2.5px 9px;border-radius:999px;font-size:11px}
+.b-ok{color:var(--green);background:rgba(0,229,143,.07);border:1px solid rgba(0,229,143,.25)}
+.b-no{color:var(--red);background:rgba(255,77,107,.06);border:1px solid rgba(255,77,107,.22)}
+.b-dim{color:var(--faint);background:var(--surface);border:1px solid var(--border)}
+.opcodes span{display:inline-grid;place-items:center;width:22px;height:20px;margin-right:4px;border-radius:6px;
+  font-size:10px;font-weight:700;cursor:default}
+.op-on-d{color:var(--cyan);background:rgba(0,209,255,.1);border:1px solid rgba(0,209,255,.3)}
+.op-on-s{color:var(--red);background:rgba(255,77,107,.1);border:1px solid rgba(255,77,107,.3)}
+.op-off{color:var(--faint);border:1px solid var(--border)}
+.bits{display:inline-flex;gap:2.5px;vertical-align:middle}
+.bits i{width:5px;height:12px;border-radius:2px;background:rgba(255,255,255,.07)}
+.bits i.on{background:linear-gradient(180deg,var(--pink),var(--violet));box-shadow:0 0 6px rgba(255,0,122,.5)}
+.count{color:var(--faint);font-size:12px;margin-left:auto}
+
+/* footer */
+footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;gap:20px;color:var(--faint);font-size:12.5px;flex-wrap:wrap}
+footer code{color:var(--dim)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:960px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .census{grid-template-columns:repeat(2,1fr)}
+  .tbl th:nth-child(6),.tbl td:nth-child(6){display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="topbar">
+  <div class="mark">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2L21 6.5V12C21 17.5 17.2 21.4 12 22.5C6.8 21.4 3 17.5 3 12V6.5L12 2Z"
+        stroke="url(#mg)" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M8.2 12.2L11 15L16 9.5" stroke="url(#mg)" stroke-width="1.8" stroke-linecap="round"/>
+      <defs><linearGradient id="mg" x1="3" y1="2" x2="21" y2="22">
+        <stop stop-color="#ff007a"/><stop offset=".55" stop-color="#b44dff"/><stop offset="1" stop-color="#00d1ff"/>
+      </linearGradient></defs>
+    </svg>
+  </div>
+  <div class="brand">HookGuard <span>/ status feed</span></div>
+  <div class="spacer"></div>
+  <span class="pill mono">generated __DATE__</span>
+  <a class="pill" href="feed.json"><span class="dot"></span>feed.json</a>
+  <a class="pill" href="https://github.com/chaosxcode/hookguard">repo ↗</a>
+</header>
+
+<div class="hero reveal in">
+  <div class="kicker">Uniswap v4 · machine-readable hook intelligence</div>
+  <h1>Every hook.<br><span class="g">One honest record.</span></h1>
+  <p class="sub">HookGuard continuously measures the v4 hook ecosystem — the registry,
+     everything deployed off it, and what bytecode says when source is missing.
+     <b>This is not an audit.</b> Every number below is regenerated from public
+     chain data and reproducible from a clone.</p>
+
+  <div class="kpis">
+    <div class="card kpi" style="--kc:rgba(255,0,122,.14)">
+      <div class="lbl">Registry hooks tracked</div>
+      <div class="val num" data-count="__REG_TOTAL__"></div>
+      <div class="foot"><span class="delta">▲ +__REG_GROWTH__ this week</span> across __REG_CHAINS__ chains</div>
+    </div>
+    <div class="card kpi" style="--kc:rgba(255,181,71,.13)">
+      <div class="lbl">Value-moving · unaudited</div>
+      <div class="val num"><span data-count="__VMNA__"></span><small>%</small></div>
+      <div class="foot">of all registered hooks</div>
+    </div>
+    <div class="card kpi" style="--kc:rgba(123,91,255,.14)">
+      <div class="lbl">Real contracts measured</div>
+      <div class="val num" data-count="__MEASURED__"></div>
+      <div class="foot">deployed source, not fixtures</div>
+    </div>
+    <div class="card kpi" style="--kc:rgba(0,209,255,.13)">
+      <div class="lbl">HIGH findings ecosystem-wide</div>
+      <div class="val num" data-count="__HIGH__"></div>
+      <div class="foot">both upgradeable-proxy class · one proven on-chain</div>
+    </div>
+  </div>
+</div>
+
+<section id="registry" class="reveal">
+  <div class="shead"><h2>Registry pulse</h2><span class="tag">hooklist snapshot · refreshed weekly</span></div>
+  <div class="grid2">
+    <div class="card panel">
+      <div class="ptitle">Audit coverage</div>
+      <div class="donutwrap">
+        <svg width="168" height="168" viewBox="0 0 168 168">
+          <defs><linearGradient id="dg" x1="0" y1="0" x2="168" y2="168">
+            <stop stop-color="#ff007a"/><stop offset="1" stop-color="#00d1ff"/></linearGradient></defs>
+          <circle cx="84" cy="84" r="66" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="15"/>
+          <circle id="donutArc" cx="84" cy="84" r="66" fill="none" stroke="url(#dg)" stroke-width="15"
+            stroke-linecap="round" stroke-dasharray="0 999" style="transition:stroke-dasharray 1.2s cubic-bezier(.2,.7,.2,1)"/>
+          <text x="84" y="80" text-anchor="middle" fill="#eceaf4" font-size="30" font-weight="700"
+            font-family="ui-monospace,Menlo,monospace">__AUD_PCT__%</text>
+          <text x="84" y="102" text-anchor="middle" fill="#8f8fa8" font-size="11">with audit URL</text>
+        </svg>
+        <div class="legend">
+          <div class="lrow"><span><i class="swatch" style="background:linear-gradient(120deg,#ff007a,#00d1ff)"></i>audit recorded</span><b class="num">__AUDITED__</b></div>
+          <div class="lrow"><span><i class="swatch" style="background:rgba(255,255,255,.12)"></i>no audit listed</span><b class="num">__NOT_AUDITED__</b></div>
+          <div class="lrow"><span><i class="swatch" style="background:var(--violet)"></i>can move value</span><b class="num">__VM__</b></div>
+          <div class="lrow"><span><i class="swatch" style="background:var(--amber)"></i>value-moving · unaudited</span><b class="num">__VMNA2__</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="card panel">
+      <div class="ptitle">Hooks by chain · hatched share = unaudited</div>
+      <div class="bars" id="chainBars"></div>
+    </div>
+  </div>
+</section>
+
+<section id="unichain" class="reveal">
+  <div class="shead"><h2>Unichain deep dive</h2><span class="tag">full chain history · PoolManager 0x1F98…0004</span></div>
+  <div class="grid2">
+    <div class="card panel">
+      <div class="ptitle">What the registry sees of Unichain</div>
+      <div class="gaugewrap">
+        <svg class="gauge" width="190" height="190" viewBox="0 0 190 190">
+          <circle cx="95" cy="95" r="76" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="13"/>
+          <circle id="covArc" cx="95" cy="95" r="76" fill="none" stroke="url(#dg)" stroke-width="13"
+            stroke-linecap="round" stroke-dasharray="0 999"/>
+        </svg>
+        <div class="gval num"><span data-count="__COV__"></span><small>%</small></div>
+        <div class="gcap">__COV_NOW__ of __UNI_DISTINCT__ distinct deployed hooks are registered.
+          The empty ring is the point.</div>
+      </div>
+    </div>
+    <div>
+      <div class="banner">
+        <div class="ic">◈</div>
+        <p><b>Unichain runs the v4 preview deployment.</b> Hook addresses there encode callback
+        permissions in the <b>reverse bit order</b> vs final v4 (validated against every
+        source-verifiable hook: 17/18). Tooling reading permissions with mainnet semantics
+        misreads this chain — including most dashboards you have seen.</p>
+      </div>
+      <div class="census">
+        <div><div class="v num">__CEN_MULTI__</div><div class="k">multi-pool hooks off registry</div></div>
+        <div><div class="v num">__CEN_SRC__%</div><div class="k">publish any source</div></div>
+        <div><div class="v num">__CEN_DC__ / __CEN_ANALYZED__</div><div class="k">DELEGATECALL in runtime code</div></div>
+        <div><div class="v num">__CEN_PROG__</div><div class="k">distinct programs found</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="attribution" class="reveal">
+  <div class="shead"><h2>Cross-chain attribution</h2><span class="tag">byte-identical runtime code under different addresses</span></div>
+  <div class="card panel" style="padding:6px 0" id="famList"></div>
+</section>
+
+<section id="ledger" class="reveal">
+  <div class="shead"><h2>Advisory ledger</h2><span class="tag">every author contact, logged in public</span></div>
+  <div class="card panel" style="padding:6px 0" id="ledgerList"></div>
+</section>
+
+<section id="feed" class="reveal">
+  <div class="shead"><h2>The feed</h2>
+    <span class="tag">one record per known hook · click an address to copy</span>
+    <span class="count mono" id="rowCount"></span></div>
+  <div class="tools">
+    <input type="search" id="q" placeholder="filter by address or name…">
+    <select id="chainSel"><option value="">all chains</option></select>
+    <select id="advSel">
+      <option value="">any status</option>
+      <option value="adv">advisory open</option>
+      <option value="high">has HIGH</option>
+      <option value="nosrc">no published source</option>
+    </select>
+  </div>
+  <div class="card" style="overflow:auto;max-height:640px">
+    <table class="tbl">
+      <thead><tr>
+        <th>address</th><th>name</th><th>chain</th><th>pools</th>
+        <th>source</th><th>signals</th><th>permission bits</th><th>status</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div><b style="color:var(--dim)">Reproduce:</b></div>
+    <div class="mono" style="margin-top:6px">python3 src/risk.py · CHAIN=unichain python3 src/discover.py ·
+    MIN_POOLS=2 python3 src/verify_status.py · python3 src/bytecode.py · python3 src/attribution.py · python3 src/status_feed.py</div>
+  </div>
+  <div style="text-align:right">
+    generated __DATE__<br>a heuristic scanner — never an audit
+  </div>
+</footer>
+
+</div>
+
+<script>
+const FEED = __FEED__;
+const ROWS = __ROWS__;
+
+/* ---------- count-up ---------- */
+function countUp(el){
+  const target = parseFloat(el.dataset.count||el.textContent)||0;
+  const dec = String(target).includes(".")?1:0;
+  const t0 = performance.now(), dur = 1100;
+  function tick(t){
+    const p = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-p,3);
+    el.textContent = (target*e).toFixed(dec);
+    if(p<1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+document.querySelectorAll("[data-count]").forEach(countUp);
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}
+}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* ---------- donut + gauge ---------- */
+setTimeout(()=>{
+  const audPct = FEED.registry.auditedPct||0;
+  const C = 2*Math.PI*66;
+  document.getElementById("donutArc").setAttribute("stroke-dasharray",`${C*audPct/100} ${C}`);
+  const cov = FEED.unichain.registryCoverage.pct||0;
+  const C2 = 2*Math.PI*76;
+  document.getElementById("covArc").setAttribute("stroke-dasharray",`${Math.max(C2*cov/100,2)} ${C2}`);
+},150);
+
+/* ---------- chain bars ---------- */
+const bc = Object.entries(FEED.registry.byChain).sort((a,b)=>b[1].hooks-a[1].hooks).slice(0,9);
+const maxH = Math.max(...bc.map(x=>x[1].hooks));
+document.getElementById("chainBars").innerHTML = bc.map(([ch,d])=>{
+  const w = Math.max(d.hooks/maxH*100,4);
+  const un = d.unauditedPct||0;
+  return `<div class="brow"><span class="cn">${ch}</span>
+    <div class="track"><div class="fill" style="width:${w}%"></div>
+    <div class="unaudited" style="width:${w*un/100}%" title="unaudited ${un}%"></div></div>
+    <span class="pv num">${d.hooks} · ${un}%</span></div>`;
+}).join("");
+
+/* ---------- families ---------- */
+document.getElementById("famList").innerHTML =
+ (FEED.attribution.families||[]).map(f=>`
+  <div class="fam">
+    <div class="chipset">${f.chains.map(c=>`<span class="chip mono">${c}</span>`).join("")}</div>
+    <div class="meta">
+      <span class="n">${f.members.map(m=>m.name||m.address.slice(0,10)).filter((v,i,a)=>a.indexOf(v)===i).slice(0,3).join(" ≡ ")}</span>
+      <div class="note">${f.size.toLocaleString()} bytes of identical runtime code · ${f.members.length} deployments · attributed via ${f.members.find(m=>m.name)?.name||"corpus source"}</div>
+    </div>
+    <span class="badge b-ok">same program</span>
+  </div>`).join("") || `<div class="fam"><div class="note">no cross-chain families detected yet</div></div>`;
+
+/* ---------- ledger ---------- */
+const STATES = {
+  "awaiting-response":"awaiting response",
+  "cleared-false-positive":"cleared · false positive",
+  "superseded":"superseded by registration"
+};
+document.getElementById("ledgerList").innerHTML = FEED.outreach.map(o=>`
+  <div class="lrow2">
+    <span class="state ${o.state}"><span class="dot"></span>${STATES[o.state]||o.state}</span>
+    <div class="who">
+      ${o.issue?`<a href="${o.issue}" target="_blank">${o.project}</a>`:`<b>${o.project}</b>`}
+      <div class="note">${o.hooks}${o.note?" — "+o.note:""}</div>
+    </div>
+  </div>`).join("");
+
+/* ---------- table ---------- */
+const tbody = document.getElementById("tbody");
+const chains = [...new Set(ROWS.map(r=>r.chain))].sort();
+chains.forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;document.getElementById("chainSel").append(o);});
+const shortA = a=>a.slice(0,10)+"···"+a.slice(-6);
+
+function bits(n){ // 14-cell permission meter
+  let s="";for(let i=0;i<14;i++) s+=`<i class="${i<n?"on":""}"></i>`;return `<span class="bits" title="${n}/14 flags set">${s}</span>`;
+}
+function rowHTML(r){
+  const sig = r.source===false ? `
+    <span class="opcodes" title="DELEGATECALL opcode present">
+      <span class="${r.delegatecall?"op-on-d":"op-off"}">D</span
+      ><span class="${r.selfdestruct?"op-on-s":"op-off"}" title="SELFDESTRUCT opcode present">S</span></span>`
+    : `<span class="badge ${r.high?"b-no":r.advisory?"":"b-dim"}" style="${r.high||r.advisory?"":"opacity:.55"}">${
+        r.high?"HIGH":r.advisory?"advisory":"scanned"}</span>`;
+  const status = r.source===false
+      ? `<span class="badge b-no">no source</span>${r.proxy?` <span class="badge" style="color:var(--violet);border:1px solid rgba(123,91,255,.35)">proxy</span>`:""}`
+      : (r.high?`<span class="badge b-no">HIGH</span>`:r.advisory?`<span class="badge" style="color:var(--amber);border:1px solid rgba(255,181,71,.32);background:rgba(255,181,71,.06)">advisory</span>`:`<span class="badge b-ok">clean</span>`);
+  return `<tr data-t="${(r.address+" "+(r.name||"")).toLowerCase()}" data-c="${r.chain}"
+    data-k="${[r.advisory?"adv":"",r.high?"high":"",r.source===false?"nosrc":""].join(" ")}">
+    <td class="addr mono" onclick="navigator.clipboard.writeText('${r.address}');this.style.color='#00e58f';setTimeout(()=>this.style.color='',900)" title="click to copy">${shortA(r.address)}</td>
+    <td>${r.name||"<span style='color:var(--faint)'>—</span>"}</td>
+    <td><span class="chip mono">${r.chain}</span></td>
+    <td class="num">${r.pools??""}</td>
+    <td>${r.source===false?'<span class="badge b-no">missing</span>':'<span class="badge b-ok">yes</span>'}</td>
+    <td>${sig}</td>
+    <td>${bits(r.permBits??0)}</td>
+    <td>${status}</td>
+  </tr>`;
+}
+ROWS.sort((a,b)=>(b.pools||0)-(a.pools||0));
+function render(){
+  const q=document.getElementById("q").value.toLowerCase();
+  const cs=document.getElementById("chainSel").value;
+  const ks=document.getElementById("advSel").value;
+  const view = ROWS.filter(r=>{
+    const el = document.createElement("div"); el.innerHTML=rowHTML(r);
+    const tr = el.firstChild;
+    if(q && !tr.dataset.t.includes(q)) return false;
+    if(cs && tr.dataset.c!==cs) return false;
+    if(ks && !tr.dataset.k.split(" ").includes(ks)) return false;
+    return true;
+  }).map(rowHTML);
+  tbody.innerHTML = view.join("") || `<tr><td colspan="8" style="color:var(--faint);text-align:center;padding:30px">nothing matches</td></tr>`;
+  document.getElementById("rowCount").textContent = `${view.length} / ${ROWS.length} records`;
+}
+["q","chainSel","advSel"].forEach(id=>document.getElementById(id).addEventListener("input",render));
+render();
+</script>
+</body>
+</html>

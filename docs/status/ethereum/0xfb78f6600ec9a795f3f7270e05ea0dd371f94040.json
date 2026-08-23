@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xfb78f6600ec9a795f3f7270e05ea0dd371f94040",
+ "name": "ShitGiftHookV2",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

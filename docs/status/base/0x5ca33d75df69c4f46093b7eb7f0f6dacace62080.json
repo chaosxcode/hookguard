@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x5ca33d75df69c4f46093b7eb7f0f6dacace62080",
+ "name": "GovernedLBPStrategy",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x47dc5827e85f8b63a0b79dfe92e13463eb680440",
+ "name": "PokemonPegHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xe02b0b5739e7c64f41d3295c191635e680be40c4",
+ "name": "TuringHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x192499a79cadb2e9ba221a252a3e3b7adc714880",
+ "name": "ArrakisPrivateHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

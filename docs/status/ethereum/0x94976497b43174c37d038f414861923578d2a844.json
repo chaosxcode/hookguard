@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x94976497b43174c37d038f414861923578d2a844",
+ "name": "CabalcoinHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

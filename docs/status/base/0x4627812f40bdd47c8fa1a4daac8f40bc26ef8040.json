@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x4627812f40bdd47c8fa1a4daac8f40bc26ef8040",
+ "name": "SpectraLaunch",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

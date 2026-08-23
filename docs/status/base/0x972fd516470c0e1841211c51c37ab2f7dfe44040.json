@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x972fd516470c0e1841211c51c37ab2f7dfe44040",
+ "name": "SpectraHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

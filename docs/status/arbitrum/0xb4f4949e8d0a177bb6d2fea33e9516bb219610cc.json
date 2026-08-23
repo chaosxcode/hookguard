@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "arbitrum",
+ "address": "0xb4f4949e8d0a177bb6d2fea33e9516bb219610cc",
+ "name": "Spot",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

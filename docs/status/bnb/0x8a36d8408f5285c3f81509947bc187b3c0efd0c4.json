@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "bnb",
+ "address": "0x8a36d8408f5285c3f81509947bc187b3c0efd0c4",
+ "name": "BVCCDynamicFeeHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

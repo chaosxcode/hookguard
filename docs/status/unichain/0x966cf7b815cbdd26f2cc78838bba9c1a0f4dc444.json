@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0x966cf7b815cbdd26f2cc78838bba9c1a0f4dc444",
+ "name": "UniderpHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

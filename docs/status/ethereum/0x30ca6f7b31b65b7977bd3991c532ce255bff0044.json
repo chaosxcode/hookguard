@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x30ca6f7b31b65b7977bd3991c532ce255bff0044",
+ "name": "ArkHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

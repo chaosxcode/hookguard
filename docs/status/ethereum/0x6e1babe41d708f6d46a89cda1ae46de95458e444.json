@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x6e1babe41d708f6d46a89cda1ae46de95458e444",
+ "name": "StrategicHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

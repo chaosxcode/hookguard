@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xc804af6eaa8269c71848e114571f2dd5314c4044",
+ "name": "TaxStrategyHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

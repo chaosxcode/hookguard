@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x5613c279e8db9815dbd0cdfbd10515eabd350088",
+ "name": "Hook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

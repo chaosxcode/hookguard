@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0x5cd525c621afca515bf58631d4733fba7b72aae4",
+ "name": "VerifiedPoolsBasicHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x747b8bb5e2e60d4c9e881fe7a27e0b69e47d0040",
+ "name": "ProofOfSwapHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

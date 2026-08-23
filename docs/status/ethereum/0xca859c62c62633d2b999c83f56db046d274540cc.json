@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0xca859c62c62633d2b999c83f56db046d274540cc",
+ "name": "FeeHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

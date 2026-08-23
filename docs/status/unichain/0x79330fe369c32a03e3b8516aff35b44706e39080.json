@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "unichain",
+ "address": "0x79330fe369c32a03e3b8516aff35b44706e39080",
+ "name": "BaseOracleHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

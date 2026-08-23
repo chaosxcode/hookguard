@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0xc5a48b447f01e9ce3ede71e4c1c2038c38bd9000",
+ "name": "GraduationHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

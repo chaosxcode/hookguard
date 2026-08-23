@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x7ea48e09937955cb2c6538b52bb3516974be20cc",
+ "name": "Plot",
+ "findings": 1,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

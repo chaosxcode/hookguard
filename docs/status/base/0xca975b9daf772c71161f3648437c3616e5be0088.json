@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "base",
+ "address": "0xca975b9daf772c71161f3648437c3616e5be0088",
+ "name": "SimpleSellTaxHook",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

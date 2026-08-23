@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x9f8f375b2d246da6be816b453f13d43d8240a444",
+ "name": "ERC20StrategyHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

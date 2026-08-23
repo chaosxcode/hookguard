@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x11229d5042857a78db118c51aed97911400780c0",
+ "name": "VitaHook",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

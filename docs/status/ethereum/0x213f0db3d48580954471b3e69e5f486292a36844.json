@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x213f0db3d48580954471b3e69e5f486292a36844",
+ "name": "MoonCatsStrategyHookV2",
+ "findings": 0,
+ "high": 0,
+ "advisory": false,
+ "source": true
+}

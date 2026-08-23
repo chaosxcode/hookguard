@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "robinhood",
+ "address": "0x28388ca220f955b5bdf0309e28612fe057c00088",
+ "name": "BuffetAMM",
+ "findings": 1,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}

@@ -1,0 +1,10 @@
+{
+ "generated": "2026-08-23",
+ "chain": "ethereum",
+ "address": "0x5832f3e51295cee676eebbb25748d527f64b5f80",
+ "name": "ImmutableState",
+ "findings": 2,
+ "high": 0,
+ "advisory": true,
+ "source": true
+}
