@@ -6,5 +6,22 @@
  "findings": 1,
  "high": 1,
  "advisory": false,
- "source": true
+ "source": true,
+ "score": 25,
+ "band": "MODERATE",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "high_finding",
+   "label": "1\u00d7 HIGH finding(s)",
+   "delta": 15,
+   "detail": "demonstrated invariant breaks from source analysis"
+  },
+  {
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
+  }
+ ]
 }

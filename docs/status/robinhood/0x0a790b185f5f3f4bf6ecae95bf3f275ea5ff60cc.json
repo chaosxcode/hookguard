@@ -6,5 +6,16 @@
  "findings": 0,
  "high": 0,
  "advisory": false,
- "source": true
+ "source": true,
+ "score": 10,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
+  }
+ ]
 }

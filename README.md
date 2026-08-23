@@ -1,10 +1,39 @@
 # HookGuard
 
+[![external installs](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/chaosxcode/hookguard/master/out/adoption.json)](https://github.com/chaosxcode/hookguard/blob/master/docs/ROADMAP.md)
+[![self-test](https://github.com/chaosxcode/hookguard/actions/workflows/selftest.yml/badge.svg)](https://github.com/chaosxcode/hookguard/actions/workflows/selftest.yml)
+
 A transparent, CI-native risk scanner for Uniswap v4 hooks.
 
 **It is not an audit and never claims to be.** It is a heuristic pass that flags
 documented v4 risk patterns early and cheaply, so scarce audit budget can be
 aimed where it matters.
+
+**Live status feed & dashboard:** <https://chaosxcode.github.io/hookguard/status/>
+
+## Add it to your hook in 60 seconds
+
+```yaml
+# .github/workflows/hookguard.yml
+name: hookguard
+on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write   # only needed for the summary comment
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chaosxcode/hookguard@v1
+        with:
+          paths: src
+```
+
+Annotations land on the offending lines; a single PR comment summarizes.
+`fail-on: HIGH` by default — heuristics advise, they don't gate.
 
 ## Why
 

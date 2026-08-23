@@ -161,6 +161,13 @@ input[type=search]:focus,select:focus{border-color:rgba(123,91,255,.55)}
 .b-ok{color:var(--green);background:rgba(0,229,143,.07);border:1px solid rgba(0,229,143,.25)}
 .b-no{color:var(--red);background:rgba(255,77,107,.06);border:1px solid rgba(255,77,107,.22)}
 .b-dim{color:var(--faint);background:var(--surface);border:1px solid var(--border)}
+.scorechip{font-family:ui-monospace,Menlo,monospace;font-weight:700;font-size:11.5px;
+  padding:3px 9px;border-radius:8px;display:inline-block}
+.s-low{color:var(--green);background:rgba(0,229,143,.08);border:1px solid rgba(0,229,143,.25)}
+.s-moderate{color:var(--amber);background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.3)}
+.s-elevated{color:#ff8a5c;background:rgba(255,138,92,.09);border:1px solid rgba(255,138,92,.35)}
+.s-high{color:var(--red);background:rgba(255,77,107,.1);border:1px solid rgba(255,77,107,.4)}
+.conf{font-size:10px;color:var(--faint);margin-left:5px}
 .opcodes span{display:inline-grid;place-items:center;width:22px;height:20px;margin-right:4px;border-radius:6px;
   font-size:10px;font-weight:700;cursor:default}
 .op-on-d{color:var(--cyan);background:rgba(0,209,255,.1);border:1px solid rgba(0,209,255,.3)}
@@ -311,6 +318,36 @@ footer code{color:var(--dim)}
   <div class="card panel" style="padding:6px 0" id="famList"></div>
 </section>
 
+<section id="distribution" class="reveal">
+  <div class="shead"><h2>Risk distribution</h2><span class="tag">every scored record · weights published, nothing hidden</span></div>
+  <div class="card panel">
+    <div class="bars" id="distBars"></div>
+    <p style="margin-top:14px;font-size:12.5px;color:var(--faint)">
+      Score 0–100 from itemized facts only: source findings, bytecode signals,
+      registry/audit status, author confirmations. Full weight table:
+      <a href="https://github.com/chaosxcode/hookguard/blob/master/src/score.py" style="color:var(--cyan)">src/score.py</a>.
+    </p>
+  </div>
+</section>
+
+<section id="adoption" class="reveal">
+  <div class="shead"><h2>Adoption</h2><span class="tag">external projects running <span class="mono">chaosxcode/hookguard@v1</span> · measured, not claimed</span></div>
+  <div class="card panel">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:10px">
+      <span class="num" style="font-size:34px;font-weight:700" id="adoptCount"></span>
+      <span style="color:var(--dim);font-size:13px">of 5-goal unrelated projects</span>
+      <span class="count mono" id="adoptUpdated"></span>
+    </div>
+    <div class="track" style="height:12px"><div class="fill" id="adoptBar" style="background:var(--grad)"></div></div>
+    <div id="adoptRepos" style="margin-top:14px"></div>
+    <p style="margin-top:14px;font-size:12.5px;color:var(--faint)">
+      Measured via public code search over <span class="mono">.github/workflows/</span>; our own repositories are excluded.
+      Add HookGuard to yours:
+      <span class="mono" style="color:var(--cyan)">- uses: chaosxcode/hookguard@v1</span>
+    </p>
+  </div>
+</section>
+
 <section id="ledger" class="reveal">
   <div class="shead"><h2>Advisory ledger</h2><span class="tag">every author contact, logged in public</span></div>
   <div class="card panel" style="padding:6px 0" id="ledgerList"></div>
@@ -329,12 +366,17 @@ footer code{color:var(--dim)}
       <option value="high">has HIGH</option>
       <option value="nosrc">no published source</option>
     </select>
+    <select id="bandSel">
+      <option value="">any risk band</option>
+      <option>LOW</option><option>MODERATE</option>
+      <option>ELEVATED</option><option>HIGH</option>
+    </select>
   </div>
   <div class="card" style="overflow:auto;max-height:640px">
     <table class="tbl">
       <thead><tr>
         <th>address</th><th>name</th><th>chain</th><th>pools</th>
-        <th>source</th><th>signals</th><th>permission bits</th><th>status</th>
+        <th>source</th><th>signals</th><th>permission bits</th><th>risk</th><th>status</th>
       </tr></thead>
       <tbody id="tbody"></tbody>
     </table>
@@ -412,6 +454,45 @@ document.getElementById("famList").innerHTML =
     <span class="badge b-ok">same program</span>
   </div>`).join("") || `<div class="fam"><div class="note">no cross-chain families detected yet</div></div>`;
 
+/* ---------- risk distribution ---------- */
+const BAND_ORDER=["LOW","MODERATE","ELEVATED","HIGH"];
+const BCOLOR={LOW:"var(--green)",MODERATE:"var(--amber)",ELEVATED:"#ff8a5c",HIGH:"var(--red)"};
+(function(){
+  const counts={};ROWS.forEach(r=>{const b=r.band||"UNSCORED";counts[b]=(counts[b]||0)+1;});
+  const max=Math.max(...Object.values(counts),1);
+  const order=[...BAND_ORDER,"UNSCORED"].filter(b=>counts[b]);
+  document.getElementById("distBars").innerHTML=order.map(b=>`
+    <div class="brow"><span class="cn" style="color:${BCOLOR[b]||"var(--dim)"}">${b}</span>
+      <div class="track"><div class="fill" style="width:${Math.max(counts[b]/max*100,3)}%;
+        background:${BCOLOR[b]||"rgba(255,255,255,.25)"}"></div></div>
+      <span class="pv num">${counts[b]}</span></div>`).join("");
+})();
+
+/* ---------- adoption ---------- */
+(function(){
+  const a=FEED.adoption||{};
+  const n=a.externalInstalls||0, goal=a.goal||5;
+  document.getElementById("adoptCount").textContent=n;
+  document.getElementById("adoptUpdated").textContent="checked "+(a.searchedAt||"").slice(0,10);
+  document.getElementById("adoptBar").style.width=Math.min(n/goal*100,100)+"%";
+  const el=document.getElementById("adoptRepos");
+  el.innerHTML = n===0
+    ? `<div class="note">No external installs measured yet — the goal is 3–5 unrelated projects.
+       If you ship v4 hooks, one line adds HookGuard to your CI:</div>
+       <pre class="mono" style="margin-top:8px;padding:12px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03);color:#c9c6dd;overflow:auto">name: hookguard
+on: [pull_request]
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chaosxcode/hookguard@v1
+        with:
+          paths: src</pre>`
+    : a.repos.map(r=>`<div class="fam"><div class="meta"><span class="n">${r.repo}</span>
+        <div class="note mono">${r.path}</div></div><span class="badge b-ok">installing @v1</span></div>`).join("");
+})();
+
 /* ---------- ledger ---------- */
 const STATES = {
   "awaiting-response":"awaiting response",
@@ -443,10 +524,14 @@ function rowHTML(r){
       ><span class="${r.selfdestruct?"op-on-s":"op-off"}" title="SELFDESTRUCT opcode present">S</span></span>`
     : `<span class="badge ${r.high?"b-no":r.advisory?"":"b-dim"}" style="${r.high||r.advisory?"":"opacity:.55"}">${
         r.high?"HIGH":r.advisory?"advisory":"scanned"}</span>`;
+  const bandCls = "s-"+(r.band||"low").toLowerCase();
+  const scoreCell = r.score==null ? `<span style="color:var(--faint)">—</span>` :
+    `<span class="scorechip ${bandCls}" title="${(r.factors||[]).map(f=>`${f.delta>0?"+":""}${f.delta} ${f.label}`).join("\n")||"baseline"}">${r.score} ${r.band}</span><span class="conf">${(r.confidence||"")[0]||""}</span>`;
   const status = r.source===false
       ? `<span class="badge b-no">no source</span>${r.proxy?` <span class="badge" style="color:var(--violet);border:1px solid rgba(123,91,255,.35)">proxy</span>`:""}`
       : (r.high?`<span class="badge b-no">HIGH</span>`:r.advisory?`<span class="badge" style="color:var(--amber);border:1px solid rgba(255,181,71,.32);background:rgba(255,181,71,.06)">advisory</span>`:`<span class="badge b-ok">clean</span>`);
   return `<tr data-t="${(r.address+" "+(r.name||"")).toLowerCase()}" data-c="${r.chain}"
+    data-b="${r.band||""}"
     data-k="${[r.advisory?"adv":"",r.high?"high":"",r.source===false?"nosrc":""].join(" ")}">
     <td class="addr mono" onclick="navigator.clipboard.writeText('${r.address}');this.style.color='#00e58f';setTimeout(()=>this.style.color='',900)" title="click to copy">${shortA(r.address)}</td>
     <td>${r.name||"<span style='color:var(--faint)'>—</span>"}</td>
@@ -455,6 +540,7 @@ function rowHTML(r){
     <td>${r.source===false?'<span class="badge b-no">missing</span>':'<span class="badge b-ok">yes</span>'}</td>
     <td>${sig}</td>
     <td>${bits(r.permBits??0)}</td>
+    <td>${scoreCell}</td>
     <td>${status}</td>
   </tr>`;
 }
@@ -463,18 +549,22 @@ function render(){
   const q=document.getElementById("q").value.toLowerCase();
   const cs=document.getElementById("chainSel").value;
   const ks=document.getElementById("advSel").value;
+  const bs=document.getElementById("bandSel").value;
   const view = ROWS.filter(r=>{
-    const el = document.createElement("div"); el.innerHTML=rowHTML(r);
-    const tr = el.firstChild;
-    if(q && !tr.dataset.t.includes(q)) return false;
-    if(cs && tr.dataset.c!==cs) return false;
-    if(ks && !tr.dataset.k.split(" ").includes(ks)) return false;
+    if(q && !(r.address+" "+(r.name||"")).toLowerCase().includes(q)) return false;
+    if(cs && r.chain!==cs) return false;
+    if(bs && (r.band||"")!==bs) return false;
+    if(ks){
+      if(ks==="adv" && !r.advisory) return false;
+      if(ks==="high" && !r.high) return false;
+      if(ks==="nosrc" && r.source!==false) return false;
+    }
     return true;
   }).map(rowHTML);
-  tbody.innerHTML = view.join("") || `<tr><td colspan="8" style="color:var(--faint);text-align:center;padding:30px">nothing matches</td></tr>`;
+  tbody.innerHTML = view.join("") || `<tr><td colspan="9" style="color:var(--faint);text-align:center;padding:30px">nothing matches</td></tr>`;
   document.getElementById("rowCount").textContent = `${view.length} / ${ROWS.length} records`;
 }
-["q","chainSel","advSel"].forEach(id=>document.getElementById(id).addEventListener("input",render));
+["q","chainSel","advSel","bandSel"].forEach(id=>document.getElementById(id).addEventListener("input",render));
 render();
 </script>
 </body>

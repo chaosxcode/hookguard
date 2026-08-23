@@ -2,6 +2,22 @@
 
 *Living document. Order within tiers is priority, not schedule.*
 
+## Success criteria
+
+The project has explicit external-validation goals. Each is measured, not
+claimed; `src/reach.py` and the [status feed](status/index.html) report the
+numbers.
+
+| goal | measured by | status |
+|---|---|---|
+| 3–5 unrelated hook projects installing `chaosxcode/hookguard@v1` | public code search (`src/reach.py`) | **0 / 5** — advisories now include a one-line install ask |
+| maintainers responding to findings, confirming usefulness | [author-outreach ledger](../findings/author-outreach.md) | 2 advisories live, awaiting response |
+| one external pull request or contributor | git history | contributor path documented ([CONTRIBUTING.md](../CONTRIBUTING.md), issue templates) |
+| one integration: registry, incubator cohort, audit workflow, or security team | links from this repo | UHI application submitted before Sep 21 deadline |
+| public testimonials from identifiable builders | quoted in ledger/README | follows responses above |
+| usage metrics excluding own repositories | `reach.py` excludes `chaosxcode/*` by design | tracked since day one |
+| case study: HookGuard caused a real fix or documented risk decision | written up in findings/ | candidate pending any author response |
+
 ## Now
 
 - **Author responses.** Two advisories are live ([Uniderp #1](https://github.com/Uniderp-fun/uniderp-hook-smart-contract/issues/1), [VII-Finance #30](https://github.com/VII-Finance/yield-harvesting-hook/issues/30)). Responses get logged verbatim in [author-outreach.md](../findings/author-outreach.md); silence is recorded as silence.

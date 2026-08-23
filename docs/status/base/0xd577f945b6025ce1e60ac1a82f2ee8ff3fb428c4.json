@@ -6,5 +6,9 @@
  "findings": 0,
  "high": 0,
  "advisory": false,
- "source": true
+ "source": true,
+ "score": 0,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": []
 }

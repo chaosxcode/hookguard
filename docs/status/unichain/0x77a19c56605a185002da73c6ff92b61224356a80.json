@@ -6,5 +6,16 @@
  "findings": 0,
  "high": 0,
  "advisory": false,
- "source": true
+ "source": true,
+ "score": 8,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "unregistered",
+   "label": "absent from the hooklist registry",
+   "delta": 8,
+   "detail": "opt-in transparency signal not exercised"
+  }
+ ]
 }

@@ -6,5 +6,16 @@
  "findings": 1,
  "high": 0,
  "advisory": false,
- "source": true
+ "source": true,
+ "score": 1,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "info_finding",
+   "label": "1\u00d7 informational",
+   "delta": 1,
+   "detail": ""
+  }
+ ]
 }

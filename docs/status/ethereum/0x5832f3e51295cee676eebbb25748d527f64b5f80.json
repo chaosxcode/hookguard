@@ -6,5 +6,22 @@
  "findings": 2,
  "high": 0,
  "advisory": true,
- "source": true
+ "source": true,
+ "score": 24,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "medium_finding",
+   "label": "2\u00d7 MEDIUM finding(s)",
+   "delta": 14,
+   "detail": "accurate detections awaiting author confirmation"
+  },
+  {
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
+  }
+ ]
 }

@@ -1,0 +1,51 @@
+name: False-positive report
+description: A HookGuard finding that does not hold up against the contract's actual behavior
+labels: ["false-positive", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        False positives are the most valuable input this project gets — each
+        one has historically produced a rule fix and a published correction.
+        Thank you for reading closely enough to file one.
+  - type: input
+    id: contract
+    attributes:
+      label: Contract address + chain
+      placeholder: "0x… on base / ethereum / unichain …"
+    validations:
+      required: true
+  - type: dropdown
+    id: rule
+    attributes:
+      label: Rule code
+      options:
+        - PERMISSIONLESS_ATTACHMENT
+        - PERMISSIONLESS_BY_DESIGN
+        - MISSING_POOLMANAGER_GUARD
+        - UPGRADEABLE_HOOK
+        - DELTA_FLAG_MISMATCH
+        - REVERT_DOS_RISK
+        - UNBOUNDED_DYNAMIC_FEE
+        - REENTRANCY_SURFACE
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What the rule claims
+      description: Paste the finding text or summarize it.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Why the contract is safe / what the rule missed
+      description: e.g. a validation pattern the scanner did not recognize, a guard spelled unusually, a delegate that reverts for unknown pools.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: HookGuard version / action ref
+      placeholder: "@v1"

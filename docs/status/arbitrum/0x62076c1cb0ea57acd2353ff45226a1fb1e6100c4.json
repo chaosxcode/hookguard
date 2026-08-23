@@ -6,5 +6,16 @@
  "findings": 1,
  "high": 0,
  "advisory": true,
- "source": true
+ "source": true,
+ "score": 7,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "medium_finding",
+   "label": "1\u00d7 MEDIUM finding(s)",
+   "delta": 7,
+   "detail": "accurate detections awaiting author confirmation"
+  }
+ ]
 }

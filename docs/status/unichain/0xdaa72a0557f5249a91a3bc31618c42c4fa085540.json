@@ -11,5 +11,22 @@
  "permBits": 4,
  "findings": null,
  "high": null,
- "advisory": false
+ "advisory": false,
+ "score": 33,
+ "band": "MODERATE",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "no_source",
+   "label": "no published source",
+   "delta": 25,
+   "detail": "nothing at source level can be checked; opacity priced, not guilt"
+  },
+  {
+   "key": "unregistered",
+   "label": "absent from the hooklist registry",
+   "delta": 8,
+   "detail": "opt-in transparency signal not exercised"
+  }
+ ]
 }

@@ -11,5 +11,34 @@
  "permBits": 11,
  "findings": null,
  "high": null,
- "advisory": false
+ "advisory": false,
+ "score": 50,
+ "band": "ELEVATED",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "no_source",
+   "label": "no published source",
+   "delta": 25,
+   "detail": "nothing at source level can be checked; opacity priced, not guilt"
+  },
+  {
+   "key": "standard_proxy",
+   "label": "delegates to implementation",
+   "delta": 12,
+   "detail": "target appears readable"
+  },
+  {
+   "key": "unregistered",
+   "label": "absent from the hooklist registry",
+   "delta": 8,
+   "detail": "opt-in transparency signal not exercised"
+  },
+  {
+   "key": "selfdestruct",
+   "label": "SELFDESTRUCT capability present",
+   "delta": 5,
+   "detail": "opcode-level fact"
+  }
+ ]
 }

@@ -371,6 +371,7 @@ def main():
         "targets": len(targets), "analyzed": len(ok),
         "errors": errors,
         "layoutValidation": layout,
+        "implVerification": {},
         "summary": {
             "eip1967Proxies": len(proxies1967),
             "eip1167MinimalProxies": len(minis),
@@ -413,10 +414,13 @@ def main():
                 for t in dt.get("constantTargets", []):
                     by_impl.setdefault(t, []).append(r["address"])
             impls = load_impl_verification(by_impl.keys()) if by_impl else {}
+            out["implVerification"] = {t: (v or {}).get("name", "")
+                                       for t, v in impls.items()}
+            out["opaqueImplementations"] = sorted(set(by_impl) - set(impls))
             for t, addrs in sorted(by_impl.items(), key=lambda kv: -len(kv[1])):
                 ver = impls.get(t)
                 tag = f"  [{'VERIFIED: ' + ver['name'] + ' | ' if ver else ''}"
-                tag += "READABLE" if ver else "OPAQUE -- no published source"
+                tag += "READABLE]" if ver else "OPAQUE -- no published source]"
                 print(f"      {t}  <- {len(addrs)} deployment(s){tag}]")
         elif k == "storage-derived":
             for r in ok:

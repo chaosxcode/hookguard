@@ -6,5 +6,28 @@
  "findings": 2,
  "high": 0,
  "advisory": false,
- "source": true
+ "source": true,
+ "score": 16,
+ "band": "LOW",
+ "confidence": "medium",
+ "factors": [
+  {
+   "key": "unregistered",
+   "label": "absent from the hooklist registry",
+   "delta": 8,
+   "detail": "opt-in transparency signal not exercised"
+  },
+  {
+   "key": "medium_finding",
+   "label": "1\u00d7 MEDIUM finding(s)",
+   "delta": 7,
+   "detail": "accurate detections awaiting author confirmation"
+  },
+  {
+   "key": "info_finding",
+   "label": "1\u00d7 informational",
+   "delta": 1,
+   "detail": ""
+  }
+ ]
 }

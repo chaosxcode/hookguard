@@ -1,0 +1,43 @@
+name: Rule proposal
+description: Propose a new detection rule for the scanner
+labels: ["rule-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Rules here derive from documented mechanisms — post-mortems, security
+        guides, real incidents — and must be able to justify their severity.
+        See docs/precision.md for two rules that were downgraded because they
+        could not.
+  - type: input
+    id: name
+    attributes:
+      label: Proposed rule name (SCREAMING_SNAKE_CASE)
+    validations:
+      required: true
+  - type: textarea
+    id: mechanism
+    attributes:
+      label: The mechanism / why it matters
+      description: Link the post-mortem, guide, or incident it derives from.
+    validations:
+      required: true
+  - type: textarea
+    id: detection
+    attributes:
+      label: Detection sketch
+      description: What pattern in source or bytecode indicates this?
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Proposed severity
+      options: ["HIGH", "MEDIUM", "LOW", "INFO"]
+    validations:
+      required: true
+  - type: textarea
+    id: false_positives
+    attributes:
+      label: Known false-positive risks
+      description: How might this fire on safe code? What spellings of the guard exist?
