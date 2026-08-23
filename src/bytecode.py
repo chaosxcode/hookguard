@@ -103,6 +103,7 @@ CHAIN = os.environ.get("CHAIN", "unichain")
 MINPOOL = int(os.environ.get("MIN_POOLS", "10"))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HDRS = {"Content-Type": "application/json", "User-Agent": "curl/8.5.0"}
+HDRS2 = {"User-Agent": "curl/8.5.0", "Accept": "application/json"}
 EIP1967 = "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"
 EIP1167_HEAD = "363d3d373d3d3d363d"
 EIP1167_TAIL = "57fd5bf3"
@@ -151,6 +152,74 @@ def _real_opcodes(code_bytes):
     return out
 
 
+def _disasm(code_bytes):
+    """Linear disassembly as (offset, opcode, operand_hex|None)."""
+    i, ins = 0, []
+    n = len(code_bytes)
+    while i < n:
+        op = code_bytes[i]
+        if 0x60 <= op <= 0x7F:
+            w = op - 0x5F
+            ins.append((i, op, code_bytes[i + 1:i + 1 + w].hex()))
+            i += 1 + w
+        else:
+            ins.append((i, op, None))
+            i += 1
+    return ins
+
+
+def classify_delegatecalls(code_bytes, near=10):
+    """Where do this contract's DELEGATECALL targets come from?
+
+    Only the instructions immediately feeding the call count -- the canonical
+    tail is `... PUSH20 <target> GAS DELEGATECALL`, and proxies load the
+    target with `PUSH32 <slot> SLOAD` just before:
+
+      constant        -> a plausible address constant sits in the near
+          window and no SLOAD does: fixed delegation to one implementation
+      storage-derived -> an SLOAD sits there instead: the target lives in
+          storage and can be rewritten => upgradeable in practice
+      unknown         -> neither: needs real stack emulation
+
+    The near window keeps unrelated constants (PoolManager comparisons, zero
+    guards) out of the verdict; those were exactly the false attributions a
+    wide window produced."""
+    pm = CHAINS[CHAIN][1].lower()
+    ins = _disasm(code_bytes)
+    sites = []
+    for k, (off, op, arg) in enumerate(ins):
+        if op != 0xF4:
+            continue
+        win = ins[max(0, k - near):k]
+        consts = {("0x" + a[-40:]) for _, o, a in win
+                  if o == 0x73 and a}                       # PUSH20 only
+        consts = {c for c in consts
+                  if int(c, 16) > 2 ** 152 and c != pm}
+        sload = any(o == 0x54 for _, o, _a in win)
+        if consts and not sload:
+            kind = "constant"
+        elif sload and not consts:
+            kind = "storage-derived"
+        elif consts and sload:
+            kind = "mixed"
+        else:
+            kind = "unknown"
+        sites.append({"offset": off,
+                      "kind": kind,
+                      "constants": sorted(consts)[:3]})
+    kinds = {s["kind"] for s in sites}
+    if len(kinds) > 1 and "unknown" in kinds:
+        kinds.discard("unknown")
+    kind = kinds.pop() if len(kinds) == 1 else \
+        ("mixed" if kinds else None)
+    return {
+        "sites": len(sites),
+        "kind": kind,
+        "constantTargets": sorted({c for s in sites for c in s["constants"]})[:4],
+        "heuristic": f"adjacent-{near}-instruction window per site",
+    }
+
+
 def analyze(addr):
     code = rpc("eth_getCode", [addr, "latest"])
     if len(code) <= 2:
@@ -171,6 +240,8 @@ def analyze(addr):
         "selfdestruct": 0xFF in ops,
         "selectorsPresent": {n: (h in b) for n, h in SELECTOR_HEX.items()},
     }
+    if 0xF4 in ops:
+        rec["delegatecallTargets"] = classify_delegatecalls(raw)
     # EIP-1167 minimal proxy: fixed prefix/suffix with the target embedded.
     if b.startswith(EIP1167_HEAD) and b.endswith(EIP1167_TAIL) and len(b) == 90:
         rec["minimalProxy"] = True
@@ -213,6 +284,26 @@ def validate_layout():
             "finalV4OrderMatches": fwd_ok,
             "note": "callback flags only; return-delta bit positions match "
                     "neither layout and stay unclaimed"} if n else None
+
+
+def load_impl_verification(targets):
+    """Ask Blockscout whether each constant delegatecall target publishes
+    source -- the difference between 'hidden but readable' and 'opaque'."""
+    out = {}
+    host = {"unichain": "https://unichain.blockscout.com"}.get(CHAIN)
+    if not host:
+        return out
+    for t in targets:
+        try:
+            req = urllib.request.Request(
+                f"{host}/api/v2/smart-contracts/{t}", headers=HDRS2)
+            body = json.loads(urllib.request.urlopen(req, timeout=30).read())
+            if body.get("is_verified"):
+                out[t] = {"name": body.get("name")}
+            time.sleep(0.3)
+        except Exception:                                   # noqa: BLE001
+            pass                                            # opaque by default
+    return out
 
 
 def main():
@@ -284,6 +375,10 @@ def main():
             "eip1967Proxies": len(proxies1967),
             "eip1167MinimalProxies": len(minis),
             "delegatecallOpcodesPresent": sum(1 for r in ok if r["delegatecall"]),
+            **{f"delegatecall{k}":
+               sum(1 for r in ok
+                   if (r.get("delegatecallTargets") or {}).get("kind") == k)
+               for k in ("storage-derived", "constant", "mixed")},
             "selfdestructOpcodesPresent": sum(1 for r in ok if r["selfdestruct"]),
             "getHookPermissionsSelectorPresent":
                 sum(1 for r in ok if r["selectorsPresent"]["getHookPermissions"]),
@@ -304,6 +399,30 @@ def main():
         print(f"      {r['name'] or ''}: impl {r['eip1967Implementation']}")
     print(f"  EIP-1167 minimal      {len(minis)}")
     print(f"  DELEGATECALL opcode   {out['summary']['delegatecallOpcodesPresent']}")
+    for k, label in (("storage-derived", "storage-derived (upgradeable in practice)"),
+                     ("constant", "constant target (fixed delegation)"),
+                     ("mixed", "mixed signals (needs emulation)")):
+        n = out['summary'][f"delegatecall{k}"]
+        print(f"    {label:38s} {n}")
+        if k == "constant":
+            by_impl = {}
+            for r in ok:
+                dt = r.get("delegatecallTargets") or {}
+                if dt.get("kind") != "constant":
+                    continue
+                for t in dt.get("constantTargets", []):
+                    by_impl.setdefault(t, []).append(r["address"])
+            impls = load_impl_verification(by_impl.keys()) if by_impl else {}
+            for t, addrs in sorted(by_impl.items(), key=lambda kv: -len(kv[1])):
+                ver = impls.get(t)
+                tag = f"  [{'VERIFIED: ' + ver['name'] + ' | ' if ver else ''}"
+                tag += "READABLE" if ver else "OPAQUE -- no published source"
+                print(f"      {t}  <- {len(addrs)} deployment(s){tag}]")
+        elif k == "storage-derived":
+            for r in ok:
+                dt = r.get("delegatecallTargets") or {}
+                if dt.get("kind") == "storage-derived":
+                    print(f"      {r['address']}")
     print(f"  SELFDESTRUCT opcode   {out['summary']['selfdestructOpcodesPresent']}")
     print(f"  getHookPermissions    {out['summary']['getHookPermissionsSelectorPresent']}   (weak signal)")
     print(f"  distinct programs     {len(families)} across {len(ok)} contracts")

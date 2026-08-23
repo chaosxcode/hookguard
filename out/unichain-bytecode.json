@@ -5,15 +5,18 @@
  "analyzed": 25,
  "errors": 0,
  "layoutValidation": {
-  "contractsChecked": 18,
-  "previewReversedOrderMatches": 17,
-  "finalV4OrderMatches": 1,
+  "contractsChecked": 26,
+  "previewReversedOrderMatches": 25,
+  "finalV4OrderMatches": 2,
   "note": "callback flags only; return-delta bit positions match neither layout and stay unclaimed"
  },
  "summary": {
   "eip1967Proxies": 0,
   "eip1167MinimalProxies": 0,
   "delegatecallOpcodesPresent": 17,
+  "delegatecallstorage-derived": 0,
+  "delegatecallconstant": 17,
+  "delegatecallmixed": 0,
   "selfdestructOpcodesPresent": 17,
   "getHookPermissionsSelectorPresent": 24,
   "distinctCodeHashes": 16,
@@ -106,6 +109,14 @@
     "beforeSwap": true,
     "afterSwap": false
    },
+   "delegatecallTargets": {
+    "sites": 5,
+    "kind": "constant",
+    "constantTargets": [
+     "0x11f2ee6b0fc6367efae53e0a33ee6216974a0f81"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
    "minimalProxy": false,
    "name": null,
    "pools": 27
@@ -153,52 +164,13 @@
     "beforeSwap": true,
     "afterSwap": true
    },
-   "minimalProxy": false,
-   "name": null,
-   "pools": 15
-  },
-  {
-   "address": "0xb17915889c171df49e45d46cf7f4b6c1b19cbfcf",
-   "codeSizeBytes": 18541,
-   "codeHash": "185c8f12784f67f4084344a499f6486a04917fb702f9b9c50c39c453b2660926",
-   "permsFromAddress": {
-    "finalV4Order": [
-     "beforeInitialize",
-     "afterInitialize",
-     "beforeAddLiquidity",
-     "afterAddLiquidity",
-     "beforeSwap",
-     "afterSwap",
-     "beforeDonate",
-     "afterDonate",
-     "beforeSwapReturnsDelta",
-     "afterSwapReturnsDelta",
-     "afterAddLiquidityReturnsDelta",
-     "afterRemoveLiquidityReturnsDelta"
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
     ],
-    "previewReversedOrder": [
-     "afterRemoveLiquidityReturnsDelta",
-     "afterAddLiquidityReturnsDelta",
-     "afterSwapReturnsDelta",
-     "beforeSwapReturnsDelta",
-     "afterSwap",
-     "beforeSwap",
-     "afterRemoveLiquidity",
-     "beforeRemoveLiquidity",
-     "afterAddLiquidity",
-     "beforeAddLiquidity",
-     "afterInitialize",
-     "beforeInitialize"
-    ]
-   },
-   "delegatecall": true,
-   "callcode": false,
-   "staticcall": true,
-   "selfdestruct": true,
-   "selectorsPresent": {
-    "getHookPermissions": true,
-    "beforeSwap": true,
-    "afterSwap": true
+    "heuristic": "adjacent-10-instruction window per site"
    },
    "minimalProxy": false,
    "name": null,
@@ -247,14 +219,22 @@
     "beforeSwap": true,
     "afterSwap": true
    },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
    "minimalProxy": false,
    "name": null,
    "pools": 15
   },
   {
-   "address": "0xd64ac246ffe3baea00c6ac195b5c049bbd327fcf",
+   "address": "0xb17915889c171df49e45d46cf7f4b6c1b19cbfcf",
    "codeSizeBytes": 18541,
-   "codeHash": "98b04f67c221cbf2a5483ea4298481482e5fcff688e6155faad8abb71bc42cfe",
+   "codeHash": "185c8f12784f67f4084344a499f6486a04917fb702f9b9c50c39c453b2660926",
    "permsFromAddress": {
     "finalV4Order": [
      "beforeInitialize",
@@ -293,6 +273,14 @@
     "getHookPermissions": true,
     "beforeSwap": true,
     "afterSwap": true
+   },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
    },
    "minimalProxy": false,
    "name": null,
@@ -341,6 +329,69 @@
     "beforeSwap": true,
     "afterSwap": true
    },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0xd64ac246ffe3baea00c6ac195b5c049bbd327fcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "98b04f67c221cbf2a5483ea4298481482e5fcff688e6155faad8abb71bc42cfe",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
    "minimalProxy": false,
    "name": null,
    "pools": 15
@@ -387,6 +438,14 @@
     "getHookPermissions": true,
     "beforeSwap": true,
     "afterSwap": true
+   },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
    },
    "minimalProxy": false,
    "name": null,
@@ -435,52 +494,15 @@
     "beforeSwap": true,
     "afterSwap": true
    },
-   "minimalProxy": false,
-   "name": null,
-   "pools": 15
-  },
-  {
-   "address": "0x0274bb537bc0c7084e8a0e2cc45cd4ca3375bfcf",
-   "codeSizeBytes": 21272,
-   "codeHash": "0ec8a828377be8060ea02fe2152001e8c4f22819965bb63bf266ed5630415c17",
-   "permsFromAddress": {
-    "finalV4Order": [
-     "beforeInitialize",
-     "afterInitialize",
-     "beforeAddLiquidity",
-     "afterAddLiquidity",
-     "beforeSwap",
-     "afterSwap",
-     "beforeDonate",
-     "afterDonate",
-     "beforeSwapReturnsDelta",
-     "afterSwapReturnsDelta",
-     "afterAddLiquidityReturnsDelta",
-     "afterRemoveLiquidityReturnsDelta"
+   "delegatecallTargets": {
+    "sites": 14,
+    "kind": "constant",
+    "constantTargets": [
+     "0x3d7879513bf0ae1163c689a96bde54b616523156",
+     "0x69220726254355361cfd03f509d6c952e5f8a032",
+     "0x7d873d13b3d00ddf958eed23e76b20b94c16ac85"
     ],
-    "previewReversedOrder": [
-     "afterRemoveLiquidityReturnsDelta",
-     "afterAddLiquidityReturnsDelta",
-     "afterSwapReturnsDelta",
-     "beforeSwapReturnsDelta",
-     "afterSwap",
-     "beforeSwap",
-     "afterRemoveLiquidity",
-     "beforeRemoveLiquidity",
-     "afterAddLiquidity",
-     "beforeAddLiquidity",
-     "afterInitialize",
-     "beforeInitialize"
-    ]
-   },
-   "delegatecall": true,
-   "callcode": false,
-   "staticcall": true,
-   "selfdestruct": true,
-   "selectorsPresent": {
-    "getHookPermissions": true,
-    "beforeSwap": true,
-    "afterSwap": true
+    "heuristic": "adjacent-10-instruction window per site"
    },
    "minimalProxy": false,
    "name": null,
@@ -529,6 +551,73 @@
     "beforeSwap": true,
     "afterSwap": true
    },
+   "delegatecallTargets": {
+    "sites": 13,
+    "kind": "constant",
+    "constantTargets": [
+     "0x69220726254355361cfd03f509d6c952e5f8a032",
+     "0xac0bb547d0886ce8a0f7ed7f1b09bd187dc2c500",
+     "0xaedf2fc7d7f003760751eaf82695b254fe88af7b"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0x0274bb537bc0c7084e8a0e2cc45cd4ca3375bfcf",
+   "codeSizeBytes": 21272,
+   "codeHash": "0ec8a828377be8060ea02fe2152001e8c4f22819965bb63bf266ed5630415c17",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "delegatecallTargets": {
+    "sites": 13,
+    "kind": "constant",
+    "constantTargets": [
+     "0x69220726254355361cfd03f509d6c952e5f8a032",
+     "0xac0bb547d0886ce8a0f7ed7f1b09bd187dc2c500",
+     "0xaedf2fc7d7f003760751eaf82695b254fe88af7b"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
    "minimalProxy": false,
    "name": null,
    "pools": 15
@@ -575,6 +664,16 @@
     "getHookPermissions": true,
     "beforeSwap": true,
     "afterSwap": true
+   },
+   "delegatecallTargets": {
+    "sites": 13,
+    "kind": "constant",
+    "constantTargets": [
+     "0x69220726254355361cfd03f509d6c952e5f8a032",
+     "0xac0bb547d0886ce8a0f7ed7f1b09bd187dc2c500",
+     "0xaedf2fc7d7f003760751eaf82695b254fe88af7b"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
    },
    "minimalProxy": false,
    "name": null,
@@ -623,56 +722,19 @@
     "beforeSwap": true,
     "afterSwap": true
    },
+   "delegatecallTargets": {
+    "sites": 13,
+    "kind": "constant",
+    "constantTargets": [
+     "0x69220726254355361cfd03f509d6c952e5f8a032",
+     "0xac0bb547d0886ce8a0f7ed7f1b09bd187dc2c500",
+     "0xaedf2fc7d7f003760751eaf82695b254fe88af7b"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
    "minimalProxy": false,
    "name": null,
    "pools": 15
-  },
-  {
-   "address": "0x12a41c32fa78c99b98c69750f9d0f6649b0dbfcf",
-   "codeSizeBytes": 18541,
-   "codeHash": "deeb512523d6ce4ec5c9b661f140a06431188fdb4f8bc08fc40441385624ffd6",
-   "permsFromAddress": {
-    "finalV4Order": [
-     "beforeInitialize",
-     "afterInitialize",
-     "beforeAddLiquidity",
-     "afterAddLiquidity",
-     "beforeSwap",
-     "afterSwap",
-     "beforeDonate",
-     "afterDonate",
-     "beforeSwapReturnsDelta",
-     "afterSwapReturnsDelta",
-     "afterAddLiquidityReturnsDelta",
-     "afterRemoveLiquidityReturnsDelta"
-    ],
-    "previewReversedOrder": [
-     "afterRemoveLiquidityReturnsDelta",
-     "afterAddLiquidityReturnsDelta",
-     "afterSwapReturnsDelta",
-     "beforeSwapReturnsDelta",
-     "afterSwap",
-     "beforeSwap",
-     "afterRemoveLiquidity",
-     "beforeRemoveLiquidity",
-     "afterAddLiquidity",
-     "beforeAddLiquidity",
-     "afterInitialize",
-     "beforeInitialize"
-    ]
-   },
-   "delegatecall": true,
-   "callcode": false,
-   "staticcall": true,
-   "selfdestruct": true,
-   "selectorsPresent": {
-    "getHookPermissions": true,
-    "beforeSwap": true,
-    "afterSwap": true
-   },
-   "minimalProxy": false,
-   "name": null,
-   "pools": 14
   },
   {
    "address": "0xf35b0ebaf0501f9112dd171f1c19ace6d35abfcf",
@@ -717,12 +779,20 @@
     "beforeSwap": true,
     "afterSwap": true
    },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
    "minimalProxy": false,
    "name": null,
    "pools": 14
   },
   {
-   "address": "0x3d7f8f8f6a692cfed026655c1fa25d2c1935ffcf",
+   "address": "0x12a41c32fa78c99b98c69750f9d0f6649b0dbfcf",
    "codeSizeBytes": 18541,
    "codeHash": "deeb512523d6ce4ec5c9b661f140a06431188fdb4f8bc08fc40441385624ffd6",
    "permsFromAddress": {
@@ -763,6 +833,14 @@
     "getHookPermissions": true,
     "beforeSwap": true,
     "afterSwap": true
+   },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
    },
    "minimalProxy": false,
    "name": null,
@@ -811,6 +889,69 @@
     "beforeSwap": true,
     "afterSwap": true
    },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 14
+  },
+  {
+   "address": "0x3d7f8f8f6a692cfed026655c1fa25d2c1935ffcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "deeb512523d6ce4ec5c9b661f140a06431188fdb4f8bc08fc40441385624ffd6",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
+   },
    "minimalProxy": false,
    "name": null,
    "pools": 14
@@ -857,6 +998,14 @@
     "getHookPermissions": true,
     "beforeSwap": true,
     "afterSwap": true
+   },
+   "delegatecallTargets": {
+    "sites": 2,
+    "kind": "constant",
+    "constantTargets": [
+     "0xf7ce73d82df6e9cb8cd43d1c9e2ace81884a9f6f"
+    ],
+    "heuristic": "adjacent-10-instruction window per site"
    },
    "minimalProxy": false,
    "name": null,

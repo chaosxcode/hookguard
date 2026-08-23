@@ -15,10 +15,11 @@ is hardcoded; if the pipeline produced it, the feed shows it, and if it did
 not, the page shows an explicit gap instead of inventing one.
 """
 import json, os, re, html
+from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "docs", "status")
-GEN_DATE = "2026-08-23"
+GEN_DATE = os.environ.get("FEED_DATE", date.today().isoformat())
 
 def load(*p):
     path = os.path.join(ROOT, *p)

@@ -42,25 +42,51 @@ preview layout. HookGuard now ships both decodings plus a live self-check
 against source-verifiable hooks, so the assumption degrades loudly rather than
 silently.
 
-## Finding 2: the unverified population is not proxied — it carries its switches internally
+## Finding 2: they are proxies after all — just not *standard* ones
 
-All 25 hooks fetched, decoded, opcode-walked:
+All 25 hooks fetched, decoded, and opcode-walked. The first version of this
+section stopped at "no EIP-1967 slot, no EIP-1167 pattern" and concluded zero
+standard proxies. Classifying what actually feeds each `DELEGATECALL` — the
+instructions immediately adjacent to the call — corrected that in the most
+interesting direction:
 
 | signal | count |
 |---|---:|
-| EIP-1967 implementation slot set | **0 / 25** |
-| EIP-1167 minimal-proxy shape | **0 / 25** |
-| `DELEGATECALL` opcode present | 17 / 25 |
-| `SELFDESTRUCT` opcode present | 17 / 25 |
-| `getHookPermissions` selector present | 24 / 25 |
+| EIP-1967 implementation slot set | 0 / 25 |
+| EIP-1167 minimal-proxy shape | 0 / 25 |
+| `DELEGATECALL` with a **constant target** | **17 / 25** |
+| distinct opaque implementations behind them | **7** |
+| implementations that publish source | **0 / 7** |
 
-Unlike `PrediXHookProxyV2` — whose proxy was proven by reading its EIP-1967
-slot — none of the unread 25 delegate through a standard pattern. Where
-`DELEGATECALL` and `SELFDESTRUCT` appear together, they appear *inside* the
-hook's own runtime code, clustered in the shared-code families below. Opcode
-presence does not prove an upgrade path or a kill switch; it proves the
-capability exists in code that nobody can read. That is precisely the gap an
-underwriter cannot price from source alone.
+Every one of those 17 is a textbook immutable proxy shell —
+`PUSH20 <impl> GAS DELEGATECALL`, no storage read anywhere near it — pointed
+at a hardcoded implementation contract:
+
+| implementation | deployments | source |
+|---|---:|---|
+| `0xf7ce73d8…9f6f` | 11 | **opaque** |
+| `0x69220726…a032` | 5 | **opaque** |
+| `0xac0bb547…c500` | 4 | **opaque** |
+| `0xaedf2fc7…af7b` | 4 | **opaque** |
+| three others, 1 each | 3 | **opaque** |
+
+So the launchpad families are not standalone hooks at all. Each address is a
+thin, permanently-permissioned shell whose every swap executes inside one of
+seven programs that **nobody can read**. "Zero standard proxies" was literally
+true and substantively wrong: this is a proxy architecture standard tooling
+does not see, governing dozens of pools per family, with an upgrade surface
+(the deployer can ship a new implementation at will) and no published code on
+either layer.
+
+In the full census (88 contracts, 2+ pools) the same constant-target
+signature covers 22 more shells, alongside two genuinely storage-derived
+upgradeables — including the census's one 176-byte EIP-1967 delegate, which
+the classifier identifies correctly.
+
+*Method note:* classification reads only the instructions immediately
+adjacent to each call site; a wide window initially produced false
+attributions (PoolManager comparisons and zero-guards posing as targets).
+Both the heuristic and its correction are visible in `src/bytecode.py`.
 
 ## Finding 3: 25 addresses, 16 programs — and some were born with every permission
 
