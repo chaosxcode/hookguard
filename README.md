@@ -9,18 +9,19 @@ aimed where it matters.
 ## Why
 
 Uniswap's official [hooklist](https://github.com/Uniswap/hooklist) registers
-**486 production hooks across 16 chains** — and explicitly disclaims being a
-safety signal. A risk pass over that registry (`src/risk.py`):
+**551 production hooks across 16 chains** (snapshot refreshed Aug 23, 2026 —
+it grew from 486 in one week) — and explicitly disclaims being a safety
+signal. A risk pass over that registry (`src/risk.py`):
 
 | | |
 |---|---|
-| hooks with a published audit URL | **29 / 486 (6.0%)** |
-| hooks that can move value (return-delta permissions) | **340 / 486 (70%)** |
-| **value-moving AND no audit recorded** | **315 (65% of the ecosystem)** |
-| upgradeable | 20 (4.1%) |
-| verified source | 486 (100%) |
+| hooks with a published audit URL | **30 / 551 (5.4%)** |
+| hooks that can move value (return-delta permissions) | **393 / 551 (71%)** |
+| **value-moving AND no audit recorded** | **367 (67% of the ecosystem)** |
+| upgradeable | 21 (3.8%) |
+| verified source | 551 (100%) |
 
-Unaudited share by chain: Ethereum 94.7%, Base 95.1%, Unichain 94.4%.
+Unaudited share by chain: Ethereum 94.9%, Base 95.4%, Unichain 95.5%.
 
 Hooks are trusted code in the swap path and pool creation is permissionless.
 Bunni v2 — then the largest LP hook by TVL — was exploited for ~$8.3M in
@@ -221,3 +222,5 @@ does not fail because of it.
 
 Early. Heuristic, regex-based, deliberately biased toward precision over recall.
 Findings are starting points for review, not verdicts.
+
+Where this is going: [docs/ROADMAP.md](docs/ROADMAP.md).

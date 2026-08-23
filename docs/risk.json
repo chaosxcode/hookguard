@@ -1,37 +1,5 @@
 [
  {
-  "name": "Angstrom Hook",
-  "address": "0x631352aaa9d6554848af674106bcd8bb9e59a5cf",
-  "chain": "base",
-  "risk": 25,
-  "caps": [
-   "beforeInitialize",
-   "afterAddLiquidity",
-   "afterRemoveLiquidity",
-   "beforeSwap",
-   "afterSwap",
-   "beforeSwapReturnsDelta",
-   "afterSwapReturnsDelta",
-   "afterAddLiquidityReturnsDelta",
-   "afterRemoveLiquidityReturnsDelta"
-  ],
-  "findings": [
-   [
-    "NO_PUBLISHED_AUDIT",
-    "No audit URL in the registry."
-   ],
-   [
-    "VALUE_MOVING",
-    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta, afterAddLiquidityReturnsDelta, afterRemoveLiquidityReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
-   ]
-  ],
-  "upgradeable": false,
-  "audited": false,
-  "verified": true,
-  "valueMoving": true,
-  "critical": false
- },
- {
   "name": "AngstromL2",
   "address": "0x631352Aaa9d6554848aF674106bCD8Bb9E59a5CF",
   "chain": "base",
@@ -64,8 +32,8 @@
   "critical": false
  },
  {
-  "name": "AngstromL2",
-  "address": "0x7fa49d29481b6d168505ccde26635e204c09e5cf",
+  "name": "Angstrom Hook",
+  "address": "0x631352aaa9d6554848af674106bcd8bb9e59a5cf",
   "chain": "base",
   "risk": 25,
   "caps": [
@@ -129,7 +97,7 @@
  },
  {
   "name": "AngstromL2",
-  "address": "0xcd256a2f4574cb6aca4837313ad225d2fe1de5cf",
+  "address": "0x7fa49d29481b6d168505ccde26635e204c09e5cf",
   "chain": "base",
   "risk": 25,
   "caps": [
@@ -162,6 +130,38 @@
  {
   "name": "Angstrom L2",
   "address": "0xCD256a2f4574CB6acA4837313ad225d2fe1De5Cf",
+  "chain": "base",
+  "risk": 25,
+  "caps": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta",
+   "afterAddLiquidityReturnsDelta",
+   "afterRemoveLiquidityReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta, afterAddLiquidityReturnsDelta, afterRemoveLiquidityReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "AngstromL2",
+  "address": "0xcd256a2f4574cb6aca4837313ad225d2fe1de5cf",
   "chain": "base",
   "risk": 25,
   "caps": [
@@ -798,8 +798,8 @@
   "critical": false
  },
  {
-  "name": "ClankerHookStaticFeeV2",
-  "address": "0x1f6c7744a0b0393db8e96d3aaa023146828028cc",
+  "name": "tokens.fun HookStaticFeeV2",
+  "address": "0x1f6C7744a0B0393db8E96D3aaA023146828028cC",
   "chain": "base",
   "risk": 17,
   "caps": [
@@ -831,8 +831,8 @@
   "critical": false
  },
  {
-  "name": "tokens.fun HookStaticFeeV2",
-  "address": "0x1f6C7744a0B0393db8E96D3aaA023146828028cC",
+  "name": "ClankerHookStaticFeeV2",
+  "address": "0x1f6c7744a0b0393db8e96d3aaa023146828028cc",
   "chain": "base",
   "risk": 17,
   "caps": [
@@ -1129,36 +1129,6 @@
  },
  {
   "name": "XDHook",
-  "address": "0x66e51deab56975bb1c64413bd3ab01fa95b82acc",
-  "chain": "base",
-  "risk": 17,
-  "caps": [
-   "beforeInitialize",
-   "beforeAddLiquidity",
-   "beforeRemoveLiquidity",
-   "beforeSwap",
-   "afterSwap",
-   "beforeSwapReturnsDelta",
-   "afterSwapReturnsDelta"
-  ],
-  "findings": [
-   [
-    "NO_PUBLISHED_AUDIT",
-    "No audit URL in the registry."
-   ],
-   [
-    "VALUE_MOVING",
-    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
-   ]
-  ],
-  "upgradeable": false,
-  "audited": false,
-  "verified": true,
-  "valueMoving": true,
-  "critical": false
- },
- {
-  "name": "XDHook",
   "address": "0x66E51DEab56975Bb1c64413bd3AB01FA95B82acc",
   "chain": "base",
   "risk": 17,
@@ -1188,8 +1158,69 @@
   "critical": false
  },
  {
-  "name": "ClankerHookStaticFee",
-  "address": "0x73e74c090446ad7c9745eba3c26f3e1a9680e8cc",
+  "name": "XDHook",
+  "address": "0x66e51deab56975bb1c64413bd3ab01fa95b82acc",
+  "chain": "base",
+  "risk": 17,
+  "caps": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "BotcoinWethFeeHook",
+  "address": "0x6b4d98ca88fa0e3bb2b70582d5af1b59971f3acc",
+  "chain": "base",
+  "risk": 17,
+  "caps": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "tokens.fun HookStaticFee",
+  "address": "0x73E74c090446ad7c9745EBa3c26F3E1a9680E8CC",
   "chain": "base",
   "risk": 17,
   "caps": [
@@ -1221,8 +1252,8 @@
   "critical": false
  },
  {
-  "name": "tokens.fun HookStaticFee",
-  "address": "0x73E74c090446ad7c9745EBa3c26F3E1a9680E8CC",
+  "name": "ClankerHookStaticFee",
+  "address": "0x73e74c090446ad7c9745eba3c26f3e1a9680e8cc",
   "chain": "base",
   "risk": 17,
   "caps": [
@@ -2440,6 +2471,37 @@
   "critical": false
  },
  {
+  "name": "CashCatHook",
+  "address": "0xefe669814e5eec33406bd50ffa8331618d076aec",
+  "chain": "robinhood",
+  "risk": 17,
+  "caps": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeDonate",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "Flaunch PositionManager",
   "address": "0x5cf8e499c7c466c7e2cf127bdf129f57151e65dc",
   "chain": "unichain",
@@ -3001,6 +3063,34 @@
   "critical": false
  },
  {
+  "name": "PokeHook",
+  "address": "0x58165a756a9e6a10a64db2b4a9bb47bdd62120cc",
+  "chain": "base",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "Aegis",
   "address": "0x8f29bd5c8429730fa4c46e6295c4e679ededd0cc",
   "chain": "base",
@@ -3509,6 +3599,34 @@
   "critical": false
  },
  {
+  "name": "BallisticFeeHookV1",
+  "address": "0x47b35474ede2b3ae9b82915e2f57647073a6a0cc",
+  "chain": "ethereum",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "TaxHook",
   "address": "0x6fb14025194d3921942B269ba49c988fbD3fC0Cc",
   "chain": "ethereum",
@@ -3834,6 +3952,34 @@
   "critical": false
  },
  {
+  "name": "BallisticFeeHookV3",
+  "address": "0xffbfa95c07ba855fee037350634aba4a404e20cc",
+  "chain": "ethereum",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "AegisHook",
   "address": "0xe449e013004db4a5681e9622ca10c5ba0ea610cc",
   "chain": "monad",
@@ -4076,6 +4222,62 @@
   "critical": false
  },
  {
+  "name": "MidasAntiSnipeSuperhook",
+  "address": "0x1b94417e8f091ee9e39fb1f28e8951c92e8420cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "StonkBirdsFeeHook",
+  "address": "0x1cdbdc57b803a5270f76b52468b3d368d124e0cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "SharesHook",
   "address": "0x25a1bb2313e4b24307e8259b177431a61bfe04cc",
   "chain": "robinhood",
@@ -4106,6 +4308,34 @@
  {
   "name": "MemeFolioTaxHook",
   "address": "0x29a2a39143f5aafba61bb8c649bc7c7d50b1e0cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "MidasGoldHook",
+  "address": "0x57a90a0bc27718d88a2ff3674799e008e3d4e0cc",
   "chain": "robinhood",
   "risk": 15,
   "caps": [
@@ -4188,12 +4418,96 @@
   "critical": false
  },
  {
+  "name": "MrSuccHook",
+  "address": "0x88b2d9f3abddec35cca02f7a52c0b0294b7704cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "afterAddLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "GoldStandardHook",
+  "address": "0xa0e75ca3470638af11417e0eac79a1f50129e0cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "PlebIndexFeeHook",
   "address": "0xa507e8c472918338c6c15eb894c9703581b060cc",
   "chain": "robinhood",
   "risk": 15,
   "caps": [
    "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "VladsHook",
+  "address": "0xadaf12314ba795702434cc542f4a43050a9a84cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "afterAddLiquidity",
    "beforeSwap",
    "afterSwap",
    "beforeSwapReturnsDelta",
@@ -4251,6 +4565,94 @@
   "caps": [
    "beforeInitialize",
    "afterInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "AegisHook",
+  "address": "0xe449e013004db4a5681e9622ca10c5ba0ea610cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "StonkBirdsFeeHook",
+  "address": "0xeb05ff77166f09fe78edcf4e137e001ea1e660cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "SealDaoFeeHook",
+  "address": "0xeb1e05df4b1e0e7eed94cd06628900868ea3a0cc",
+  "chain": "robinhood",
+  "risk": 15,
+  "caps": [
+   "beforeInitialize",
    "beforeSwap",
    "afterSwap",
    "beforeSwapReturnsDelta",
@@ -5281,6 +5683,33 @@
   "critical": false
  },
  {
+  "name": "Lev7FeeHookV3",
+  "address": "0x0830a76ca883f5e56ff1083c372e8b5375b000cc",
+  "chain": "robinhood",
+  "risk": 14,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "PensionTaxHook",
   "address": "0x2539029365c03b131cca25cb10ff4519a1dcc0cc",
   "chain": "robinhood",
@@ -5310,6 +5739,60 @@
  {
   "name": "IndexFeeHook",
   "address": "0x2cd91bd228ff4c537031d6b8204782090c84c0cc",
+  "chain": "robinhood",
+  "risk": 14,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "ReflectionHook",
+  "address": "0x2dafe4a6348cd003bc3de8267984c4807a5f40cc",
+  "chain": "robinhood",
+  "risk": 14,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "Lev7FeeHook",
+  "address": "0x423026f3b47b8ee39a96ce1f27a8939ad21340cc",
   "chain": "robinhood",
   "risk": 14,
   "caps": [
@@ -5443,6 +5926,33 @@
   "critical": false
  },
  {
+  "name": "DoubleBackedFeeHook",
+  "address": "0xa75fea154fd6c2dc233e9ccd1499afb61f6b40cc",
+  "chain": "robinhood",
+  "risk": 14,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "LivoSwapHook (0.5 fee tier)",
   "address": "0xb00f65499050a4752f7027e578faf690efff40cc",
   "chain": "robinhood",
@@ -5497,11 +6007,66 @@
   "critical": false
  },
  {
+  "name": "PRAdaptiveHookv2",
+  "address": "0xc3c15bde8bfb101bbdb36932b2222791f5f1c0cc",
+  "chain": "robinhood",
+  "risk": 14,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "BackedFeeHook",
   "address": "0xced7aa50727f3cd251985b09a2080db056a8c0cc",
   "chain": "robinhood",
   "risk": 14,
   "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "MemeRaceHook",
+  "address": "0xd623b79a6d49ed38c6b0183caca7612d41eb90cc",
+  "chain": "robinhood",
+  "risk": 14,
+  "caps": [
+   "afterInitialize",
    "beforeSwap",
    "afterSwap",
    "beforeSwapReturnsDelta",
@@ -5771,8 +6336,69 @@
   "critical": false
  },
  {
-  "name": "VTSwapHook",
-  "address": "0xbf4b4a83708474528a93c123f817e7f2a0637a88",
+  "name": "Spot",
+  "address": "0xb4f4949e8d0a177bb6d2fea33e9516bb219610cc",
+  "chain": "robinhood",
+  "risk": 13,
+  "caps": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta, afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": true,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "PrediXHookProxyV2",
+  "address": "0x2ea5eac8a4e31f0889e86fc135c5eae8e0b16ae0",
+  "chain": "unichain",
+  "risk": 13,
+  "caps": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeDonate"
+  ],
+  "findings": [
+   [
+    "UPGRADEABLE",
+    "Hook address encodes permissions permanently, but implementation code can be swapped. Pools cannot detach. Admin key is part of the trust boundary."
+   ],
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": true,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
+  "name": "VTSwapHook(ATH-vATH)",
+  "address": "0xbf4b4A83708474528A93C123F817e7f2A0637a88",
   "chain": "arbitrum",
   "risk": 12,
   "caps": [
@@ -5800,8 +6426,8 @@
   "critical": false
  },
  {
-  "name": "VTSwapHook(ATH-vATH)",
-  "address": "0xbf4b4A83708474528A93C123F817e7f2A0637a88",
+  "name": "VTSwapHook",
+  "address": "0xbf4b4a83708474528a93c123f817e7f2a0637a88",
   "chain": "arbitrum",
   "risk": 12,
   "caps": [
@@ -6426,8 +7052,8 @@
   "critical": false
  },
  {
-  "name": "SuperStrategy",
-  "address": "0x6646b048fba0a70a692f7690ae6dad83bcacb0c8",
+  "name": "Super Strategy v3 (Base)",
+  "address": "0x6646B048fBa0a70a692f7690ae6daD83BCACb0C8",
   "chain": "base",
   "risk": 11,
   "caps": [
@@ -6454,8 +7080,8 @@
   "critical": false
  },
  {
-  "name": "Super Strategy v3 (Base)",
-  "address": "0x6646B048fBa0a70a692f7690ae6daD83BCACb0C8",
+  "name": "SuperStrategy",
+  "address": "0x6646b048fba0a70a692f7690ae6dad83bcacb0c8",
   "chain": "base",
   "risk": 11,
   "caps": [
@@ -6620,6 +7246,33 @@
   "critical": false
  },
  {
+  "name": "SETHHook",
+  "address": "0xE0E522e5888e398d9E5d4D90A48c489425cb2888",
+  "chain": "base",
+  "risk": 11,
+  "caps": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap",
+   "beforeSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "Loyalty Volatility Dynamic Fee Hook",
   "address": "0xaa226363fb5b8718d125357ddc6539a82489e0c4",
   "chain": "base",
@@ -6711,34 +7364,6 @@
  },
  {
   "name": "Super Strategy",
-  "address": "0xca51c787e7136db1cbfd92a24287ea8e9363b0c8",
-  "chain": "base",
-  "risk": 11,
-  "caps": [
-   "beforeInitialize",
-   "afterInitialize",
-   "beforeSwap",
-   "afterSwap",
-   "beforeSwapReturnsDelta"
-  ],
-  "findings": [
-   [
-    "NO_PUBLISHED_AUDIT",
-    "No audit URL in the registry."
-   ],
-   [
-    "VALUE_MOVING",
-    "Can alter token deltas via beforeSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
-   ]
-  ],
-  "upgradeable": false,
-  "audited": false,
-  "verified": true,
-  "valueMoving": true,
-  "critical": false
- },
- {
-  "name": "Super Strategy",
   "address": "0xca51C787E7136dB1cbFd92a24287ea8E9363b0c8",
   "chain": "base",
   "risk": 11,
@@ -6766,14 +7391,15 @@
   "critical": false
  },
  {
-  "name": "SETHHook",
-  "address": "0xE0E522e5888e398d9E5d4D90A48c489425cb2888",
+  "name": "Super Strategy",
+  "address": "0xca51c787e7136db1cbfd92a24287ea8e9363b0c8",
   "chain": "base",
   "risk": 11,
   "caps": [
    "beforeInitialize",
-   "beforeAddLiquidity",
+   "afterInitialize",
    "beforeSwap",
+   "afterSwap",
    "beforeSwapReturnsDelta"
   ],
   "findings": [
@@ -6839,6 +7465,37 @@
    [
     "VALUE_MOVING",
     "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "AlphaHook2Pct",
+  "address": "0x9c854853e00bfe5867a86a37fb1030f259a5a0c4",
+  "chain": "bnb",
+  "risk": 11,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
    ]
   ],
   "upgradeable": false,
@@ -7427,6 +8084,33 @@
   "critical": false
  },
  {
+  "name": "GlueHook",
+  "address": "0xb216070c3509047ea597e2e626a29cea427a60c8",
+  "chain": "ethereum",
+  "risk": 11,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "Ring Few USDT Hook",
   "address": "0xbadf77d50478b4432ef1f243b9c0bc7869486888",
   "chain": "ethereum",
@@ -7638,6 +8322,36 @@
    [
     "VALUE_MOVING",
     "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "MidasRWAHook",
+  "address": "0xc97c22c241ecd0b9fb5656307e47c8a674ee2088",
+  "chain": "robinhood",
+  "risk": 11,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "beforeSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
    ],
    [
     "DYNAMIC_FEE",
@@ -7871,6 +8585,37 @@
   "critical": false
  },
  {
+  "name": "DynamicFee",
+  "address": "0x723b16ef13a1b9a2bd63238bec47cdf1d4a010c4",
+  "chain": "base",
+  "risk": 10,
+  "caps": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "CommodityCombinedHook",
   "address": "0xb8b27a9cea9094cff605e6aa707c89120a240a80",
   "chain": "base",
@@ -8010,32 +8755,6 @@
   "critical": false
  },
  {
-  "name": "SwingHook",
-  "address": "0xad3cc8eb9d34abeb3b0ca9b98cbfd3837b7d40c8",
-  "chain": "ethereum",
-  "risk": 10,
-  "caps": [
-   "beforeSwap",
-   "afterSwap",
-   "beforeSwapReturnsDelta"
-  ],
-  "findings": [
-   [
-    "NO_PUBLISHED_AUDIT",
-    "No audit URL in the registry."
-   ],
-   [
-    "VALUE_MOVING",
-    "Can alter token deltas via beforeSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
-   ]
-  ],
-  "upgradeable": false,
-  "audited": false,
-  "verified": true,
-  "valueMoving": true,
-  "critical": false
- },
- {
   "name": "BackGeoOracle",
   "address": "0xB13250f0Dc8ec6dE297E81CDA8142DB51860BaC4",
   "chain": "ethereum",
@@ -8057,6 +8776,32 @@
   ],
   "upgradeable": false,
   "audited": true,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "SwingHook",
+  "address": "0xad3cc8eb9d34abeb3b0ca9b98cbfd3837b7d40c8",
+  "chain": "ethereum",
+  "risk": 10,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "beforeSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
   "verified": true,
   "valueMoving": true,
   "critical": false
@@ -8202,6 +8947,89 @@
   "critical": false
  },
  {
+  "name": "HookedHook",
+  "address": "0x419596fb62de89de9d9d912a357828e480e9e544",
+  "chain": "robinhood",
+  "risk": 10,
+  "caps": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "HookedV1",
+  "address": "0x46c4455f65da6d0e8bb0274e257f99733dde2544",
+  "chain": "robinhood",
+  "risk": 10,
+  "caps": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "MultiHookHost",
+  "address": "0x48c22af8ad989fc9d5e82d6055dc0f263076e0c4",
+  "chain": "robinhood",
+  "risk": 10,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "StrategyHook",
   "address": "0x4a00b5f169eadee5524e819bf418dfd797336544",
   "chain": "robinhood",
@@ -8210,6 +9038,91 @@
    "beforeInitialize",
    "afterAddLiquidity",
    "afterRemoveLiquidity",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "DynamicFee",
+  "address": "0x7566a3bfbe88c06bc5f33fea927f461e8279d0c4",
+  "chain": "robinhood",
+  "risk": 10,
+  "caps": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "MultiHookHost",
+  "address": "0x83d6fa59bef503112887b16277cf559fdc93e0c4",
+  "chain": "robinhood",
+  "risk": 10,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "MultiHookHost",
+  "address": "0xc282245a22b602c90d04283b22e414f75afc20c4",
+  "chain": "robinhood",
+  "risk": 10,
+  "caps": [
+   "beforeInitialize",
+   "beforeSwap",
    "afterSwap",
    "afterSwapReturnsDelta"
   ],
@@ -8249,6 +9162,32 @@
    [
     "VALUE_MOVING",
     "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "PolymarketHook",
+  "address": "0x0fd7295d9ccb18b17646b64acf9316b7e75a4888",
+  "chain": "unichain",
+  "risk": 10,
+  "caps": [
+   "beforeAddLiquidity",
+   "beforeSwap",
+   "beforeSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via beforeSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
    ]
   ],
   "upgradeable": false,
@@ -8401,6 +9340,32 @@
   "critical": false
  },
  {
+  "name": "CapGate",
+  "address": "0x0a914acb246063b4ed0f3a0fc13d0c0e8c8500c4",
+  "chain": "base",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "MoonpotHook",
   "address": "0x282b5e7d546b5e39963753d11b2bb6cd3c9da088",
   "chain": "base",
@@ -8422,6 +9387,32 @@
   ],
   "upgradeable": false,
   "audited": true,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "HeavierHand",
+  "address": "0x2ad6936032d4201fc74041afbc801faab1bf40c4",
+  "chain": "base",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
   "verified": true,
   "valueMoving": true,
   "critical": false
@@ -8557,6 +9548,32 @@
   "critical": false
  },
  {
+  "name": "TailTwins",
+  "address": "0x9818ddd1102c9606cd693ac17a7b8b17609480c4",
+  "chain": "base",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "SuperTokenWrapperHook",
   "address": "0xa09FF20120D0dC9B9840C3260EA4F2be7e6cE888",
   "chain": "base",
@@ -8575,6 +9592,32 @@
   ],
   "upgradeable": false,
   "audited": true,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "TotalizerTrap",
+  "address": "0xa7a62422d13c7648ca53ad91e9268ac4bfc6c0c4",
+  "chain": "base",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
   "verified": true,
   "valueMoving": true,
   "critical": false
@@ -8651,6 +9694,58 @@
   ],
   "upgradeable": false,
   "audited": true,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "ExactInGate",
+  "address": "0xec78ee3f1fc117415a8006a0344ccaff30aa40c4",
+  "chain": "base",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "NoOp",
+  "address": "0xfba729a7d8fc48cbb261a845a0f26281ed7800c4",
+  "chain": "base",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
   "verified": true,
   "valueMoving": true,
   "critical": false
@@ -9373,7 +10468,7 @@
  },
  {
   "name": "UniswapV4ScheduledMulticurveInitializerHook",
-  "address": "0x580ca49389d83b019d07e17e99454f2f218e2dc0",
+  "address": "0x580ca49389d83b019d07E17e99454f2F218e2dc0",
   "chain": "monad",
   "risk": 9,
   "caps": [
@@ -9398,7 +10493,7 @@
  },
  {
   "name": "UniswapV4ScheduledMulticurveInitializerHook",
-  "address": "0x580ca49389d83b019d07E17e99454f2F218e2dc0",
+  "address": "0x580ca49389d83b019d07e17e99454f2f218e2dc0",
   "chain": "monad",
   "risk": 9,
   "caps": [
@@ -9480,6 +10575,32 @@
   "critical": false
  },
  {
+  "name": "TotalizerTrap",
+  "address": "0x1e27183e12a9c108dd850e022f26870b12a200c4",
+  "chain": "robinhood",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "BuffetAMM",
   "address": "0x28388ca220f955b5bdf0309e28612fe057c00088",
   "chain": "robinhood",
@@ -9505,6 +10626,136 @@
   "critical": false
  },
  {
+  "name": "ExactInGate",
+  "address": "0x2c10afb513a6505befb74dfdf5800b392c9f00c4",
+  "chain": "robinhood",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "CapGate",
+  "address": "0x6b567e25cc6e9d77f1a030a68db39f86c03540c4",
+  "chain": "robinhood",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "HeavierHand",
+  "address": "0x6df3bebfbec267221b819ac30bb32e2f02c700c4",
+  "chain": "robinhood",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "NoOp",
+  "address": "0x8ef1699f78f830375239f6f3165cb72d5b64c0c4",
+  "chain": "robinhood",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "TailTwins",
+  "address": "0x971df49844604e44514120682eac3fcdc4f5c0c4",
+  "chain": "robinhood",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "FWATokenHook",
   "address": "0xd64961c357327510b8416c8b25aed37b67856444",
   "chain": "robinhood",
@@ -9512,6 +10763,59 @@
   "caps": [
    "beforeInitialize",
    "afterAddLiquidity",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "StockRipTokenHook",
+  "address": "0xf295127365a2c3055fdfba01b0596da56dcfa444",
+  "chain": "robinhood",
+  "risk": 9,
+  "caps": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "BlockEcho",
+  "address": "0xf2f992fe611f64ecfcc413c420f558c85a7480c4",
+  "chain": "robinhood",
+  "risk": 9,
+  "caps": [
+   "beforeSwap",
    "afterSwap",
    "afterSwapReturnsDelta"
   ],
@@ -9885,8 +11189,59 @@
   "critical": false
  },
  {
+  "name": "Ponzuki",
+  "address": "0x95da0e56e6aaad05bace06743cb6fd2f7862a8c0",
+  "chain": "ethereum",
+  "risk": 8,
+  "caps": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
   "name": "HyperVolatileHook",
   "address": "0x9ab4a4d223fa0ce27ab15b376f298f7ee3b9eac0",
+  "chain": "ethereum",
+  "risk": 8,
+  "caps": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
+  "name": "Unisocks Launch Guard Hook",
+  "address": "0xa00d2da54633769977f8b6a9056227393d9beac0",
   "chain": "ethereum",
   "risk": 8,
   "caps": [
@@ -10024,6 +11379,33 @@
   "critical": false
  },
  {
+  "name": "Ponzuki",
+  "address": "0x89968793222b6ca2a63ed511de01dbd8225ca8c0",
+  "chain": "robinhood",
+  "risk": 8,
+  "caps": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
   "name": "RobinhoodArenaFeeHook",
   "address": "0x99d4c5cf21d8f00b627afe2bf1ee2840f886e044",
   "chain": "robinhood",
@@ -10047,6 +11429,33 @@
   "audited": false,
   "verified": true,
   "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "Ponzuki",
+  "address": "0x9a0bb5df3785a6b19c3a9a4b1d8c845a9550a8c0",
+  "chain": "robinhood",
+  "risk": 8,
+  "caps": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
   "critical": false
  },
  {
@@ -10077,12 +11486,64 @@
   "critical": false
  },
  {
+  "name": "UniMemeHook",
+  "address": "0xb4960cd4f9147f9e37a7aa9005df7156f61e4444",
+  "chain": "unichain",
+  "risk": 8,
+  "caps": [
+   "afterAddLiquidity",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "Uniderp Hook (Unichain)",
   "address": "0xcc2efb167503f2d7df0eae906600066aec9e8444",
   "chain": "unichain",
   "risk": 8,
   "caps": [
    "afterAddLiquidity",
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "UniswapCupHook",
+  "address": "0xd0b13c0161accade6c82396a80cc0e69fc936044",
+  "chain": "unichain",
+  "risk": 8,
+  "caps": [
+   "beforeInitialize",
    "afterSwap",
    "afterSwapReturnsDelta"
   ],
@@ -10624,6 +12085,31 @@
   "critical": false
  },
  {
+  "name": "CrownClash",
+  "address": "0xd24d29a47adb8786072ab2cb9925dc8ba36bc044",
+  "chain": "base",
+  "risk": 7,
+  "caps": [
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "Zora Creator Hook v1.1.2 (Base)",
   "address": "0xd61a675f8a0c67a73dc3b54fb7318b4d91409040",
   "chain": "base",
@@ -10646,6 +12132,31 @@
   "audited": false,
   "verified": true,
   "valueMoving": false,
+  "critical": false
+ },
+ {
+  "name": "LegacyLedger",
+  "address": "0xdb4a0eb0410407d6c22a35c27288834e0d9f4044",
+  "chain": "base",
+  "risk": 7,
+  "caps": [
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
   "critical": false
  },
  {
@@ -11025,8 +12536,108 @@
   "critical": false
  },
  {
+  "name": "DirectionalFeeHook",
+  "address": "0x62f788a21a26ee3fe5d70ef6ef9942d8b2cb8044",
+  "chain": "robinhood",
+  "risk": 7,
+  "caps": [
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "LegacyLedger",
+  "address": "0x70dec3a54943fd96fe460ff74172038f57208044",
+  "chain": "robinhood",
+  "risk": 7,
+  "caps": [
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
+  "name": "CrownClash",
+  "address": "0xcbbc0818c555bff795a2ab6261d224e793678044",
+  "chain": "robinhood",
+  "risk": 7,
+  "caps": [
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "ArrakisPrivateHook",
   "address": "0x192499a79cadb2e9ba221a252a3e3b7adc714880",
+  "chain": "arbitrum",
+  "risk": 6,
+  "caps": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
+  "name": "ArrakisPrivateHook",
+  "address": "0xa4e6f5500e88691fdcb289aa0e99067481434880",
   "chain": "arbitrum",
   "risk": 6,
   "caps": [
@@ -11181,6 +12792,31 @@
   "caps": [
    "beforeSwap",
    "afterSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
+  "name": "ArrakisPrivateHook",
+  "address": "0xa4e6f5500e88691fdcb289aa0e99067481434880",
+  "chain": "base",
+  "risk": 6,
+  "caps": [
+   "beforeAddLiquidity",
+   "beforeSwap"
   ],
   "findings": [
    [
@@ -11375,6 +13011,31 @@
   "critical": false
  },
  {
+  "name": "ArrakisPrivateHook",
+  "address": "0xa4e6f5500e88691fdcb289aa0e99067481434880",
+  "chain": "bnb",
+  "risk": 6,
+  "caps": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
   "name": "LimitOrderHook",
   "address": "0xa9bc2984a3e42b27d90abd56e6d1323bc66f80c0",
   "chain": "bnb",
@@ -11552,6 +13213,31 @@
   "critical": false
  },
  {
+  "name": "ArrakisPrivateHook",
+  "address": "0xa4e6f5500e88691fdcb289aa0e99067481434880",
+  "chain": "ethereum",
+  "risk": 6,
+  "caps": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
   "name": "UnicurveHook",
   "address": "0xafe727f2288e531184f5b9a81d3049b2f69a6880",
   "chain": "ethereum",
@@ -11675,6 +13361,31 @@
   "name": "Arrakis Private Hook (Ethereum)",
   "address": "0xf9527fb5a34ac6fbc579e4fbc3bf292ed57d4880",
   "chain": "ethereum",
+  "risk": 6,
+  "caps": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
+  "name": "ArrakisPrivateHook",
+  "address": "0xa4e6f5500e88691fdcb289aa0e99067481434880",
+  "chain": "optimism",
   "risk": 6,
   "caps": [
    "beforeAddLiquidity",
@@ -11855,6 +13566,31 @@
   "caps": [
    "beforeSwap",
    "afterSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
+  "name": "ArrakisPrivateHook",
+  "address": "0xa4e6f5500e88691fdcb289aa0e99067481434880",
+  "chain": "xlayer",
+  "risk": 6,
+  "caps": [
+   "beforeAddLiquidity",
+   "beforeSwap"
   ],
   "findings": [
    [
@@ -12090,8 +13826,8 @@
   "critical": false
  },
  {
-  "name": "Liquid Launch Hook",
-  "address": "0xea9346e83952840e69beb36df365c4e68de0e080",
+  "name": "LiquidLaunchHook",
+  "address": "0xeA9346e83952840E69Beb36Df365C4e68DE0E080",
   "chain": "base",
   "risk": 5,
   "caps": [
@@ -12111,8 +13847,8 @@
   "critical": false
  },
  {
-  "name": "LiquidLaunchHook",
-  "address": "0xeA9346e83952840E69Beb36Df365C4e68DE0E080",
+  "name": "Liquid Launch Hook",
+  "address": "0xea9346e83952840e69beb36df365c4e68de0e080",
   "chain": "base",
   "risk": 5,
   "caps": [
@@ -12178,6 +13914,27 @@
   "critical": false
  },
  {
+  "name": "TaxStrategyHook",
+  "address": "0xC804Af6EaA8269C71848e114571f2Dd5314C4044",
+  "chain": "ethereum",
+  "risk": 5,
+  "caps": [
+   "afterSwap",
+   "afterSwapReturnsDelta"
+  ],
+  "findings": [
+   [
+    "VALUE_MOVING",
+    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": true,
+  "verified": true,
+  "valueMoving": true,
+  "critical": false
+ },
+ {
   "name": "M0 Allowlist Hook",
   "address": "0xaf53cb78035a8e0acce38441793e2648b15b88a0",
   "chain": "ethereum",
@@ -12197,27 +13954,6 @@
   "audited": false,
   "verified": true,
   "valueMoving": false,
-  "critical": false
- },
- {
-  "name": "TaxStrategyHook",
-  "address": "0xC804Af6EaA8269C71848e114571f2Dd5314C4044",
-  "chain": "ethereum",
-  "risk": 5,
-  "caps": [
-   "afterSwap",
-   "afterSwapReturnsDelta"
-  ],
-  "findings": [
-   [
-    "VALUE_MOVING",
-    "Can alter token deltas via afterSwapReturnsDelta \u2014 capability behind fee-siphoning/mispricing classes."
-   ]
-  ],
-  "upgradeable": false,
-  "audited": true,
-  "verified": true,
-  "valueMoving": true,
   "critical": false
  },
  {
@@ -12280,6 +14016,31 @@
    [
     "NO_PUBLISHED_AUDIT",
     "No audit URL in the registry."
+   ]
+  ],
+  "upgradeable": false,
+  "audited": false,
+  "verified": true,
+  "valueMoving": false,
+  "critical": false
+ },
+ {
+  "name": "Friar",
+  "address": "0x5e1007844eb07b8ceb1d4350e12d30002d6b5080",
+  "chain": "robinhood",
+  "risk": 5,
+  "caps": [
+   "afterInitialize",
+   "beforeSwap"
+  ],
+  "findings": [
+   [
+    "NO_PUBLISHED_AUDIT",
+    "No audit URL in the registry."
+   ],
+   [
+    "DYNAMIC_FEE",
+    "Sets swap fee at runtime; unbounded/manipulable fee logic harms LPs and takers."
    ]
   ],
   "upgradeable": false,
