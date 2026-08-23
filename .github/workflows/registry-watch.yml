@@ -1,0 +1,103 @@
+name: registry-watch
+
+# The hooklist moved 486 -> 551 entries inside one week while nobody watched.
+# This job watches it on a schedule: refresh the snapshot, regenerate every
+# derived artifact (risk pass, status feed), commit the drift authored as the
+# maintainer, and file one rolling issue describing exactly what changed.
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # Mondays 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: registry-watch
+  cancel-in-progress: true
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Refresh hooklist snapshot (keeping previous for diff)
+        run: |
+          cp data/hooklist.json /tmp/hooklist-prev.json || echo "[]" > /tmp/hooklist-prev.json
+          git clone --depth 1 https://github.com/Uniswap/hooklist /tmp/hooklist-live
+          python3 - <<'PY'
+          import json, glob
+          entries = []
+          for p in sorted(glob.glob('/tmp/hooklist-live/hooks/*/*.json')):
+              try:
+                  entries.append(json.load(open(p)))
+              except Exception:
+                  pass
+          json.dump(entries, open('data/hooklist.json', 'w'), indent=1)
+          print(f"live snapshot: {len(entries)} entries")
+          PY
+
+      - name: Regenerate derived artifacts
+        run: |
+          python3 src/risk.py
+          cp out/risk.json docs/risk.json
+          python3 src/status_feed.py
+
+      - name: Commit drift (authored as chaosxcode)
+        id: commit
+        run: |
+          git config user.name "chaosxcode"
+          git config user.email "chaosxcode@gmail.com"
+          git add data/hooklist.json out/risk.json docs/risk.json docs/status/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "registry-watch: refresh hooklist snapshot and derived artifacts"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: File or update the drift report
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY' > /tmp/drift.md
+          import json, collections
+          prev = {(e['hook']['chain'], e['hook']['address'].lower())
+                  for e in json.load(open('/tmp/hooklist-prev.json'))}
+          cur_e = json.load(open('data/hooklist.json'))
+          cur = {(e['hook']['chain'], e['hook']['address'].lower()): e['hook']
+                 for e in cur_e}
+          added = [k for k in cur if k not in prev]
+          removed = [k for k in prev if k not in cur]
+          lines = []
+          lines.append("## Registry drift detected")
+          lines.append("")
+          lines.append("| change | chain | address | name |")
+          lines.append("|---|---|---|---|")
+          for ch, a in added:
+              h = cur[(ch, a)]
+              lines.append(f"| ➕ added | {ch} | `{a}` | {h.get('name','')} |")
+          for ch, a in removed:
+              lines.append(f"| ➖ removed | {ch} | `{a}` | |")
+          lines.append("")
+          lines.append(f"Snapshot now {len(cur_e)} entries. "
+                       f"Derived artifacts refreshed in this push; "
+                       f"status feed regenerated.")
+          print("\n".join(lines))
+          PY
+          N=$(gh issue list -R chaosxcode/hookguard --state open --search "Registry watch" --json number --jq '.[0].number')
+          if [ -n "$N" ]; then
+            gh issue comment "$N" --body-file /tmp/drift.md
+          else
+            gh issue create --title "Registry watch: hooklist drift" --body-file /tmp/drift.md
+          fi
