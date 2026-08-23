@@ -51,6 +51,14 @@ designs. The population that matters is the **117** serving 2+ pools and the
 **35** serving 10+. Even after that discount, **the two busiest hooks on
 Unichain are not in the registry at all**.
 
+> **Correction, Aug 23:** the registry moved. Four hooks named in this
+> section — PrediX, UniMeme, Polymarket, UniswapCup — registered within days
+> of these numbers going public. Live coverage is now **19 / 1,211 = 1.57%**,
+> and the busiest still-unregistered hook is a 165-pool contract at
+> `0x782d…8444`. Full note:
+> [findings/author-outreach.md](findings/author-outreach.md). The Aug 19
+> figures below stand as measured against the registry as it was.
+
 Reproduce with `CHAIN=unichain python3 src/discover.py`. The scan aborts rather
 than publish a partial result — an undercount is the one error that would
 quietly invalidate the number.

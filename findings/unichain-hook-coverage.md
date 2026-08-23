@@ -1,6 +1,10 @@
 # Unichain hook coverage: 1,211 deployed, 15 registered, and most of the busiest unregistered hooks have no published source
 
-*August 19, 2026*
+*August 19, 2026. **Addendum, Aug 23:** the registry moved — see
+[the correction](#correction-aug-23-the-registry-moved) and
+[author-outreach.md](author-outreach.md). Coverage against the live registry
+is now **1.57%** (19 / 1,211), and four hooks named below, including both
+"busiest unregistered" ones, registered within days of this going public.*
 
 The Uniswap hooklist is opt-in, and it says so. This measures how much that
 misses in practice on Unichain, by scanning every `Initialize` event in the
@@ -55,6 +59,24 @@ the rule.
 One detail worth noting: the busiest unregistered hook, `PrediXHookProxyV2`, is
 a verified **proxy**. The address bits fix its permissions permanently and pools
 cannot detach, but the implementation behind it can still be swapped.
+
+## Correction, Aug 23: the registry moved
+
+Re-checked against the live hooklist before sending any author outreach:
+
+- unichain registry entries grew **17 → 21** since the Aug 16 snapshot
+- the four additions are exactly hooks this finding named:
+  `PrediXHookProxyV2`, `UniMemeHook`, `PolymarketHook`, `UniswapCupHook`
+- registered-and-onchain is now **19 / 1,211 = 1.57%**, up from 1.24%
+- "the two busiest hooks on Unichain are not in the hooklist" was true on
+  Aug 19 and is **no longer true**
+- the busiest still-unregistered hook is now `0x782d…8444` (165 pools),
+  followed by `BunniHook` (50 pools)
+
+The Aug 19 numbers above were true against the registry as it stood; this
+section is the standing correction. The movement itself — a measurable gap
+closing within days of being measured — is the strongest argument in this
+repo for machine-readable hook status.
 
 ## Update, August 23, 2026: scanning the readable minority
 
