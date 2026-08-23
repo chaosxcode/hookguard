@@ -35,6 +35,18 @@ jobs:
 Annotations land on the offending lines; a single PR comment summarizes.
 `fail-on: HIGH` by default — heuristics advise, they don't gate.
 
+### Scan any repo, right now
+
+No install, no CI needed:
+
+```bash
+python3 src/hookguard.py scan https://github.com/owner/v4-hook-repo --html report.html
+```
+
+Auto-detects hook directories, prints findings with an itemized risk score,
+and writes a standalone HTML report. `--fail-on HIGH` exits non-zero for
+pipeline use.
+
 ## Why
 
 Uniswap's official [hooklist](https://github.com/Uniswap/hooklist) registers
