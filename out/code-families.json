@@ -1,0 +1,128 @@
+{
+ "targets": 84,
+ "fetched": 76,
+ "errors": 8,
+ "distinctPrograms": 70,
+ "multiDeploymentFamilies": 5,
+ "crossChainFamilies": 3,
+ "chainsFailed": [
+  "bnb",
+  "polygon",
+  "robinhood"
+ ],
+ "families": [
+  {
+   "codeHash": "3112e0a5eb78389b53702db684c5fd36a88a5ef1f032fc26c8a354d40c031319",
+   "members": [
+    {
+     "chain": "unichain",
+     "address": "0x966cf7b815cbdd26f2cc78838bba9c1a0f4dc444",
+     "name": "UniderpHook",
+     "codeHash": "3112e0a5eb78389b53702db684c5fd36a88a5ef1f032fc26c8a354d40c031319",
+     "sizeBytes": 6261,
+     "error": null
+    },
+    {
+     "chain": "unichain",
+     "address": "0xcc2efb167503f2d7df0eae906600066aec9e8444",
+     "name": "UniderpHook",
+     "codeHash": "3112e0a5eb78389b53702db684c5fd36a88a5ef1f032fc26c8a354d40c031319",
+     "sizeBytes": 6261,
+     "error": null
+    },
+    {
+     "chain": "unichain",
+     "address": "0xe5cdffb339dbacf87e8616af15112eba101f0444",
+     "name": "UniderpHook",
+     "codeHash": "3112e0a5eb78389b53702db684c5fd36a88a5ef1f032fc26c8a354d40c031319",
+     "sizeBytes": 6261,
+     "error": null
+    }
+   ]
+  },
+  {
+   "codeHash": "49085b8b9c6c992c184df2fe603a0783abbb2fc41d0081aa4dec733d04a34153",
+   "members": [
+    {
+     "chain": "arbitrum",
+     "address": "0x192499a79cadb2e9ba221a252a3e3b7adc714880",
+     "name": "ArrakisPrivateHook",
+     "codeHash": "49085b8b9c6c992c184df2fe603a0783abbb2fc41d0081aa4dec733d04a34153",
+     "sizeBytes": 5392,
+     "error": null
+    },
+    {
+     "chain": "ethereum",
+     "address": "0x192499a79cadb2e9ba221a252a3e3b7adc714880",
+     "name": "ArrakisPrivateHook",
+     "codeHash": "49085b8b9c6c992c184df2fe603a0783abbb2fc41d0081aa4dec733d04a34153",
+     "sizeBytes": 5392,
+     "error": null
+    }
+   ]
+  },
+  {
+   "codeHash": "2041abbe2649e3ae1603c1da31d8096ce7dabba10cfb7c21cfd4eed58ba9557d",
+   "members": [
+    {
+     "chain": "arbitrum",
+     "address": "0xb4f4949e8d0a177bb6d2fea33e9516bb219610cc",
+     "name": "Spot",
+     "codeHash": "2041abbe2649e3ae1603c1da31d8096ce7dabba10cfb7c21cfd4eed58ba9557d",
+     "sizeBytes": 11188,
+     "error": null
+    },
+    {
+     "chain": "soneium",
+     "address": "0xb4f4949e8d0a177bb6d2fea33e9516bb219610cc",
+     "name": "Spot",
+     "codeHash": "2041abbe2649e3ae1603c1da31d8096ce7dabba10cfb7c21cfd4eed58ba9557d",
+     "sizeBytes": 11188,
+     "error": null
+    }
+   ]
+  },
+  {
+   "codeHash": "4201e750d7f1541aa913559fbb0301655076dc40bdcf8c057ff781178a36c1b5",
+   "members": [
+    {
+     "chain": "base",
+     "address": "0xf9527fb5a34ac6fbc579e4fbc3bf292ed57d4880",
+     "name": "ArrakisPrivateHook",
+     "codeHash": "4201e750d7f1541aa913559fbb0301655076dc40bdcf8c057ff781178a36c1b5",
+     "sizeBytes": 4363,
+     "error": null
+    },
+    {
+     "chain": "ethereum",
+     "address": "0xf9527fb5a34ac6fbc579e4fbc3bf292ed57d4880",
+     "name": "ArrakisPrivateHook",
+     "codeHash": "4201e750d7f1541aa913559fbb0301655076dc40bdcf8c057ff781178a36c1b5",
+     "sizeBytes": 4363,
+     "error": null
+    }
+   ]
+  },
+  {
+   "codeHash": "49513db6044fda368c779d82425a92caee277f57a7988324b2271cf2df76b000",
+   "members": [
+    {
+     "chain": "unichain",
+     "address": "0x8b51d5831fe98a3eb9e4e28020ddae06da0c0444",
+     "name": "UniMemeHook",
+     "codeHash": "49513db6044fda368c779d82425a92caee277f57a7988324b2271cf2df76b000",
+     "sizeBytes": 6276,
+     "error": null
+    },
+    {
+     "chain": "unichain",
+     "address": "0xb4960cd4f9147f9e37a7aa9005df7156f61e4444",
+     "name": "UniMemeHook",
+     "codeHash": "49513db6044fda368c779d82425a92caee277f57a7988324b2271cf2df76b000",
+     "sizeBytes": 6276,
+     "error": null
+    }
+   ]
+  }
+ ]
+}

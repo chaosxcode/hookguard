@@ -113,8 +113,7 @@ def is_inert(sig, body):
 
 def analyze(path):
     raw = open(path, encoding='utf-8', errors='ignore').read()
-    src = strip_comments(raw)
-    # Only analyse things that ARE hooks. Matching a bare mention of IHooks is
+    src = strip_comments(raw)    # Only analyse things that ARE hooks. Matching a bare mention of IHooks is
     # far too loose: verified-source bundles ship the whole project, so sibling
     # contracts that merely *import* IHooks were being analysed as hooks and
     # inflating every count. A hook either declares its permissions or inherits
@@ -144,10 +143,34 @@ def analyze(path):
                  ['beforeSwapReturnsDelta','afterSwapReturnsDelta',
                   'afterAddLiquidityReturnsDelta','afterRemoveLiquidityReturnsDelta']}
 
+    # Pool validation can live in a SIBLING library the callback delegates to
+    # (BunniHook -> BunniHookLogic.beforeSwap reverts for pools it does not
+    # know). If a callback body defers to a name defined elsewhere in the same
+    # bundle, that file's text joins the validation check -- nothing else. It
+    # widens what the rule can see without letting unrelated bundle files
+    # silence findings.
+    dirpath = os.path.dirname(path)
+    sibling = ''
+    for c in CALLBACKS:
+        m = re.search(rf'function\s+_?{c}\s*\([^)]*\)([^;{{]*)\{{', src)
+        if not m:
+            continue
+        body = body_of(src, m.end() - 1)
+        for target in sorted(set(re.findall(rf'\b([A-Z]\w+)\.\s*_?{c}\s*\(', body))):
+            if target in (name, 'BaseHook', 'IHooks', 'Hooks'):
+                continue
+            for sf in glob.glob(os.path.join(dirpath, '*.sol')):
+                if os.path.abspath(sf) == os.path.abspath(path):
+                    continue
+                st = strip_comments(open(sf, encoding='utf-8', errors='ignore').read())
+                if re.search(rf'\b(contract|library|abstract contract)\s+{target}\b', st):
+                    sibling += '\n' + st
+
     # R1 permissionless pool attachment: anyone can create a pool pointing at this hook
+    validation_view = src + sibling
     if not declared.get('beforeInitialize') and \
-       not re.search(r'(allowlist|allowList|whitelist|authorizedPool|validPool|onlyValidPool|poolId\s*==|PoolIdLibrary\.toId)', src, re.I) and \
-       not _validates_pool(src):
+       not re.search(r'(allowlist|allowList|whitelist|authorizedPool|validPool|onlyValidPool|poolId\s*==|PoolIdLibrary\.toId)', validation_view, re.I) and \
+       not _validates_pool(validation_view):
         # Severity is driven by what an attacker-created pool could actually corrupt.
         # A stateless observer hook is fine being permissionless — that is often the design.
         # A hook holding funds or per-pool accounting is not.
