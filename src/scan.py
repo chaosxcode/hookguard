@@ -166,15 +166,64 @@ def analyze(path):
                 'this is likely intentional — confirm it is.', decl_line))
 
     # R2 callbacks lacking the PoolManager guard (only matters if not using BaseHook)
+    #
+    # Guard detection is structural, because the same check is spelled at least
+    # six ways in the wild: BaseHook itself, OpenZeppelin's onlyPoolManager,
+    # private modifiers with other names (onlyPM, onlyManager), inline
+    # comparisons (both `msg.sender == poolManager` and the negated
+    # `if (msg.sender != poolManager) revert`), and internal assert helpers.
+    # What matters is whether SOMEONE OTHER than a trusted caller can reach the
+    # callback -- not which spelling sent them away.
     uses_basehook = bool(re.search(r'\bis\b[^{]*BaseHook', src))
+
+    def fn_impl(name):
+        """Match a real implementation of `function <name>`, never a bare
+        declaration. Bundles concatenate whole projects, and an interface's
+        trailing `;` used to let the match adopt the NEXT contract's opening
+        brace as its body -- flagging declarations as if they were code."""
+        return re.search(rf'function\s+{name}\s*\([^)]*\)([^;{{]*)\{{', src)
+
+    # Every modifier body, plus any short internal function whose whole job is
+    # comparing msg.sender (assert-style guards live there).
+    mod_bodies, auth_helpers = {}, set()
+    for m in re.finditer(r'modifier\s+(\w+)\s*(\([^)]*\))?\s*\{', src):
+        mod_bodies[m.group(1)] = body_of(src, m.end() - 1)
+    for m in re.finditer(r'function\s+(_?\w+)\s*\([^)]*\)([^;{]*)\{', src):
+        nm = m.group(1)
+        if nm in mod_bodies or nm in CALLBACKS or nm == 'constructor':
+            continue
+        fb = body_of(src, m.end() - 1)
+        if len(fb) <= 600 and re.search(r'msg\.sender\s*(==|!=)', fb):
+            auth_helpers.add(nm)
+
+    KEYWORDS = {'external', 'public', 'internal', 'private', 'pure', 'view',
+                'payable', 'virtual', 'override', 'returns'}
+
+    def guarded(sigtail, body):
+        """True if this callback restricts its caller somehow."""
+        applied = {t for t in re.findall(r'[A-Za-z_]\w*', sigtail)} - KEYWORDS
+        for t in applied & set(mod_bodies):
+            if re.search(r'msg\.sender\s*(==|!=)', mod_bodies[t]):
+                return True                              # any caller gate beats "anyone"
+            if 'poolmanager' in t.lower().replace('_', ''):
+                return True                              # named for what it checks
+        if re.search(r'msg\.sender\s*(==|!=)\s*[^\s;]', body):
+            return True                                  # inline comparison, either polarity
+        return any(re.search(rf'\b{h}\s*\(', body) for h in auth_helpers)
+
     if not uses_basehook:
         for c in CALLBACKS:
-            m = re.search(rf'function\s+{c}\s*\([^)]*\)([^{{]*)\{{', src, re.S)
-            if m and not re.search(r'onlyPoolManager|onlyByPoolManager|poolManagerOnly|msg\.sender\s*==\s*address\(\s*poolManager', m.group(1)+src[m.end():m.end()+200]) \
-               and not is_inert(m.group(0), body_of(src, m.end()-1)):
-                F.append(('HIGH','MISSING_POOLMANAGER_GUARD',
-                    f'{c}() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. '
-                    'Anyone can call the callback directly and desync hook state.', line_of(src, m.start())))
+            m = fn_impl(c)
+            if not m:
+                continue
+            body = body_of(src, m.end() - 1)
+            if guarded(m.group(1), body):
+                continue
+            if is_inert(m.group(0), body):
+                continue
+            F.append(('HIGH','MISSING_POOLMANAGER_GUARD',
+                f'{c}() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. '
+                'Anyone can call the callback directly and desync hook state.', line_of(src, m.start())))
 
     # R3 return-delta declared but callback never returns a non-zero delta (or vice versa)
     if ret_delta['beforeSwapReturnsDelta']:
