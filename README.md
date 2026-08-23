@@ -90,6 +90,29 @@ swapped.
 Reproduce with `python3 src/verify_status.py`. Data:
 [`out/unichain-unregistered-top.json`](out/unichain-unregistered-top.json).
 
+## Reading the ones that publish nothing
+
+A bytecode pass (`src/bytecode.py`, keyless and dependency-free) reaches
+around source for those 25 hooks:
+
+| signal | count |
+|---|---:|
+| standard proxies (EIP-1967 / EIP-1167) | **0 / 25** |
+| `DELEGATECALL` opcode in runtime code | 17 / 25 |
+| `SELFDESTRUCT` opcode in runtime code | 17 / 25 |
+| distinct programs across the 25 addresses | **16** |
+
+Several shared-code families sit at addresses whose permission bits are *all*
+set — every callback, every return-delta flag, no published source.
+
+It also settled something about the chain itself: Unichain's PoolManager is
+the **v4 preview deployment**, and hook addresses there encode their callback
+permissions in the reverse bit order from final v4 (validated against every
+source-verifiable hook: 17/18 reversed vs 1/18). Any tool reading v4 hook
+permissions off addresses with mainnet semantics misreads Unichain's.
+
+Details: [`findings/unichain-bytecode.md`](findings/unichain-bytecode.md).
+
 ## What it checks
 
 `src/scan.py` analyses **concrete, deployable** hook contracts (abstract bases,

@@ -76,10 +76,10 @@ that can change without anyone noticing:
 
 So for the population that publishes source, the scanner confirms the proxy
 concern raised above and returns one advisory worth a conversation with the
-author. For the other 25, there is still nothing to read. That is next:
-bytecode-level analysis reaches hooks without published source, and it starts
-from facts that need no source at all — the permission bits live in the hook's
-own address.
+author. For the other 25, there is no source — but there is now data:
+[the bytecode pass](unichain-bytecode.md) reads their permission bits,
+opcode-walks their runtime code, and in the process documents that Unichain's
+PoolManager is the v4 preview release with a reversed permission layout.
 
 Reproduce:
 
@@ -88,6 +88,7 @@ CHAIN=unichain python3 src/discover.py            # discovery scan
 python3 src/verify_status.py                      # who publishes source
 python3 src/unregistered_source.py                # fetch the ones that do
 python3 src/scan.py corpus                        # scan them
+CHAIN=unichain python3 src/bytecode.py            # the ones that publish nothing
 ```
 
 ## What this is not
