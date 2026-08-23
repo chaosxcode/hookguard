@@ -404,24 +404,6 @@
   "contract": "SuperStrategy",
   "findings": [
    [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    466
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    510
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    549
-   ],
-   [
     "MEDIUM",
     "UNBOUNDED_DYNAMIC_FEE",
     "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
@@ -446,32 +428,7 @@
  {
   "file": "corpus/base/0x21411ada5ba2bf1ed416a2573e037cda070ce080/MoonsendFeeHook_BASE.sol",
   "contract": "MoonsendFeeHook_BASE",
-  "findings": [
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    110
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    117
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    125
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    133
-   ]
-  ],
+  "findings": [],
   "declared": [
    "beforeInitialize",
    "beforeSwap"
@@ -589,26 +546,7 @@
  {
   "file": "corpus/base/0x35b9b5b023897da8c7375ba6141245b8416460cc/wASSBLASTER.sol",
   "contract": "wASSBLASTER",
-  "findings": [
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    237
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    289
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    359
-   ]
-  ],
+  "findings": [],
   "declared": [
    "beforeInitialize",
    "beforeSwap",
@@ -784,24 +722,6 @@
   "contract": "SuperStrategy",
   "findings": [
    [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    450
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    494
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    528
-   ],
-   [
     "MEDIUM",
     "UNBOUNDED_DYNAMIC_FEE",
     "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
@@ -861,24 +781,6 @@
   "file": "corpus/base/0x6646b048fba0a70a692f7690ae6dad83bcacb0c8/SuperStrategy.sol",
   "contract": "SuperStrategy",
   "findings": [
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    451
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    495
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    529
-   ],
    [
     "MEDIUM",
     "UNBOUNDED_DYNAMIC_FEE",
@@ -1466,24 +1368,6 @@
   "contract": "SuperStrat",
   "findings": [
    [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    501
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    545
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    578
-   ],
-   [
     "MEDIUM",
     "UNBOUNDED_DYNAMIC_FEE",
     "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
@@ -1934,32 +1818,7 @@
  {
   "file": "corpus/ethereum/0x0f32ab7c446e24b442b85fe77f78e75e1219a080/MoonsendFeeHook_ETH.sol",
   "contract": "MoonsendFeeHook_ETH",
-  "findings": [
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    110
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    117
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    125
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    133
-   ]
-  ],
+  "findings": [],
   "declared": [
    "beforeInitialize",
    "beforeSwap"
@@ -2397,18 +2256,6 @@
     "PERMISSIONLESS_ATTACHMENT",
     "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
     16
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    213
-   ],
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterSwap() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    275
    ]
   ],
   "declared": [
@@ -2860,14 +2707,7 @@
  {
   "file": "corpus/ethereum/0xab7f6eaafff791c3ef699a3df271fd4d90389044/CellHook.sol",
   "contract": "CellHook",
-  "findings": [
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "afterInitialize() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    415
-   ]
-  ],
+  "findings": [],
   "declared": [
    "afterInitialize",
    "afterSwap"
@@ -3105,14 +2945,7 @@
  {
   "file": "corpus/ethereum/0xd5bd98d3cc0e1b92bd31bb1bb80422b084ae6acc/Hook.sol",
   "contract": "Hook",
-  "findings": [
-   [
-    "HIGH",
-    "MISSING_POOLMANAGER_GUARD",
-    "beforeAddLiquidity() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. Anyone can call the callback directly and desync hook state.",
-    545
-   ]
-  ],
+  "findings": [],
   "declared": [],
   "returnsDelta": []
  },
@@ -3865,6 +3698,313 @@
   "declared": [
    "afterInitialize",
    "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x000052423c1db6b7ff8641b85a7eefc7b2791888/BunniHook.sol",
+  "contract": "BunniHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    49
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x0a9d78dd5af85ab716b08b336cd19473120f3903/PrediXHookV2.sol",
+  "contract": "PrediXHookV2",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x0fd7295d9ccb18b17646b64acf9316b7e75a4888/PolymarketHook.sol",
+  "contract": "PolymarketHook",
+  "findings": [],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x2016c0e4f8bb1d6fea777dc791be919e2eda40c0/LimitOrderHook.sol",
+  "contract": "LimitOrderHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    17
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    17
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x27bfccf7fdd8215ce5dd86c2a36651d05c8450cc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    52
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x2ea5eac8a4e31f0889e86fc135c5eae8e0b16ae0/PrediXHookProxyV2.sol",
+  "contract": "PrediXHookProxyV2",
+  "findings": [
+   [
+    "HIGH",
+    "UPGRADEABLE_HOOK",
+    "Upgradeable/delegatecall pattern. The hook ADDRESS permanently encodes permissions and pools cannot detach, but the implementation can be swapped \u2014 the upgrade admin is part of the trust boundary.",
+    32
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x54bd666ea7fd8d5404c0593eab3dcf9b6e2a3ac4/BackGeoOracle.sol",
+  "contract": "BackGeoOracle",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x5cf8e499c7c466c7e2cf127bdf129f57151e65dc/PositionManager.sol",
+  "contract": "PositionManager",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterAddLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap",
+   "afterDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x6398f3c67b03c4622bdaa48d9e340d66e23a1bc0/EMADynamicFeeHook.sol",
+  "contract": "EMADynamicFeeHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    17
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x79330fe369c32a03e3b8516aff35b44706e39080/BaseOracleHook.sol",
+  "contract": "BaseOracleHook",
+  "findings": [],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x88c9ff9fc0b22cca42265d3f1d1c2c39e41cdacc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    54
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x91db9941a44c19a5409345c5f2f8a2c1f81ba888/AsyncSwap.sol",
+  "contract": "AsyncSwap",
+  "findings": [
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    22
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xa0b0d2d00fd544d8e0887f1a3cedd6e24baf10cc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    53
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xb4960cd4f9147f9e37a7aa9005df7156f61e4444/UniMemeHook.sol",
+  "contract": "UniMemeHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    16
+   ]
+  ],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xb4f4949e8d0a177bb6d2fea33e9516bb219610cc/Spot.sol",
+  "contract": "Spot",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    54
+   ]
+  ],
+  "declared": [
+   "afterInitialize",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xb9a17e66db950e00822c2b833d6bb304c9b86080/MEVTaxTestInProd.sol",
+  "contract": "MEVTaxTestInProd",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xcc2efb167503f2d7df0eae906600066aec9e8444/UniderpHook.sol",
+  "contract": "UniderpHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    65
+   ]
+  ],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xcdfcab084b2d29025772141d3bf473bd9673aaa8/UniversalJITHook.sol",
+  "contract": "UniversalJITHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "REVERT_DOS_RISK",
+    "beforeSwap makes an external call (oracle.) with no try/catch. If the dependency reverts or is paused, every swap on every pool using this hook is bricked \u2014 including LP exits.",
+    162
+   ]
+  ],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "beforeDonate"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xd0b13c0161accade6c82396a80cc0e69fc936044/UniswapCupHook.sol",
+  "contract": "UniswapCupHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
    "afterSwap"
   ],
   "returnsDelta": []

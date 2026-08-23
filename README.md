@@ -120,13 +120,22 @@ python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 
 ## Does it actually discriminate?
 
-Measured against **272 real deployed hooks** (verified source pulled from
-Sourcify), not fixtures: **56% come back completely clean**, and only **4% carry any HIGH finding**. Five false-positive
-classes were found by reading that corpus and fixed. Three were caught only by
-verifying findings before contacting their authors — and the tool's
-highest-firing rule was **downgraded from HIGH to MEDIUM** as a result, because
-it turned out to detect accurately but could not justify the severity it
-claimed.
+Measured against **291 real deployed hooks** — registry bundles across nine
+chains, plus five source-publishing production hooks that were *never*
+registered (Unichain's busiest off-registry hooks, up to 1,034 pools) — not
+fixtures: **57% come back completely clean**, and only **2 carry any HIGH
+finding** (<1%), both the upgradeable-proxy class. One of the two is proven,
+not inferred: the proxy's implementation was read out of its EIP-1967 slot
+on-chain.
+
+Eight false-positive classes have been found by reading that corpus and fixed.
+Three were caught only by verifying findings before contacting their authors —
+and the tool's highest-firing rule was **downgraded from HIGH to MEDIUM** as a
+result, because it turned out to detect accurately but could not justify the
+severity it claimed. The second pass then found three more spellings of an
+already-fixed class and left its flagship HIGH rule with **zero** findings
+ecosystem-wide; the details are the interesting part:
+[docs/precision.md](docs/precision.md).
 
 Full method, per-rule firing rates, and what it does *not* establish:
 [docs/precision.md](docs/precision.md).

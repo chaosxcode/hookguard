@@ -56,6 +56,40 @@ One detail worth noting: the busiest unregistered hook, `PrediXHookProxyV2`, is
 a verified **proxy**. The address bits fix its permissions permanently and pools
 cannot detach, but the implementation behind it can still be swapped.
 
+## Update, August 23, 2026: scanning the readable minority
+
+The five source-publishing unregistered hooks are now in HookGuard's measured
+corpus, along with something the explorer metadata did not offer: the
+implementation behind `PrediXHookProxyV2`, recovered by reading its EIP-1967
+storage slot straight from an RPC after Blockscout listed no implementations.
+The proxy's address fixes those permission bits forever, but this is the part
+that can change without anyone noticing:
+
+| hook | pools | scan result |
+|---|---:|---|
+| `PrediXHookProxyV2` | 1,034 | HIGH `UPGRADEABLE_HOOK` — proven: implementation read from storage |
+| `PrediXHookV2` (the implementation) | — | clean |
+| `UniMemeHook` | 777 | MEDIUM `PERMISSIONLESS_ATTACHMENT` — hand-verified: no pool gate; takes a platform fee on any attached pool's swaps |
+| `BunniHook` | 50 | MEDIUM `PERMISSIONLESS_ATTACHMENT` (advisory) |
+| `PolymarketHook` | 34 | clean |
+| `UniswapCupHook` | 32 | clean |
+
+So for the population that publishes source, the scanner confirms the proxy
+concern raised above and returns one advisory worth a conversation with the
+author. For the other 25, there is still nothing to read. That is next:
+bytecode-level analysis reaches hooks without published source, and it starts
+from facts that need no source at all — the permission bits live in the hook's
+own address.
+
+Reproduce:
+
+```bash
+CHAIN=unichain python3 src/discover.py            # discovery scan
+python3 src/verify_status.py                      # who publishes source
+python3 src/unregistered_source.py                # fetch the ones that do
+python3 src/scan.py corpus                        # scan them
+```
+
 ## What this is not
 
 This is a counting exercise. I measured how many hooks exist, how many are

@@ -177,11 +177,112 @@ What it does establish:
 `PERMISSIONLESS_ATTACHMENT` now sits at 26.1% and MEDIUM, which is an honest
 place for it: the detection is accurate, the consequence is unproven.
 
+## Second pass: completing the corpus, and a rule that went silent
+
+*2026-08-23. Reproduce with `python3 src/corpus.py --chain unichain`,
+`python3 src/unregistered_source.py`, then `python3 src/scan.py corpus`.*
+
+The first pass measured 272 contracts out of a registry that claims 486. This
+pass closes most of that distance and points the scanner at production hooks
+that were never in the registry at all:
+
+- **Retry passes plus a keyless Blockscout fallback** (Sourcify → Blockscout →
+  Etherscan-if-keyed, provenance recorded per contract) recovered the 44
+  rate-limited fetches and part of the Sourcify-miss tail.
+- **`src/unregistered_source.py`** pulls published source for the five
+  *unregistered* Unichain hooks serving 10+ pools — real production hooks in
+  the swap path of up to 1,034 pools that no registry-based corpus would ever
+  include. It also follows verified proxies to their implementation; where the
+  explorer lists none (`PrediXHookProxyV2`), it reads the EIP-1967 storage slot
+  straight off the chain.
+
+**A correction to the denominator.** The registry's 486 rows contain 37
+same-chain duplicate listings — the same address registered twice under two
+names. Unique (chain, address) pairs: **449**, not 486. Earlier "383 with
+source" figures counted those duplicates twice. On unique contracts, keyless
+retrieval now reaches **365 / 449**.
+
+### The measurement
+
+Against **291 hook contracts** (registry bundles plus the six off-registry
+entries):
+
+| Rule | Severity | Contracts | % of corpus |
+|---|---|---:|---:|
+| `PERMISSIONLESS_ATTACHMENT` | MEDIUM | 79 | 27.1% |
+| `UNBOUNDED_DYNAMIC_FEE` | MEDIUM | 32 | 11.0% |
+| `PERMISSIONLESS_BY_DESIGN` | INFO | 24 | 8.2% |
+| `UPGRADEABLE_HOOK` | HIGH | 2 | 0.7% |
+| `REENTRANCY_SURFACE` | MEDIUM | 2 | 0.7% |
+| `REVERT_DOS_RISK` | MEDIUM | 1 | 0.3% |
+| `MISSING_POOLMANAGER_GUARD` | HIGH | **0** | **0%** |
+
+**165 of 291 (56.7%) come back completely clean. Exactly two carry any HIGH
+finding — both the upgradeable-proxy class.** One of them is not an inference:
+`PrediXHookProxyV2`'s implementation was read out of its EIP-1967 slot on-chain.
+(`NFTXV4Hook` is pattern-level: `Initializable` in source, DELEGATECALL in
+runtime bytecode confirmed via `eth_getCode`, empty EIP-1967 slot — kept at
+HIGH on the pattern, labelled as unproven.)
+
+### Three more false-positive classes, found by hand-checking every new HIGH
+
+Finishing the corpus briefly took HIGH findings from 11 to 29. Every one of
+the new ones was wrong, and each failure taught a spelling:
+
+6. **Custom-named modifiers.** `SuperStrategy` and `wASSBLASTER` gate callbacks
+   with `onlyManager`; `CellHook` uses `onlyPM`. All are the PoolManager check
+   with an immutable named `manager` or `poolManager`. The rule knew only the
+   OpenZeppelin spelling.
+7. **Phantom implementations.** Explorer bundles concatenate whole projects.
+   `MoonsendFeeHook` ships an `interface IHooks` whose bodyless declarations
+   sat above the real contract — and the matcher happily let a declaration
+   adopt the next contract's opening brace as its function body. Eight phantom
+   findings from two files.
+8. **Inline negated checks.** `LiquidityGenHook` opens with
+   `if (msg.sender != poolManager) revert Unauthorized();`. The fast path only
+   recognised `msg.sender == address(...)`.
+9. **Assert-style helpers.** `Hook.sol` and `SlopPoolHook` call tiny internal
+   functions (`_assertPoolManager()`) whose whole body is the comparison.
+
+`MISSING_POOLMANAGER_GUARD` was rewritten to be structural rather than textual:
+it parses modifier bodies, collects short internal functions that compare
+`msg.sender`, accepts inline comparisons of either polarity, and never treats a
+declaration as an implementation.
+
+**The result: zero findings across all 291 contracts.** Every one of the ten
+contracts it flagged in the first pass turned out to be an artifact of
+spellings 6–9. The rule stays, because genuinely naked callbacks remain the
+failure it exists for and the fixture proves it still fires — but the honest
+summary today is that across every measurable hook in the ecosystem, this tool
+found no unguarded callback at HIGH severity. That sentence was only writable
+after the rewrite; the version of the rule that produced the first pass's ten
+findings was measuring Solidity style, not security.
+
+### The off-registry hooks specifically
+
+| Hook | Pools | Result |
+|---|---:|---|
+| `PrediXHookProxyV2` (+impl) | 1,034 | proxy HIGH (proven upgradeable); implementation clean |
+| `UniMemeHook` | 777 | MEDIUM — verified by reading source: no pool gate, takes platform fee via `poolManager.take()` on any attached pool |
+| `BunniHook` | 50 | MEDIUM — same class, advisory |
+| `PolymarketHook` | 34 | clean |
+| `UniswapCupHook` | 32 | clean |
+
+## What this still does not establish
+
+(unchanged from above, with one addition)
+
+- Findings against named projects remain advisories awaiting author response;
+  the MEDIUM wording says "confirm", not "vulnerable"
+- counting basis: one result row per hook contract per bundle; cross-chain
+  duplicates of the same address are separate rows
+
 ## Next
 
-- Retry the remaining 44 rate-limited fetches (201 → 317 → 383 across three passes)
-- Fall back to explorer sources for the 58 Sourcify misses
+- Retry the remaining rate-limited fetches until the Sourcify-miss tail is
+  exhausted or explained
 - Put a sample of `PERMISSIONLESS_ATTACHMENT` findings to their authors and
   record whether they consider them real — the only honest route to a
   false-positive rate
-- Retire or downgrade any rule that cannot survive that
+- Bytecode-level analysis for the hooks that publish nothing — the 25
+  unverified Unichain hooks this corpus can never reach
