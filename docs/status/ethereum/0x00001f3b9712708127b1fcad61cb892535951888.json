@@ -3,11 +3,11 @@
  "chain": "ethereum",
  "address": "0x00001f3b9712708127b1fcad61cb892535951888",
  "name": "BunniHook",
- "findings": 1,
+ "findings": 0,
  "high": 0,
- "advisory": true,
+ "advisory": false,
  "source": true,
- "score": 17,
+ "score": 10,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
@@ -16,12 +16,6 @@
    "label": "no audit URL recorded",
    "delta": 10,
    "detail": "means unknown, not audited-absent"
-  },
-  {
-   "key": "medium_finding",
-   "label": "1\u00d7 MEDIUM finding(s)",
-   "delta": 7,
-   "detail": "accurate detections awaiting author confirmation"
   }
  ]
 }

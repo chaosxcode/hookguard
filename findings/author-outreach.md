@@ -25,7 +25,7 @@ author conversation settles the question fastest.
 |---|---:|---|
 | UniderpHook ×3 (`0xcc2e…`, `0xe5cd…`, `0x966c…`) | 114 / 4 / 3 | **sent** — [Uniderp-fun/uniderp-hook-smart-contract#1](https://github.com/Uniderp-fun/uniderp-hook-smart-contract/issues/1), Aug 23 |
 | AssetToAssetSwapHookForERC4626 (`0xc923…`) | unichain | **sent** — [VII-Finance/yield-harvesting-hook#30](https://github.com/VII-Finance/yield-harvesting-hook/issues/30), Aug 23 · repo match verified 100% on constants; unknown-pool behavior flagged as unverified inline |
-| BunniHook (`0x00005242…`) | 50 | **resolved — false positive**. `BunniHookLogic.beforeSwap` reverts `BunniHook__InvalidSwap` when `slot0.sqrtPriceX96 == 0`, which is exactly the state of any pool unknown to Bunni. Author handled it; same shape as the Wsgem precedent. Manual clearance recorded here — single-file analysis cannot see library-level guards, which is a known scanner ceiling (roadmap item). |
+| BunniHook (`0x00005242…`) | 50 | **resolved — false positive**. `BunniHookLogic.beforeSwap` reverts `BunniHook__InvalidSwap` when `slot0.sqrtPriceX96 == 0`, which is exactly the state of any pool unknown to Bunni. Author handled it; same shape as the Wsgem precedent. Manually cleared, then **cleared automatically** once BunniHookLogic joined the bundle and the scanner learned zero-state guards + sibling delegation — the roadmap ceiling item is closed. |
 | UniMemeHook (`0xb496…`) | 777 | superseded — registered post-snapshot; listing documents the fee design. No contact channel (deployer field empty). Monitoring. |
 
 ### Wave 3: proactive scans of active v4 repos (Aug 23)

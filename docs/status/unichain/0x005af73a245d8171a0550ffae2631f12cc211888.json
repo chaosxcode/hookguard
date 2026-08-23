@@ -3,11 +3,11 @@
  "chain": "unichain",
  "address": "0x005af73a245d8171a0550ffae2631f12cc211888",
  "name": "BunniHook",
- "findings": 1,
+ "findings": 0,
  "high": 0,
- "advisory": true,
+ "advisory": false,
  "source": true,
- "score": 15,
+ "score": 8,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
@@ -16,12 +16,6 @@
    "label": "absent from the hooklist registry",
    "delta": 8,
    "detail": "opt-in transparency signal not exercised"
-  },
-  {
-   "key": "medium_finding",
-   "label": "1\u00d7 MEDIUM finding(s)",
-   "delta": 7,
-   "detail": "accurate detections awaiting author confirmation"
   }
  ]
 }

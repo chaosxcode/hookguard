@@ -1695,14 +1695,7 @@
  {
   "file": "corpus/ethereum/0x00001f3b9712708127b1fcad61cb892535951888/BunniHook.sol",
   "contract": "BunniHook",
-  "findings": [
-   [
-    "MEDIUM",
-    "PERMISSIONLESS_ATTACHMENT",
-    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
-    42
-   ]
-  ],
+  "findings": [],
   "declared": [],
   "returnsDelta": []
  },
@@ -3841,28 +3834,14 @@
  {
   "file": "corpus/unichain/0x000052423c1db6b7ff8641b85a7eefc7b2791888/BunniHook.sol",
   "contract": "BunniHook",
-  "findings": [
-   [
-    "MEDIUM",
-    "PERMISSIONLESS_ATTACHMENT",
-    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
-    49
-   ]
-  ],
+  "findings": [],
   "declared": [],
   "returnsDelta": []
  },
  {
   "file": "corpus/unichain/0x005af73a245d8171a0550ffae2631f12cc211888/BunniHook.sol",
   "contract": "BunniHook",
-  "findings": [
-   [
-    "MEDIUM",
-    "PERMISSIONLESS_ATTACHMENT",
-    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
-    46
-   ]
-  ],
+  "findings": [],
   "declared": [],
   "returnsDelta": []
  },

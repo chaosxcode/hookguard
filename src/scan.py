@@ -59,7 +59,13 @@ def _validates_pool(src):
         r'NotAllowed|UnknownPool|InvalidPool|PoolNotFound)', src, re.S | re.I)
         or re.search(
         r'!\s*\w+\.\s*(isInitialized|initialized|registered|enabled|active)\b[^;]{0,80}revert',
-        src, re.S | re.I))
+        src, re.S | re.I)
+        # Zero-state guard: rejecting pools whose stored state is unset
+        # (sqrtPriceX96 == 0) with an Invalid*-class revert nearby is
+        # registration-by-initialization -- the Bunni pattern. Two-token
+        # lookahead keeps unrelated reverts out.
+        or re.search(r'sqrtPriceX96\s*==\s*0(?=[\s\S]{0,900}?revert\s+\w*Invalid)',
+                     src, re.S | re.I))
 
 def body_of(src, brace_pos):
     """Return the {...} block starting at brace_pos, brace-matched."""
@@ -168,14 +174,29 @@ def analyze(path):
     # silence findings.
     dirpath = os.path.dirname(path)
     sibling = ''
+
+    # One-hop delegation chase: callback -> internal wrapper -> sibling call.
+    # A wide "any referenced file" rule was tried and rejected -- selector
+    # mentions like BaseHook.afterSwap.selector dragged whole dependency
+    # trees into the validation view and silenced real findings.
+    internal_fns = {}
+    for m2 in re.finditer(r'function\s+(_?\w+)\s*\([^)]*\)([^;{]*)\{', src):
+        if m2.group(1) not in internal_fns:
+            internal_fns[m2.group(1)] = body_of(src, m2.end() - 1)
+
     for c in CALLBACKS:
         m = re.search(rf'function\s+_?{c}\s*\([^)]*\)([^;{{]*)\{{', src)
         if not m:
             continue
         body = body_of(src, m.end() - 1)
-        for target in sorted(set(re.findall(rf'\b([A-Z]\w+)\.\s*_?{c}\s*\(', body))):
-            if target in (name, 'BaseHook', 'IHooks', 'Hooks'):
-                continue
+        targets = set(re.findall(rf'\b([A-Z]\w+)\.\s*_?{c}\s*\(', body))
+        # chase internal wrappers one hop
+        for fn in set(re.findall(r'\b(_?\w+)\s*\(', body)):
+            fb = internal_fns.get(fn)
+            if fb and fn != c:
+                targets |= set(re.findall(rf'\b([A-Z]\w+)\.\s*\w+\s*\(', fb))
+        targets -= {name, 'BaseHook', 'IHooks', 'Hooks'}
+        for target in sorted(targets):
             for sf in glob.glob(os.path.join(dirpath, '*.sol')):
                 if os.path.abspath(sf) == os.path.abspath(path):
                     continue

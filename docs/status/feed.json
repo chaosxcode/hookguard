@@ -100,16 +100,16 @@
  },
  "scanner": {
   "contractsMeasured": 306,
-  "clean": 170,
-  "cleanPct": 55.6,
+  "clean": 173,
+  "cleanPct": 56.5,
   "severity": {
    "HIGH": 2,
-   "MEDIUM": 124,
+   "MEDIUM": 121,
    "LOW": 0,
    "INFO": 25
   },
   "rules": {
-   "PERMISSIONLESS_ATTACHMENT": 85,
+   "PERMISSIONLESS_ATTACHMENT": 82,
    "PERMISSIONLESS_BY_DESIGN": 25,
    "UNBOUNDED_DYNAMIC_FEE": 36,
    "REENTRANCY_SURFACE": 2,
@@ -235,7 +235,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-08-23T20:02:54+00:00",
+  "searchedAt": "2026-08-23T23:15:05+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
@@ -2931,11 +2931,11 @@
    "chain": "ethereum",
    "address": "0x00001f3b9712708127b1fcad61cb892535951888",
    "name": "BunniHook",
-   "findings": 1,
+   "findings": 0,
    "high": 0,
-   "advisory": true,
+   "advisory": false,
    "source": true,
-   "score": 17,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
@@ -2944,12 +2944,6 @@
      "label": "no audit URL recorded",
      "delta": 10,
      "detail": "means unknown, not audited-absent"
-    },
-    {
-     "key": "medium_finding",
-     "label": "1\u00d7 MEDIUM finding(s)",
-     "delta": 7,
-     "detail": "accurate detections awaiting author confirmation"
     }
    ]
   },
@@ -6479,11 +6473,11 @@
    "chain": "unichain",
    "address": "0x000052423c1db6b7ff8641b85a7eefc7b2791888",
    "name": "BunniHook",
-   "findings": 1,
+   "findings": 0,
    "high": 0,
-   "advisory": true,
+   "advisory": false,
    "source": true,
-   "score": 15,
+   "score": 8,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
@@ -6492,12 +6486,6 @@
      "label": "absent from the hooklist registry",
      "delta": 8,
      "detail": "opt-in transparency signal not exercised"
-    },
-    {
-     "key": "medium_finding",
-     "label": "1\u00d7 MEDIUM finding(s)",
-     "delta": 7,
-     "detail": "accurate detections awaiting author confirmation"
     }
    ]
   },
@@ -6505,11 +6493,11 @@
    "chain": "unichain",
    "address": "0x005af73a245d8171a0550ffae2631f12cc211888",
    "name": "BunniHook",
-   "findings": 1,
+   "findings": 0,
    "high": 0,
-   "advisory": true,
+   "advisory": false,
    "source": true,
-   "score": 15,
+   "score": 8,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
@@ -6518,12 +6506,6 @@
      "label": "absent from the hooklist registry",
      "delta": 8,
      "detail": "opt-in transparency signal not exercised"
-    },
-    {
-     "key": "medium_finding",
-     "label": "1\u00d7 MEDIUM finding(s)",
-     "delta": 7,
-     "detail": "accurate detections awaiting author confirmation"
     }
    ]
   },
