@@ -66,6 +66,27 @@ Running totals: **13 external contacts** across advisories, invites and PRs;
   applied; fixtures unchanged, four previously-clean contracts now correctly
   flagged, zero flagged-to-clean regressions.
 
+## Wave 4: broadened discovery, template filtering (Aug 23)
+
+Second discovery pass (three search vectors, 44 new candidates, 18 with
+Solidity hooks scanned at HEAD). Two engineering corrections fell out
+immediately — demo artifacts (`ExampleVulnerableHook`, foundry's `Counter.sol`)
+were being analyzed as if they were production hooks; both now filtered.
+
+| repo | scan result | contact |
+|---|---|---|
+| Mosss-OS/WaveLength | **2× verified HIGH** — unguarded `beforeSwap`/`beforeRemoveLiquidity` mutate penalty/rebate accounting | [advisory #2](https://github.com/Mosss-OS/WaveLength/issues/2) |
+| ferris007/project-fee-hook | MEDIUM `PERMISSIONLESS_ATTACHMENT` — question sent | [advisory #1](https://github.com/ferris007/project-fee-hook/issues/1) |
+| dannyy2000/Cadence | MEDIUM `PERMISSIONLESS_ATTACHMENT` — per-PoolId batch state, question sent | [advisory #1](https://github.com/dannyy2000/Cadence/issues/1) |
+| meshackyaro/weir | **compatibility bug, not risk**: no `getHookPermissions()` anywhere → pools cannot initialize against it on final v4 | [report #1](https://github.com/meshackyaro/weir/issues/1) |
+| BLTC-520/landfall · bithookdev/bithook_mono · robertleifke/forex-swap · 0xprogrammable/hookbuilder | clean | install invites (#1 each; hookbuilder #79) |
+
+Skipped as templates, not contacts: `Counter.sol` demos (v4hook-cli, Dobhooks),
+`ExampleVulnerableHook` (HookVault).
+
+Running totals: **21 external contacts**, 5 open advisories, 6 clean scans,
+2 install PRs pending.
+
 ## Wave 2 method note
 
 Channel hunt across the remaining 45 unique-name `PERMISSIONLESS_ATTACHMENT`

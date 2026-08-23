@@ -139,9 +139,15 @@ def analyze(path):
             or re.search(r'\b(BaseHook|IHooks)\b', inherits)):
         return None
     low = path.lower()
+    base = os.path.basename(path)
     if any(k in low for k in ('/mocks/', '/mock/', '/test/', '/tests/')) or \
-       re.search(r'(Mock|Test|Harness|Example)$', name):
-        return None                                   # not deployed
+       re.search(r'(Mock|Test|Harness|Example)$', name) or \
+       re.match(r'(Example|Test|Mock|Sample|Demo|Vulnerable)', name) or \
+       'vulnerable' in name.lower() or \
+       (name == 'Counter' and base == 'Counter.sol'):
+        # not deployed: mocks/tests, teaching examples (ExampleVulnerableHook),
+        # foundry's default scaffolding (Counter.sol) — flagging them is noise
+        return None
     F = []
     decl_line = line_of(src, cm.start())
     # Structural match: a real getHookPermissions body, never the abstract
