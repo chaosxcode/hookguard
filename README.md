@@ -113,6 +113,11 @@ permissions off addresses with mainnet semantics misreads Unichain's.
 
 Details: [`findings/unichain-bytecode.md`](findings/unichain-bytecode.md).
 
+Extended to every unregistered hook serving 2+ pools — all 107 of them — the
+picture holds: 19 publish source (17.8%, unchanged from the busiest tier), 88
+were bytecode-analyzed with a single standard proxy among them, and 77
+distinct programs account for the 88 addresses.
+
 ## What it checks
 
 `src/scan.py` analyses **concrete, deployable** hook contracts (abstract bases,
@@ -143,10 +148,10 @@ python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 
 ## Does it actually discriminate?
 
-Measured against **291 real deployed hooks** — registry bundles across nine
-chains, plus five source-publishing production hooks that were *never*
-registered (Unichain's busiest off-registry hooks, up to 1,034 pools) — not
-fixtures: **57% come back completely clean**, and only **2 carry any HIGH
+Measured against **301 real deployed hooks** — registry bundles across nine
+chains, plus the source-publishing production hooks that were *never*
+registered (Unichain's off-registry hooks, up to 1,034 pools) — not fixtures:
+**56% come back completely clean**, and only **2 carry any HIGH
 finding** (<1%), both the upgradeable-proxy class. One of the two is proven,
 not inferred: the proxy's implementation was read out of its EIP-1967 slot
 on-chain.

@@ -224,6 +224,11 @@ finding — both the upgradeable-proxy class.** One of them is not an inference:
 runtime bytecode confirmed via `eth_getCode`, empty EIP-1967 slot — kept at
 HIGH on the pattern, labelled as unproven.)
 
+*Addendum, later the same day:* extending retrieval to every unregistered
+Unichain hook serving 2+ pools added ten more source bundles, moving the
+corpus to **301 contracts / 56.1% clean** with the same two HIGH findings.
+Nothing above shifted by more than a point.
+
 ### Three more false-positive classes, found by hand-checking every new HIGH
 
 Finishing the corpus briefly took HIGH findings from 11 to 29. Every one of

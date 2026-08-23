@@ -94,6 +94,10 @@ def main():
            "errors": errors, "hooks": rows}
 
     dest = os.path.join(ROOT, "out", f"{CHAIN}-unregistered-top.json")
+    if MIN_POOLS != 10:
+        # Keep a distinct artifact per threshold so the published 10+ file
+        # that findings link to never gets silently rewritten by a wider run.
+        dest = os.path.join(ROOT, "out", f"{CHAIN}-unregistered-min{MIN_POOLS}.json")
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     with open(dest, "w") as f:
         json.dump(out, f, indent=1)

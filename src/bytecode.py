@@ -100,6 +100,7 @@ PERMS_FINAL = ["beforeInitialize","afterInitialize","beforeAddLiquidity",
                "afterAddLiquidityReturnsDelta","afterRemoveLiquidityReturnsDelta"]
 
 CHAIN = os.environ.get("CHAIN", "unichain")
+MINPOOL = int(os.environ.get("MIN_POOLS", "10"))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HDRS = {"Content-Type": "application/json", "User-Agent": "curl/8.5.0"}
 EIP1967 = "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"
@@ -216,6 +217,8 @@ def validate_layout():
 
 def main():
     top_path = os.path.join(ROOT, "out", f"{CHAIN}-unregistered-top.json")
+    if MINPOOL != 10:
+        top_path = os.path.join(ROOT, "out", f"{CHAIN}-unregistered-min{MINPOOL}.json")
     if not os.path.exists(top_path):
         sys.exit(f"missing {os.path.relpath(top_path, ROOT)} -- run src/verify_status.py first")
     targets = sorted(
@@ -223,7 +226,7 @@ def main():
          if r["verified"] is False and not r.get("error")),
         key=lambda r: -r["pools"])
     print(f"{CHAIN}: bytecode pass over {len(targets)} unverified hooks "
-          f"serving 10+ pools\n")
+          f"serving {MINPOOL}+ pools\n")
 
     layout = validate_layout()
     if layout:
@@ -291,6 +294,8 @@ def main():
         "hooks": results,
     }
     dest = os.path.join(ROOT, "out", f"{CHAIN}-bytecode.json")
+    if MINPOOL != 10:
+        dest = os.path.join(ROOT, "out", f"{CHAIN}-bytecode-min{MINPOOL}.json")
     json.dump(out, open(dest, "w"), indent=1)
 
     print(f"\n  analyzed              {len(ok)}/{len(targets)}")

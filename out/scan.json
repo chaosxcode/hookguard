@@ -3717,6 +3717,20 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/unichain/0x005af73a245d8171a0550ffae2631f12cc211888/BunniHook.sol",
+  "contract": "BunniHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    46
+   ]
+  ],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/unichain/0x0a9d78dd5af85ab716b08b336cd19473120f3903/PrediXHookV2.sol",
   "contract": "PrediXHookV2",
   "findings": [],
@@ -3852,6 +3866,37 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/unichain/0x74c3c5743a9adade396538fd563c4934d0a7d5c0/GridHook.sol",
+  "contract": "GridHook",
+  "findings": [],
+  "declared": [],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x777ef319c338c6ffe32a2283f603db603e8f2a80/YieldHarvestingHook.sol",
+  "contract": "YieldHarvestingHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x77a19c56605a185002da73c6ff92b61224356a80/YieldHarvestingHook.sol",
+  "contract": "YieldHarvestingHook",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/unichain/0x79330fe369c32a03e3b8516aff35b44706e39080/BaseOracleHook.sol",
   "contract": "BaseOracleHook",
   "findings": [],
@@ -3882,6 +3927,36 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/unichain/0x8b51d5831fe98a3eb9e4e28020ddae06da0c0444/UniMemeHook.sol",
+  "contract": "UniMemeHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    16
+   ]
+  ],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x8e89b081498095669007da306dcd7ce7cab43a80/SuperDCAGauge.sol",
+  "contract": "SuperDCAGauge",
+  "findings": [],
+  "declared": [
+   "beforeInitialize",
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/unichain/0x91db9941a44c19a5409345c5f2f8a2c1f81ba888/AsyncSwap.sol",
   "contract": "AsyncSwap",
   "findings": [
@@ -3896,6 +3971,23 @@
    "beforeInitialize",
    "beforeAddLiquidity",
    "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0x966cf7b815cbdd26f2cc78838bba9c1a0f4dc444/UniderpHook.sol",
+  "contract": "UniderpHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    65
+   ]
+  ],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
   ],
   "returnsDelta": []
  },
@@ -3963,6 +4055,46 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/unichain/0xc92338e0713a1f38d06b77976e6bdd1928734888/AssetToAssetSwapHookForERC4626.sol",
+  "contract": "AssetToAssetSwapHookForERC4626",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    32
+   ]
+  ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xcab5a0b38b36bacd781a6ab9cc931fc6560ac0c0/LimitOrderHook.sol",
+  "contract": "LimitOrderHook",
+  "findings": [
+   [
+    "INFO",
+    "PERMISSIONLESS_BY_DESIGN",
+    "Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so this is likely intentional \u2014 confirm it is.",
+    17
+   ],
+   [
+    "MEDIUM",
+    "UNBOUNDED_DYNAMIC_FEE",
+    "Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged party (or manipulated input) tax swappers/LPs arbitrarily.",
+    17
+   ]
+  ],
+  "declared": [
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/unichain/0xcc2efb167503f2d7df0eae906600066aec9e8444/UniderpHook.sol",
   "contract": "UniderpHook",
   "findings": [
@@ -4005,6 +4137,23 @@
   "findings": [],
   "declared": [
    "beforeInitialize",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/unichain/0xe5cdffb339dbacf87e8616af15112eba101f0444/UniderpHook.sol",
+  "contract": "UniderpHook",
+  "findings": [
+   [
+    "MEDIUM",
+    "PERMISSIONLESS_ATTACHMENT",
+    "No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. Whether that is exploitable depends on what an attacker-chosen pool can reach \u2014 this flags the question, it does not answer it. Confirm the open attachment is intended.",
+    65
+   ]
+  ],
+  "declared": [
+   "afterAddLiquidity",
    "afterSwap"
   ],
   "returnsDelta": []

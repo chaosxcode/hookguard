@@ -81,6 +81,39 @@ directions, swaps, donations, and move value via all four delta mechanisms.
 These are live in ten-plus pools' swap paths each, and there is no source for
 any of them.
 
+## Census, same day: every multi-pool hook on the chain
+
+The pass above covered the 30 busiest unregistered hooks. Lowering the
+threshold to any hook serving two or more pools — the launchpad-discounted
+population the coverage finding identified as the one that matters — gives the
+full picture of what exists off the registry on Unichain:
+
+| | |
+|---|---|
+| unregistered hooks serving 2+ pools | **107** |
+| of those, publishing verified source | **19 (17.8%)** |
+| bytecode-analyzed (publish nothing) | **88 / 88** |
+| standard proxies among them (EIP-1967) | **1** — a 176-byte contract delegating to `0xd26c…0909` |
+| `DELEGATECALL` opcode present | 28 / 88 |
+| `SELFDESTRUCT` opcode present | 35 / 88 |
+| distinct programs across the 88 addresses | **77** |
+
+Two things the wider sample changes:
+
+- **Cloning is concentrated at the top.** The top-25 were 16 programs across
+  25 addresses; across all 88 it is 77 programs — the identical-code families
+  belong mostly to the busiest hooks. Depth of use, not prevalence.
+- **Source publication does not improve with obscurity.** It was 17% at 10+
+  pools and 17.8% at 2+. Whatever drives authors to verify, pool count is not
+  it.
+
+The nineteen newly readable hooks went through the source scanner too: corpus
+now **301 contracts**, clean rate 56.1%, and still exactly **two HIGH
+findings ecosystem-wide** — both the proven/pattern-level upgradeable-proxy
+class. Everything the census added came back clean or advisory
+(`PERMISSIONLESS_ATTACHMENT` on the second and third `UniderpHook`
+deployments, an unbounded-dynamic-fee advisory on a 2-pool limit-order hook).
+
 ## What this is not
 
 This is still not an audit and finds no vulnerability. `DELEGATECALL` presence
@@ -93,8 +126,10 @@ demonstration that "no source" no longer means "no data".
 
 ```bash
 CHAIN=unichain python3 src/discover.py            # find every deployed hook
-python3 src/verify_status.py                      # who publishes source
-CHAIN=unichain python3 src/bytecode.py            # this pass
+python3 src/verify_status.py                      # who publishes source (10+ pools)
+CHAIN=unichain MIN_POOLS=2 python3 src/verify_status.py     # ...and 2+ pools
+CHAIN=unichain python3 src/bytecode.py            # this pass (10+)
+CHAIN=unichain MIN_POOLS=2 python3 src/bytecode.py          # census (2+)
 ```
 
 Raw output: [`out/unichain-bytecode.json`](../out/unichain-bytecode.json).

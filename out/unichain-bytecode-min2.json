@@ -1,0 +1,3036 @@
+{
+ "chain": "unichain",
+ "poolManagerPreviewDeployment": "0x1F98400000000000000000000000000000000004",
+ "targets": 88,
+ "analyzed": 88,
+ "errors": 0,
+ "layoutValidation": {
+  "contractsChecked": 18,
+  "previewReversedOrderMatches": 17,
+  "finalV4OrderMatches": 1,
+  "note": "callback flags only; return-delta bit positions match neither layout and stay unclaimed"
+ },
+ "summary": {
+  "eip1967Proxies": 1,
+  "eip1167MinimalProxies": 0,
+  "delegatecallOpcodesPresent": 28,
+  "selfdestructOpcodesPresent": 35,
+  "getHookPermissionsSelectorPresent": 78,
+  "distinctCodeHashes": 77,
+  "contractsSharingCodeWithOthers": 15,
+  "largestSharedCodeFamily": 5
+ },
+ "hooks": [
+  {
+   "address": "0x782d2a5624cfac246fd8f001ccd4d7582a0b8444",
+   "codeSizeBytes": 6904,
+   "codeHash": "df64e22fff37efdf01508908c6b193ed155fca0dd352dc60e8781e1d7395b769",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "beforeSwap",
+     "beforeSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "afterSwap",
+     "afterAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 165
+  },
+  {
+   "address": "0xad9df9f8c82f7972c972eb9658415ae4bc994888",
+   "codeSizeBytes": 16453,
+   "codeHash": "a69da925800b081a22e3ddd919e34e55ff0c3eba1a526758be6e2aa7b202542c",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 48
+  },
+  {
+   "address": "0x0000fe59823933ac763611a69c88f91d45f81888",
+   "codeSizeBytes": 23510,
+   "codeHash": "93c717045fda291eadb177673f5188cb1f47a8c0a17f8369d129184f1a0044e4",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": false
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 27
+  },
+  {
+   "address": "0xeef4bcb508592d5dba376237f54734b257d5bfcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "deeb512523d6ce4ec5c9b661f140a06431188fdb4f8bc08fc40441385624ffd6",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0x1e7a4e1a47cb8995377cd688c15c767692a27fcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "185c8f12784f67f4084344a499f6486a04917fb702f9b9c50c39c453b2660926",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0xb17915889c171df49e45d46cf7f4b6c1b19cbfcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "185c8f12784f67f4084344a499f6486a04917fb702f9b9c50c39c453b2660926",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0x02cae36ad46113dd89b37c1971644094e0c5bfcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "01aa7464d07732df6bf4441c84d681b4f207cccdf6ccf81628ba5e3a3382fc47",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0xd64ac246ffe3baea00c6ac195b5c049bbd327fcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "98b04f67c221cbf2a5483ea4298481482e5fcff688e6155faad8abb71bc42cfe",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0x468b7e5503175086c76bfb4ddb4432d825d1ffcf",
+   "codeSizeBytes": 18580,
+   "codeHash": "b4aef98e154a9dde8ce9927ec0f02953445a4b0f0e5e743d0b11b89cebeed68a",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0xb2607d337653d1ee5de4410b016f17a313a6ffcf",
+   "codeSizeBytes": 21272,
+   "codeHash": "0ec8a828377be8060ea02fe2152001e8c4f22819965bb63bf266ed5630415c17",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0x5674b3e5b52b95afa94e3d76a636f8d3ced6bfcf",
+   "codeSizeBytes": 21328,
+   "codeHash": "3607a7c06660ba449b42f7d1be71ac8fe3b6c50d0488d6af4b81b031e6695870",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0x0274bb537bc0c7084e8a0e2cc45cd4ca3375bfcf",
+   "codeSizeBytes": 21272,
+   "codeHash": "0ec8a828377be8060ea02fe2152001e8c4f22819965bb63bf266ed5630415c17",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0xaa7ed352075dede03375c3ca66c5541b468f3fcf",
+   "codeSizeBytes": 21272,
+   "codeHash": "0ec8a828377be8060ea02fe2152001e8c4f22819965bb63bf266ed5630415c17",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0x18f818be71d67fc5ff60838ce79c8713508d3fcf",
+   "codeSizeBytes": 21272,
+   "codeHash": "0ec8a828377be8060ea02fe2152001e8c4f22819965bb63bf266ed5630415c17",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 15
+  },
+  {
+   "address": "0x12a41c32fa78c99b98c69750f9d0f6649b0dbfcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "deeb512523d6ce4ec5c9b661f140a06431188fdb4f8bc08fc40441385624ffd6",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 14
+  },
+  {
+   "address": "0x3d7f8f8f6a692cfed026655c1fa25d2c1935ffcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "deeb512523d6ce4ec5c9b661f140a06431188fdb4f8bc08fc40441385624ffd6",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 14
+  },
+  {
+   "address": "0xf35b0ebaf0501f9112dd171f1c19ace6d35abfcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "deeb512523d6ce4ec5c9b661f140a06431188fdb4f8bc08fc40441385624ffd6",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 14
+  },
+  {
+   "address": "0x68eb2c751e15a898455d7d7b7a6e5936a19b3fcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "185c8f12784f67f4084344a499f6486a04917fb702f9b9c50c39c453b2660926",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 14
+  },
+  {
+   "address": "0x5867cc3cc3943bf60fd98da8763ef1ef2b893fcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "185c8f12784f67f4084344a499f6486a04917fb702f9b9c50c39c453b2660926",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 14
+  },
+  {
+   "address": "0xb249770a1a3ae3081513629d1c33c790fc8c5088",
+   "codeSizeBytes": 14728,
+   "codeHash": "18ba051a25f7e45095e68ac20cd6e3eba0ce8ca868e502cef9f4ba044a0a602b",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 13
+  },
+  {
+   "address": "0xeb8827c5781ed8f3d2b0544606a8c8c9350e4888",
+   "codeSizeBytes": 12560,
+   "codeHash": "afb53769425a6f45b9e2f5f2367a57dacd3510f4948d246f43925652e9adec64",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 12
+  },
+  {
+   "address": "0x38be9482eebec99aef5972b8c2a4f5ff35408888",
+   "codeSizeBytes": 13453,
+   "codeHash": "dbdfc2c07beb149ca3223b1a5aecd5b3ae38729c27a963a96b27086f47befc8c",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 12
+  },
+  {
+   "address": "0xcb9903081b324b3a743e536d451705f9e1450880",
+   "codeSizeBytes": 18425,
+   "codeHash": "fa0cb4e741a0c5a8c17e6428082de8c525dede0379fab235d145cebb535785f5",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 11
+  },
+  {
+   "address": "0xe3e35e477f4d9171ead87356bce50051e35d0888",
+   "codeSizeBytes": 14159,
+   "codeHash": "a88559bb81a43e43f6b9a497a20e9aa63ccf3d40f6a8828c28d382a00229684c",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 10
+  },
+  {
+   "address": "0xd689a5868492eccce3f0bc499864618229cc4088",
+   "codeSizeBytes": 21990,
+   "codeHash": "52c4578a53a8ef162afc040b8d5eb6c3c97b1e749c771594b3cc98673f77bd17",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 10
+  },
+  {
+   "address": "0x2e7c80cf7ecc15c9d6578b8efb4fc37a28ce9540",
+   "codeSizeBytes": 21386,
+   "codeHash": "f62ecabe309151649ef80520a7db6d2ea1adb7c59b51f064aa69d58cefab5dad",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "beforeDonate",
+     "beforeSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "afterRemoveLiquidity",
+     "afterAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 9
+  },
+  {
+   "address": "0x1673ce5f7f5e39c7f32657189db3c3cffebe0088",
+   "codeSizeBytes": 16903,
+   "codeHash": "0d2fcf4f34458acb49b2629c73d19119b7b4fce9e1bf53ba7c82cf7fea6d1de6",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 8
+  },
+  {
+   "address": "0x9c530b4302fbc8150b96bc154160c34ec46a3fcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "4d80b735a652a95a1687ecb61c977c501f67be924370a74429f8aac5bae2b3e0",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 7
+  },
+  {
+   "address": "0x9f18363be419b297da73d18de71d721ffaffbfcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "16f09c99f45ce2a19a1d41446266e15216ac5db0ff7b44cbdb68f69b88529789",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 7
+  },
+  {
+   "address": "0xf1336bfdac8133f9ce612fd32939fdb56751c088",
+   "codeSizeBytes": 16885,
+   "codeHash": "6e96d9bf4065fdd9024aeeb4aea99518863a05a527a0ff95fb00558378d363c5",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 7
+  },
+  {
+   "address": "0xa6c8d7514785c4314ee05ed566cb41151d43c0c0",
+   "codeSizeBytes": 2488,
+   "codeHash": "27bc59fde1e9961f32825068007f4fe161c5a8840e76b9e88caa3b62a8e97a3e",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 5
+  },
+  {
+   "address": "0xd8a3ec464f78576c70e85272e709a4c073fd7fcf",
+   "codeSizeBytes": 18541,
+   "codeHash": "deeb512523d6ce4ec5c9b661f140a06431188fdb4f8bc08fc40441385624ffd6",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 5
+  },
+  {
+   "address": "0xacaa9bab75ac6ccae2ace117a7c4512ed85b4444",
+   "codeSizeBytes": 6276,
+   "codeHash": "7f470f07a9e5b5afa3804a584495f70bb510e3ac07e092f18fde36e11b9d19e9",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "beforeSwap",
+     "beforeSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "afterSwap",
+     "afterAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0x17a10f791eefaa899281b3752733e4a2eae26888",
+   "codeSizeBytes": 6347,
+   "codeHash": "d19bdd9940791ea0116002b99084ae78064ab80f491c14374e779ef781885915",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0xf8c3f4243c4d8c02831a718a7978fd869f094300",
+   "codeSizeBytes": 2488,
+   "codeHash": "16870427785ec4207e25c9d71f6192e516f7991d642e6cabd22ac2623208ee54",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeDonate",
+     "afterDonate"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0x6ff40f22492c5b254103f5b037562c143a240888",
+   "codeSizeBytes": 12875,
+   "codeHash": "1c6b615832521d1e58d16ce046a6e97ae1c6409ca85eca6ff3c62d0b9d40718f",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0x7bc8503ba50328ddc6702e25f063e61581660888",
+   "codeSizeBytes": 12888,
+   "codeHash": "5c2077acf16026089077c33b7e6a7796496c6a55f5d747c45b69626d3e3f2f6c",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0xf9567b1088841f4a8ad3ae7f25608c3e802ac888",
+   "codeSizeBytes": 12560,
+   "codeHash": "09ef0f8cce61b78fb62c06ec79e8dcdb4e684770cd51c05f6c2dfda15d1d0d65",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0xd0f8ddda83a17192a4a7222b3755391eb7e5c888",
+   "codeSizeBytes": 14695,
+   "codeHash": "be7c8b6166d4eef276ca1f33b9a87b89a9d3f96fa2a321b37d426121bb45fe2f",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0xb83b3bbe4a255da6873c96a9b2bd7cf5b02b8888",
+   "codeSizeBytes": 14625,
+   "codeHash": "e3cf7c9ed2f4ba4c89444153fd15a10738f904c330d4166ea774610ddbf6faf7",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0x423272eb0690436e07dffb304bcd5e1ab3a98888",
+   "codeSizeBytes": 13648,
+   "codeHash": "4b12e12a91370baba66bbb42fdf9731af6f859f8ced7681cd8098e4b6c3bb35c",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0xfb6c600b0a2b83dfbaa683f01aad96e461134888",
+   "codeSizeBytes": 13581,
+   "codeHash": "81906d050bd517db23194cd1c750426af1135c0ebbcd69ec416780b5f04bc784",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 4
+  },
+  {
+   "address": "0x86838db6885df98f3234050b0d22ab7be52cc0c4",
+   "codeSizeBytes": 11328,
+   "codeHash": "fd4fec65fe3bd427e6e69cfba1ab6f2b9858154d18819c48e6d9788c4155589c",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "beforeSwap",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0x004ff78112c3fbc1004fa517e1334dd4930f1888",
+   "codeSizeBytes": 23830,
+   "codeHash": "2e47b53780523d9c694cd22da8456f7231db143fdb9bd6ebbd0c649f14e9584e",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": false
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0x7dee57cc1f3493df286bba4ed904917cbab03f80",
+   "codeSizeBytes": 2686,
+   "codeHash": "230b50e11d50305763eba26463d267759b5872d1f930eac4112a72428319481b",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0x8c30f089ee553a74b42cc884777cb74e595688a8",
+   "codeSizeBytes": 20181,
+   "codeHash": "06faf1f10340791acb85c0e19a62d51ca20ee02b5fbd5bc0f70ca7234befb3a4",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterRemoveLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeDonate",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0x7b65e21d4d3493113419f8f67c386b46337fe8c4",
+   "codeSizeBytes": 6503,
+   "codeHash": "b31e60f0bdb903f5bca46bc369b7a84da298194dcd278fd089cbd8f99e4eb944",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "afterSwapReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "beforeAddLiquidity",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0xfab906bce2c66c552b3348c78c92547931136aa8",
+   "codeSizeBytes": 19236,
+   "codeHash": "a90730341faac3e86315aeadd191541107b17d648c7e5bd70b983074713b2010",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterRemoveLiquidity",
+     "afterSwap",
+     "afterDonate",
+     "afterSwapReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeDonate",
+     "beforeSwap",
+     "beforeRemoveLiquidity",
+     "beforeAddLiquidity",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0xe6cb9dc0b9dbec80f6ed3297fbe9e15ed88deaa8",
+   "codeSizeBytes": 21252,
+   "codeHash": "b806794ac8a395c6e1986d1764b1cc2aa461dfb52ddddd1ea0ad6985c06eb5b5",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterRemoveLiquidity",
+     "afterSwap",
+     "afterDonate",
+     "afterSwapReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeDonate",
+     "beforeSwap",
+     "beforeRemoveLiquidity",
+     "beforeAddLiquidity",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0x437361e81a2efda46555629a1e210f522ea00088",
+   "codeSizeBytes": 4629,
+   "codeHash": "a737fa4a7de6cd82186fbefaf8835acebeb7c08e50ed40ef9f8ec5a25801a140",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0x0e0dc759d9f5aadde1782b228277727436f550cc",
+   "codeSizeBytes": 11165,
+   "codeHash": "2bcba0d2e58db5456ee246d36c5e26799850d4bbbdd749947d2476ef0e0356ff",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 3
+  },
+  {
+   "address": "0x95cfcecd9e9235f32abec91f96007a349d570088",
+   "codeSizeBytes": 3811,
+   "codeHash": "240245f8ef8948dbfade0e27c40008362f771d06f4b237e38330889a81feb5ae",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": false
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x3c49ae7f519c189fcebeee7278bfed993aae0444",
+   "codeSizeBytes": 5902,
+   "codeHash": "b5618d14bb3c56a3294b115abef00a942d578729c705722b9a1e55512ef9f886",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "beforeSwap",
+     "beforeSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "afterSwap",
+     "afterAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xe153c5aa33e4803e5b31d059fb329309adec4088",
+   "codeSizeBytes": 5332,
+   "codeHash": "1b936c96a3b8a8a409b1ae539a8dcf9764e67f71b82300765dfbea75ab10a3b8",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x1caa9ba4037883e071656d6d9db25d3b09950088",
+   "codeSizeBytes": 5651,
+   "codeHash": "d1d141fb5c3eab7718bbc7c4aedfcadeda0947fdef8c6daef9ca2d4c38abff24",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x7a2fd3ed3e731ecc41ff4ff50b37f14eb5cf5fc0",
+   "codeSizeBytes": 9947,
+   "codeHash": "27083fbb8c91a5c8eaa884bc425c7e88f5d68c294baa7b01fc4bd990844556ca",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x29303a8179977b28a941fc69371c255c79401fc0",
+   "codeSizeBytes": 13196,
+   "codeHash": "7d843dfe21a95ef88730259fd6e43df02dd4f65425c9b5ef5a79923cf648cabb",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x248ca3f8398c9e2ea054b0633d49873520639fc0",
+   "codeSizeBytes": 9947,
+   "codeHash": "0f6621086803c7369f1f9ac621a8f533010c733eee408b43b467333fc2f1daa5",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xdb5c81d1d9cab87482372863053455526629ba80",
+   "codeSizeBytes": 17720,
+   "codeHash": "d7ef343c5bdb25b00945c1128944edc9133c7c56d948966f60e599888c3196bb",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterSwap",
+     "afterDonate",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwap",
+     "beforeRemoveLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xa948a8c204e0fa028592f0f2e7e28487a8350088",
+   "codeSizeBytes": 19889,
+   "codeHash": "14fdbf809e8756a3abdb201a6256294539b4bd97e3f20f1901a9e52214a5b8e7",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x5304fcbc350b326eb9a94b5b72cede0ef7c428c4",
+   "codeSizeBytes": 6631,
+   "codeHash": "f612a0b1078d7bafc6eb6c6b70bb32fc400a41d40e7630118977b6097c9d1f30",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "afterSwapReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "beforeAddLiquidity",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xa33875aa165cb9b18cf83d1fb319389de4db9fcf",
+   "codeSizeBytes": 18172,
+   "codeHash": "e32b4aaf156d4ccd7cd95e536a071472c51e7e55426e8cacc4500e68cafc6f46",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x999fcb7c2100ec6d7873765b50599ddd5e02c888",
+   "codeSizeBytes": 12560,
+   "codeHash": "09ef0f8cce61b78fb62c06ec79e8dcdb4e684770cd51c05f6c2dfda15d1d0d65",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x89e4fbbde842bbf48f722082a6e3a5c32bad4888",
+   "codeSizeBytes": 12560,
+   "codeHash": "403f8363dcbcf268780ca2e4ab83e08ad6c8ef20d35ece1276ac330bbc01de55",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x88cca2f401941fea5c5e9ca1d25e9edbbab90888",
+   "codeSizeBytes": 12872,
+   "codeHash": "534c426555e8b3e077a53372d7796d580bddbed4cf0fd37a7cde6054919ee13a",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xb05d3e2c389095c229e7b9ec8c1bc3c22d2b8888",
+   "codeSizeBytes": 12888,
+   "codeHash": "bb7ae8cb02ea79478b56a9f6e4477d01f88486ee694e42171b0f9b5b110f83b2",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xe9849da33f56dbbf04c90ec0f067e0909132c888",
+   "codeSizeBytes": 14638,
+   "codeHash": "1a32bbe5dfdcc4d21480291523e1c238735c2d5a66405b2fab16bba06dadbdcc",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x670dad908ec4c28075f67059da1ac8c08d200888",
+   "codeSizeBytes": 14618,
+   "codeHash": "531fc956ba1fcaba8bfbf70b0c9386f0fcd7eef0b17a89f099cd640e69d012e4",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x5542139f1d6ee7a029bb94e032619ab44cb3c888",
+   "codeSizeBytes": 13648,
+   "codeHash": "62b9eeb380a058d2eb918fd858e0fa8958c3f5bc17f53f632f0ce53a1140013c",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x9dc3f00436fb26e4cf261776127bec8b45c58888",
+   "codeSizeBytes": 14684,
+   "codeHash": "fb05010ceb73362618ce6bb9a0f177516e4ff94a7c2fe5c4f06cc61739f08028",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xa341ef31f7475af9f5f372600bef3194187f8888",
+   "codeSizeBytes": 14706,
+   "codeHash": "bad0abf69a28b06658df8c77e81bb476a3569bbb5570123f983c24b8624b6911",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": true,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x081cf446dadc06e17f4a197652d60cc4f1db4888",
+   "codeSizeBytes": 15210,
+   "codeHash": "a35738dc0c1310cc45485772505491cbf422568f652bc9f523787f50a33f0ea9",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xd6c484ef8d404fb744b16e7537e8916b24a78888",
+   "codeSizeBytes": 15429,
+   "codeHash": "bc927b83ed23207b533159ce594879893e98d64be0131d61030ff19c214a0ac0",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x43690f0066f9cfd776d572fda4ad75ee868a0888",
+   "codeSizeBytes": 15818,
+   "codeHash": "4bd4c9fbf73b570ec5a953dbc0e4b0d75888cd4119e4830040bf23b200bb62fc",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": true,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x7964543727821d4406ff0f2a2ca79d684147eaa8",
+   "codeSizeBytes": 19236,
+   "codeHash": "90d819db20ff120b5f833063537455b515b5b030cb29899082a837587dfc9d60",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterRemoveLiquidity",
+     "afterSwap",
+     "afterDonate",
+     "afterSwapReturnsDelta",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeDonate",
+     "beforeSwap",
+     "beforeRemoveLiquidity",
+     "beforeAddLiquidity",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xdf640ed974c2830248f1aa733490700d1f81d674",
+   "codeSizeBytes": 2856,
+   "codeHash": "01374a3788bdaa05271711a5d40ccf9d3048c008ae364ab1b295b2388d9d1490",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "beforeRemoveLiquidity",
+     "afterRemoveLiquidity",
+     "beforeSwap",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "afterDonate",
+     "beforeDonate",
+     "afterSwap",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xeab463539e60e449752aa363e77a3174320685de",
+   "codeSizeBytes": 2897,
+   "codeHash": "c4e3a261a9b822c16b9a3d5f88b0abf06a56743519693f6ac2221c9dd1d66aec",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeRemoveLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "beforeSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterAddLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterDonate",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "afterAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x58e5954ee67c1e5b82fa2c46ded5ea969e8bc040",
+   "codeSizeBytes": 6226,
+   "codeHash": "66b381a9941925bb170f513652455468566eb6401120df8af3f63b04eaf15322",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap"
+    ],
+    "previewReversedOrder": [
+     "afterSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x9dcee44c44cb0669fd7dff70572a1ac2b4ca0088",
+   "codeSizeBytes": 4630,
+   "codeHash": "82852c6f751b81ebef04d613e5abb3d5191f80ecd4b432a3c3611cb33580ecd5",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x765384c44bc6cdb63fe5e1f9b9b360fdf230a0c0",
+   "codeSizeBytes": 9308,
+   "codeHash": "60bcbd11a15b988b54d5bc556bb54170138fb418aaf28ec2a53f5bb05447a33e",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "afterSwap",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "beforeSwap",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x72e766c9e86bd7646f002131659b0f526290a0c0",
+   "codeSizeBytes": 9308,
+   "codeHash": "f03e8c561e7054f60b0b6f9ebb175dd639e37f1dc8845424bbe03c8440508ea3",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "afterSwap",
+     "afterRemoveLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "beforeSwap",
+     "beforeInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x3476b53425a786e57aa246839c1837a62fc21acc",
+   "codeSizeBytes": 11804,
+   "codeHash": "fb680c27b73f61c63e1a477853a24653be96c36c3dfea6ffdac0bdba739990e4",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "afterDonate",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "beforeRemoveLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x4063624b15006f0083f698d0a9bdf30a2e8e9ffd",
+   "codeSizeBytes": 14802,
+   "codeHash": "b323d62022ada958987d76972e00512e37f7f380f70c6b9e5ef2aa2a3e6bb3d7",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeInitialize",
+     "beforeAddLiquidity",
+     "afterAddLiquidity",
+     "beforeRemoveLiquidity",
+     "afterRemoveLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterRemoveLiquidityReturnsDelta",
+     "afterSwapReturnsDelta",
+     "beforeSwapReturnsDelta",
+     "afterDonate",
+     "beforeDonate",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xf93b69640134df21ebde28c6daf1b2968b864fc4",
+   "codeSizeBytes": 15151,
+   "codeHash": "4acb3dd4b7c4168c0e4ba518f724e9b3b07835c115494fe66ca29e1ba2c8560f",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeAddLiquidity",
+     "beforeSwap",
+     "afterSwap",
+     "beforeDonate",
+     "afterDonate",
+     "beforeSwapReturnsDelta",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwapReturnsDelta",
+     "afterSwap",
+     "beforeSwap",
+     "afterRemoveLiquidity",
+     "beforeRemoveLiquidity",
+     "afterAddLiquidity",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x5119e5fb43123080252775154e9f2b03fb784a00",
+   "codeSizeBytes": 176,
+   "codeHash": "4d5162e0dbeb5295489a30e3e616ef8ff809db0576d145e101575b1c9b019143",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterDonate",
+     "afterSwapReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "beforeRemoveLiquidity",
+     "beforeAddLiquidity"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": false,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": false,
+    "beforeSwap": false,
+    "afterSwap": false
+   },
+   "minimalProxy": false,
+   "eip1967Implementation": "0xd26c45d3a5cf7d9f5e49bbe760dbfcad366d0909",
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xdaa72a0557f5249a91a3bc31618c42c4fa085540",
+   "codeSizeBytes": 23352,
+   "codeHash": "3b2aa3aeb732202bd2f2beaebcd9374dda9a54cb55586aec8ac36a4ff84de0d2",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "beforeDonate",
+     "beforeSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "afterRemoveLiquidity",
+     "afterAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0x82405512c6675613e8a5f6b1e8fcdb360f63d540",
+   "codeSizeBytes": 21150,
+   "codeHash": "ebd76c393ac96734a441140f7086a2ac5dc001d807979102cfd7e96aacd57711",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "beforeSwap",
+     "beforeDonate",
+     "beforeSwapReturnsDelta",
+     "afterAddLiquidityReturnsDelta"
+    ],
+    "previewReversedOrder": [
+     "afterSwap",
+     "afterRemoveLiquidity",
+     "afterAddLiquidity",
+     "afterInitialize"
+    ]
+   },
+   "delegatecall": true,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  },
+  {
+   "address": "0xb0d6135ae9e6e47160ecd3be3e664585172a4088",
+   "codeSizeBytes": 16714,
+   "codeHash": "d4218b03b588b48c0ec1f42e2815740cd3411bdb042f886365e83b5063017a77",
+   "permsFromAddress": {
+    "finalV4Order": [
+     "afterAddLiquidity",
+     "afterSwap"
+    ],
+    "previewReversedOrder": [
+     "beforeSwapReturnsDelta",
+     "beforeSwap"
+    ]
+   },
+   "delegatecall": false,
+   "callcode": false,
+   "staticcall": true,
+   "selfdestruct": false,
+   "selectorsPresent": {
+    "getHookPermissions": true,
+    "beforeSwap": true,
+    "afterSwap": true
+   },
+   "minimalProxy": false,
+   "name": null,
+   "pools": 2
+  }
+ ]
+}

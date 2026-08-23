@@ -78,8 +78,10 @@ def main():
         sys.exit(f"no keyless explorer configured for {CHAIN}")
 
     top_path = os.path.join(ROOT, "out", f"{CHAIN}-unregistered-top.json")
+    if MINPOOL != 10:
+        top_path = os.path.join(ROOT, "out", f"{CHAIN}-unregistered-min{MINPOOL}.json")
     if not os.path.exists(top_path):
-        sys.exit("missing out/{c}-unregistered-top.json -- run src/verify_status.py first")
+        sys.exit("missing out/{c}-unregistered(-minN).json -- run src/verify_status.py first")
     rows = [r for r in json.load(open(top_path))["hooks"]
             if r["verified"] and r["pools"] >= MINPOOL]
     print(f"{CHAIN}: fetching source for {len(rows)} unregistered hooks "
