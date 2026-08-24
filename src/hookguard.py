@@ -16,7 +16,7 @@ the scanner itself; this CLI additionally skips fetching them.
 Exit codes: 0 clean/INFO only · 1 findings at --fail-on threshold or above ·
 2 usage/environment error.
 """
-import argparse, base64, json, os, subprocess, sys, tempfile
+import argparse, base64, json, os, shutil, subprocess, sys, tempfile, urllib.error, urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import scan as scanner                                     # noqa: E402
@@ -29,23 +29,56 @@ BAND_CLASS = {"LOW": "s-low", "MODERATE": "s-moderate",
 SEV_ORDER = {"HIGH": 0, "MEDIUM": 1, "LOW": 2, "INFO": 3}
 
 
-def sh(*args, binary=False):
-    r = subprocess.run(args, capture_output=True, text=not binary)
-    return (r.stdout if not binary else r.stdout) if r.returncode == 0 else None
+def api(path, tries=6):
+    """GitHub REST -- stdlib first, alternating with curl as transports.
+    GITHUB_TOKEN raises rate limits; unauthenticated works for light use.
+    Some networks degrade python's TLS path intermittently while curl
+    succeeds (and vice versa), so we alternate and remember what worked."""
+    url = "https://api.github.com" + path
+    headers = {"User-Agent": "hookguard-scanner", "Accept": "application/json"}
+    tok = os.environ.get("GITHUB_TOKEN") or os.environ.get("HG_GITHUB_TOKEN")
+    if tok:
+        headers["Authorization"] = f"Bearer {tok}"
+    global _GOOD_TRANSPORT
+    import time
+    order = ([_GOOD_TRANSPORT] if _GOOD_TRANSPORT else ["urllib", "curl"]) * tries
+    last = None
+    for i, transport in enumerate(order[:tries]):
+        try:
+            if transport == "urllib":
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=45) as r:
+                    data = json.loads(r.read())
+            else:
+                hdrs = []
+                for k2, v2 in headers.items():
+                    hdrs += ["-H", f"{k2}: {v2}"]
+                rr = subprocess.run(["curl", "-sS", *hdrs, url],
+                                    capture_output=True)
+                if rr.returncode != 0 or not rr.stdout.strip():
+                    raise RuntimeError("curl empty/failed")
+                data = json.loads(rr.stdout)
+            _GOOD_TRANSPORT = transport
+            return data
+        except urllib.error.HTTPError as e:
+            if e.code in (404, 403):
+                raise
+            last = e
+        except Exception as e:                              # noqa: BLE001
+            last = e
+        time.sleep(1 + i)
+    raise last
 
 
-def gh_json(path):
-    out = sh("gh", "api", path, "--jq", ".")
-    return json.loads(out) if out else None
+_GOOD_TRANSPORT = None
 
 
 def resolve_default_branch(repo):
-    d = gh_json(f"repos/{repo}")
-    return (d or {}).get("default_branch", "main")
+    return (api(f"repos/{repo}") or {}).get("default_branch", "main")
 
 
 def list_sol_files(repo, ref):
-    t = gh_json(f"repos/{repo}/git/trees/{ref}?recursive=1") or {}
+    t = api(f"repos/{repo}/git/trees/{ref}?recursive=1") or {}
     files = []
     for e in t.get("tree", []):
         p = e.get("path", "")
@@ -75,11 +108,12 @@ def choose_paths(files):
 def fetch_files(repo, ref, files, dest):
     n = 0
     for p in files:
-        raw = sh("gh", "api", f"repos/{repo}/contents/{p}?ref={ref}", "--jq", ".content")
-        if raw is None:
+        try:
+            d = api(f"repos/{repo}/contents/{p}?ref={ref}")
+        except Exception:                                   # noqa: BLE001
             continue
         try:
-            blob = base64.b64decode(raw.strip())
+            blob = base64.b64decode(d.get("content") or "")
         except Exception:                                   # noqa: BLE001
             continue
         flat = p.replace("/", "__")

@@ -19,6 +19,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Rule unit tests
+        run: python3 -m unittest discover -s tests -v
+
       - name: Guarded hook must produce zero findings
         run: |
           python3 src/ci.py tests/fixtures/GuardedHook.sol \

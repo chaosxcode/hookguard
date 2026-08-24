@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hookguard-scanner"
+version = "0.9.0"
+description = "Risk scanner for Uniswap v4 hooks — CI-native, bytecode-aware, measured against real deployed hooks."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "chaosxcode" }]
+keywords = ["uniswap", "v4", "hooks", "security", "solidity", "static-analysis", "defi"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Financial and Insurance Industry",
+  "Topic :: Security",
+  "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.urls]
+Homepage = "https://github.com/chaosxcode/hookguard"
+Dashboard = "https://chaosxcode.github.io/hookguard/status/"
+
+[project.scripts]
+hookguard = "hookguard:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+py-modules = [
+  "hookguard", "scan", "score", "ci", "risk", "corpus", "discover",
+  "verify_status", "unregistered_source", "bytecode", "attribution",
+  "reach", "status_feed",
+]
