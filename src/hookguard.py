@@ -340,6 +340,7 @@ def cmd_scan(args):
 
 def main():
     ap = argparse.ArgumentParser(prog="hookguard")
+    ap.add_argument("--version", action="version", version="%(prog)s 0.9.1")
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("scan", help="scan a GitHub repository")
     s.add_argument("repo", help="github.com URL, owner/repo, or a local directory with --local")

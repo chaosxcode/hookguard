@@ -11,6 +11,8 @@ aimed where it matters.
 
 **Live status feed & dashboard:** <https://chaosxcode.github.io/hookguard/status/>
 
+Machine-readable records follow the [HookScore spec draft](docs/HOOKSCORE-SPEC.md) — per-address JSON with published weights and confidence tiers.
+
 ## Add it to your hook in 60 seconds
 
 ```yaml
