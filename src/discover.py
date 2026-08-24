@@ -163,6 +163,29 @@ def main():
     # them afterwards costs gigabytes and buys nothing.
     hooks, hookless, events = {}, 0, 0
 
+    # Checkpoint/resume: long censuses on flaky egress shouldn't restart from
+    # zero. Every 50 ranges the tallies are persisted; a matching checkpoint
+    # (same chain, same scan window) resumes exactly where it stopped.
+    ckpt = os.environ.get("HG_CHECKPOINT", "")
+    ckpt_path = ckpt + ".state.json" if ckpt else ""
+    cursor = 0
+    if ckpt_path and os.path.exists(ckpt_path):
+        try:
+            st = json.load(open(ckpt_path))
+            if (st.get("chain") == CHAIN and st.get("first") == first
+                    and st.get("latest") == latest):
+                hooks = st["hooks"]; hookless = st["hookless"]
+                events = st["events"]; cursor = st["cursor"]
+                print(f"  resuming from checkpoint: {cursor}/{len(ranges)} ranges done",
+                      flush=True)
+            else:
+                print("  checkpoint stale (different window), starting fresh", flush=True)
+        except Exception as e:                              # noqa: BLE001
+            print(f"  checkpoint unreadable ({e}), starting fresh", flush=True)
+    ranges = ranges[cursor:]
+    if not ranges:
+        print("  nothing left to scan", flush=True)
+
     def absorb(out):
         nonlocal hookless, events
         for lg in out:
@@ -181,7 +204,8 @@ def main():
     # Public endpoints throttle: too much concurrency turns into failed ranges,
     # and a failed range aborts the whole scan rather than undercount. Lower it
     # for a flaky provider instead of editing this file.
-    failed, done = 0, 0
+    failed, done = 0, cursor
+    total = len(ranges) + cursor
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as ex:
         for out in ex.map(fetch, ranges):
             done += 1
@@ -190,8 +214,13 @@ def main():
             else:
                 absorb(out)
             if done % 200 == 0:
-                print(f"  {done}/{len(ranges)}  {events} events  "
+                print(f"  {done}/{total}  {events} events  "
                       f"{len(hooks)} hooks  {failed} failed", flush=True)
+            if ckpt_path and done % 50 == 0:
+                json.dump({"chain": CHAIN, "first": first, "latest": latest,
+                           "cursor": done, "hooks": hooks,
+                           "hookless": hookless, "events": events},
+                          open(ckpt_path, "w"))
 
     if failed:
         # Partial coverage would silently understate the hook count, which is the
