@@ -37,6 +37,16 @@ numbers.
 - **Bytecode pass v2: prove upgradeability instead of implying it.** For each `DELEGATECALL`, classify the target: storage-derived (live-upgradeable in practice) vs constant (fixed delegation — and in shared-code families, one implementation serving every clone). This upgrades Finding 2 of the bytecode pass from opcode-presence to mechanism.
 - **Wave-3 outreach cohort.** After a registry resync, whoever is *still* unregistered with 2+ pools becomes the next cohort; channels via deployer fields, contract natspec contacts, and code search.
 
+### Needs an unsandboxed shell
+
+- **Base full-history census — 150/12,514 ranges checkpointed, resumable in
+  one command:** `./scripts/base-census.sh`. Infrastructure done and tested
+  (checkpoint/resume every 50 ranges, 2k-block windows to dodge server-side
+  getLogs timeouts, drpc endpoint). Only blocker: this author's sandbox reaps
+  detached background processes and throttles parallel egress. From any
+  normal terminal it runs unattended (~1–2h), then
+  `CHAIN=base python3 src/verify_status.py` finishes chain #2.
+
 ## Mid
 
 - **A real false-positive rate.** Once author responses reach a meaningful N, publish it per-rule — this is the number that separates a scanner from a toy, and precision.md has promised it since day one.
