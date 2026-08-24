@@ -24,7 +24,7 @@ RPCS = {
     "ethereum":  "https://eth.drpc.org",
     "arbitrum":  "https://arb1.arbitrum.io/rpc",
     "optimism":  "https://mainnet.optimism.io",
-    "polygon":   "https://polygon-rpc.com",
+    "polygon":   "https://1rpc.io/matic",
     "bnb":       "https://bsc-dataseed.binance.org",
     "avalanche": "https://api.avax.network/ext/bc/C/rpc",
     "celo":      "https://forno.celo.org",
