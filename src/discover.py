@@ -172,10 +172,10 @@ def main():
     if ckpt_path and os.path.exists(ckpt_path):
         try:
             st = json.load(open(ckpt_path))
-            if (st.get("chain") == CHAIN and st.get("first") == first
-                    and st.get("latest") == latest):
+            if st.get("chain") == CHAIN and st.get("first") == first:
                 hooks = st["hooks"]; hookless = st["hookless"]
                 events = st["events"]; cursor = st["cursor"]
+                cursor = min(cursor, len(ranges))
                 print(f"  resuming from checkpoint: {cursor}/{len(ranges)} ranges done",
                       flush=True)
             else:
