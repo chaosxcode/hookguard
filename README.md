@@ -190,6 +190,7 @@ noise) and reports:
 | `MISSING_POOLMANAGER_GUARD` | HIGH | A callback with no `onlyPoolManager`-style guard on a contract that doesn't inherit `BaseHook`. |
 | `UPGRADEABLE_HOOK` | HIGH | Address bits encode permissions forever and pools can't detach, but the implementation can be swapped. The upgrade admin is part of the trust boundary. |
 | `DELTA_FLAG_MISMATCH` | MEDIUM | `RETURNS_DELTA` permission declared but no delta constructed. The inverse bricks **every** swap (DoS). |
+| `DELTA_FLAG_UNUSED` | LOW | `afterSwapReturnsDelta` declared but the callback always returns a zero delta — dead weight on the permission surface. |
 | `REVERT_DOS_RISK` | MEDIUM | External call in a required callback with no `try/catch`. A paused oracle bricks every pool using the hook — including LP exits. |
 | `UNBOUNDED_DYNAMIC_FEE` | MEDIUM | Dynamic fee with no visible upper bound. |
 | `REENTRANCY_SURFACE` | MEDIUM | Transfer inside a callback with no guard. One hook serves many pools. |
