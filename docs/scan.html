@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HookGuard — in-browser scanner</title>
+<style>
+:root{--bg:#05060b;--surface:rgba(255,255,255,.035);--border:rgba(255,255,255,.09);
+ --text:#eceaf4;--dim:#8f8fa8;--faint:#5c5c74;--pink:#ff007a;--violet:#7b5bff;
+ --cyan:#00d1ff;--green:#00e58f;--amber:#ffb547;--red:#ff4d6b;
+ --grad:linear-gradient(120deg,#ff007a,#b44dff 45%,#00d1ff)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);
+ font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+ padding:40px 20px 80px;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+ radial-gradient(900px 500px at 85% -10%,rgba(123,91,255,.14),transparent 60%),
+ radial-gradient(700px 420px at -10% 20%,rgba(255,0,122,.10),transparent 60%)}
+.wrap{max-width:980px;margin:auto}
+h1{font-size:clamp(28px,4.5vw,44px);letter-spacing:-.02em;line-height:1.05}
+h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--dim);margin:12px 0 24px;font-size:15px}
+.privacy{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
+ border:1px solid rgba(0,229,143,.35);color:var(--green);font-size:13px;
+ background:rgba(0,229,143,.06);margin-bottom:26px}
+textarea{width:100%;min-height:260px;background:rgba(255,255,255,.03);
+ border:1px solid var(--border);border-radius:14px;color:var(--text);
+ font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;padding:16px;resize:vertical}
+textarea:focus{outline:none;border-color:rgba(123,91,255,.55)}
+.row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+.btn{padding:10px 20px;border-radius:11px;border:none;cursor:pointer;font-size:14px;font-weight:600;
+ background:var(--grad);color:#0b0710}
+.btn.ghost{background:var(--surface);color:var(--dim);border:1px solid var(--border);font-weight:400}
+.btn:hover{transform:translateY(-1px)} .btn:disabled{opacity:.5;cursor:wait}
+.hint{color:var(--faint);font-size:12.5px}
+.card{border:1px solid var(--border);border-radius:16px;margin-top:26px;
+ background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));overflow:hidden}
+.ch{padding:16px 20px;border-bottom:1px solid var(--border);font-size:11px;
+ letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.scorechip{font-family:Menlo,monospace;font-weight:700;font-size:13px;
+ padding:3px 10px;border-radius:8px;display:inline-block}
+.s-low{color:var(--green);background:rgba(0,229,143,.08);border:1px solid rgba(0,229,143,.25)}
+.s-moderate{color:var(--amber);background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.3)}
+.s-elevated{color:#ff8a5c;background:rgba(255,138,92,.09);border:1px solid rgba(255,138,92,.35)}
+.s-high{color:var(--red);background:rgba(255,77,107,.1);border:1px solid rgba(255,77,107,.4)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td,th{padding:10px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,.05)}
+th{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+.badge{padding:2px 9px;border-radius:999px;font-size:11px;border:1px solid rgba(255,255,255,.15)}
+.b-high{color:var(--red);border-color:rgba(255,77,107,.4);background:rgba(255,77,107,.08)}
+.b-medium{color:var(--amber);border-color:rgba(255,181,71,.35);background:rgba(255,181,71,.07)}
+.b-low{color:#9a9ab0}.b-info{color:var(--cyan);border-color:rgba(0,209,255,.25);background:rgba(0,209,255,.05)}
+.ok{color:var(--green)}
+.mono{font-family:ui-monospace,Menlo,monospace}
+.factors{padding:14px 20px;font-size:12.5px;color:var(--dim)}
+.hidden{display:none}
+.back{color:var(--dim);text-decoration:none;font-size:13px}
+.back:hover{color:var(--cyan)}
+</style>
+</head>
+<body><div class="wrap">
+<a class="back" href="./index.html">← status feed</a>
+<h1>Scan a v4 hook <span>in your browser.</span></h1>
+<p class="sub">Paste your Solidity (or drop <code>.sol</code> files) and get the same
+itemized findings and risk score the CI action produces.</p>
+<div class="privacy">🔒 code never leaves this tab — analysis runs entirely client-side</div>
+
+<textarea id="src" spellcheck="false"
+ placeholder="// paste one or more .sol files here (contracts may reference each other)"></textarea>
+<div class="row">
+  <button class="btn" id="go">Scan</button>
+  <button class="btn ghost" id="clear">Clear</button>
+  <input type="file" id="files" multiple accept=".sol" style="display:none">
+  <button class="btn ghost" id="pick">attach .sol files</button>
+  <span class="hint" id="picked"></span>
+  <span class="hint" style="margin-left:auto">multi-file bundles supported · guards may live in sibling files</span>
+</div>
+
+<div class="card hidden" id="scoreCard">
+  <div class="ch">result</div>
+  <div style="padding:18px 20px;font-size:15px" id="scoreLine"></div>
+  <div class="factors" id="factorList"></div>
+</div>
+<div class="card hidden" id="resCard">
+  <div class="ch">findings</div>
+  <table><thead><tr><th>severity</th><th>rule</th><th>line</th><th>contract</th></tr></thead>
+  <tbody id="tbody"></tbody></table>
+</div>
+
+<p class="hint" style="margin-top:22px">Heuristic pattern scanner — not an audit; findings mean
+“worth a look”. Rules mirror the Python scanner (parity-tested on 38 real bundles).
+Weights: <a href="https://github.com/chaosxcode/hookguard/blob/master/docs/SCORING.md" style="color:var(--cyan)">SCORING.md</a>.</p>
+</div>
+
+<script src="assets/hg-scanner.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let extra={};
+document.getElementById('pick').onclick=()=>document.getElementById('files').click();
+document.getElementById('files').onchange=e=>{
+  for(const f of e.target.files){const r=new FileReader();r.onload=()=>{extra[f.name]=r.result;
+    document.getElementById('picked').textContent=Object.keys(extra).length+' file(s) attached';};r.readAsText(f);}
+};
+document.getElementById('clear').onclick=()=>{$('src').value='';extra={};
+  $('picked').textContent='';$('scoreCard').classList.add('hidden');$('resCard').classList.add('hidden');};
+document.getElementById('go').onclick=()=>{
+  const files={...extra};
+  const pasted=$('src').value.trim();
+  if(pasted) files['Pasted.sol']=pasted;
+  if(!Object.keys(files).length){alert('paste Solidity source or attach .sol files first');return;}
+  const btn=$('go');btn.disabled=true;btn.textContent='scanning…';
+  setTimeout(()=>{                                   // let UI paint
+    const rows=HG_SCANNER.scanBundle(files);
+    const score=HG_SCANNER.scoreResults(rows);
+    const sc=$('scoreLine');
+    sc.innerHTML=`<span class="scorechip s-${score.band.toLowerCase()}">${score.value} ${score.band}</span>`+
+      ` <span style="color:var(--dim)">risk · confidence ${score.confidence}</span>`+
+      ` · ${rows.length} hook contract(s)`;
+    $('factorList').innerHTML=score.factors.length
+      ? 'contributing factors: '+score.factors.map(f=>
+          `<span class="mono" style="color:${f.delta>0?'#ff8a5c':'var(--green)'}">${f.delta>0?'+':''}${f.delta} ${f.label}</span>`).join(' · ')
+      : 'no contributing factors — baseline';
+    const tb=$('tbody');tb.innerHTML='';
+    const sevBadge=s=>`<span class="badge b-${s.toLowerCase()}">${s}</span>`;
+    for(const r of rows){
+      if(!r.findings.length)
+        tb.insertAdjacentHTML('beforeend',`<tr><td class="ok">clean</td><td>—</td><td>—</td><td>${r.contract}</td></tr>`);
+      for(const f of [...r.findings].sort((a,b)=>a.line-b.line))
+        tb.insertAdjacentHTML('beforeend',
+          `<tr><td>${sevBadge(f.sev)}</td><td class="mono">${f.rule}</td><td class="mono">${f.line}</td><td>${r.contract}</td></tr>`);
+    }
+    $('scoreCard').classList.remove('hidden');$('resCard').classList.remove('hidden');
+    btn.disabled=false;btn.textContent='Scan';
+  },30);
+};
+</script>
+</body></html>
