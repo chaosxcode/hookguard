@@ -68,7 +68,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TARGET: ${{ steps.target.outputs.target }}
         run: |
-          python3 src/hookguard.py scan "$TARGET" --md /tmp/report.md --json /tmp/r.json
+          for attempt in 1 2; do
+            python3 src/hookguard.py scan "$TARGET" --md /tmp/report.md --json /tmp/r.json && exit 0
+            echo "attempt $attempt failed; transient API outages happen"
+            [ "$attempt" = "2" ] || sleep 45
+          done
+          exit 1
 
       - name: Post report
         if: steps.target.outputs.target != ''

@@ -29,7 +29,7 @@ BAND_CLASS = {"LOW": "s-low", "MODERATE": "s-moderate",
 SEV_ORDER = {"HIGH": 0, "MEDIUM": 1, "LOW": 2, "INFO": 3}
 
 
-def api(path, tries=6):
+def api(path, tries=None):
     """GitHub REST -- stdlib first, alternating with curl as transports.
     GITHUB_TOKEN raises rate limits; unauthenticated works for light use.
     Some networks degrade python's TLS path intermittently while curl
@@ -41,6 +41,7 @@ def api(path, tries=6):
         headers["Authorization"] = f"Bearer {tok}"
     global _GOOD_TRANSPORT
     import time
+    tries = tries or int(os.environ.get("HG_API_TRIES", "6"))
     order = ([_GOOD_TRANSPORT] if _GOOD_TRANSPORT else ["urllib", "curl"]) * tries
     last = None
     for i, transport in enumerate(order[:tries]):
@@ -66,7 +67,7 @@ def api(path, tries=6):
             last = e
         except Exception as e:                              # noqa: BLE001
             last = e
-        time.sleep(1 + i)
+        time.sleep(min(2 + i, int(os.environ.get("HG_RETRY_CAP", "8"))))
     raise last
 
 
