@@ -12,3 +12,8 @@ hookguard-deck.html
 __pycache__/
 *.pyc
 corpus/
+
+# python packaging
+build/
+dist/
+*.egg-info/
