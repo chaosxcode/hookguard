@@ -49,6 +49,9 @@ Or without installing:
 python3 src/hookguard.py scan https://github.com/owner/v4-hook-repo --html report.html
 ```
 
+Starting a new hook project? Use [hookguard-example](https://github.com/chaosxcode/hookguard-example)
+— a minimal starter with HookGuard CI preinstalled, scanning clean by design.
+
 Auto-detects hook directories, prints findings with an itemized risk score,
 and writes a standalone HTML report. `--fail-on HIGH` exits non-zero for
 pipeline use.
@@ -204,10 +207,10 @@ python3 src/scan.py path/to/src ...  # source scan            -> out/scan.json
 
 ## Does it actually discriminate?
 
-Measured against **306 real deployed hooks** — registry bundles across nine
+Measured against **315 real deployed hooks** — registry bundles across nine
 chains, plus the source-publishing production hooks that were *never*
 registered (Unichain's off-registry hooks, up to 1,034 pools) — not fixtures:
-**56% come back completely clean** (170/306; the corpus grew today when a scanner bug that skipped abstract-first hook files was fixed), and only **2 carry any HIGH
+**55% come back completely clean** (173/315), and only **2 carry any HIGH
 finding** (<1%), both the upgradeable-proxy class. One of the two is proven,
 not inferred: the proxy's implementation was read out of its EIP-1967 slot
 on-chain.
