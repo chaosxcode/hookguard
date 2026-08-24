@@ -30,6 +30,13 @@ numbers.
 - **Multi-contract files**: DONE for emission/attribution (315 contracts); remaining refinement = per-contract rule scoping so shared-file helpers cannot cross-contaminate findings.
 - **Wave-3 outreach cohort.** After a registry resync, whoever is *still* unregistered with 2+ pools becomes the next cohort; channels via deployer fields, contract natspec contacts, and code search.
 
+### Blocked / retry-with-better-network
+
+- **Base full-history census**: endpoint verified (base.drpc.org answers
+  10k-block getLogs in <1s single-threaded) but parallel bursts hang through
+  this sandbox's shared egress. Retry from an unrestricted network;
+  `WORKERS<=8` and the existing abort-on-undercount guard stay as-is.
+
 ## Mid
 
 - **A real false-positive rate.** Once author responses reach a meaningful N, publish it per-rule — this is the number that separates a scanner from a toy, and precision.md has promised it since day one.

@@ -342,10 +342,20 @@ def _analyze_all(path):
     # the file gets its own result row, with findings attributed to the line
     # span it occupies. Previously only the first declaration was analyzed;
     # launchpad bundles shipping several hooks per file lost all but one.
-    results = [base]
     decls = [(m.start(), m.group(2)) for m in
              re.finditer(r'(abstract\s+)?contract\s+(\w+)', src)
              if not m.group(1)]
+
+    # Attribute findings to the declaration span they were raised in -- the
+    # first contract no longer inherits findings from later siblings' code.
+    def _span(idx):
+        s = line_of(src, decls[idx][0]) + 1 if idx else 1
+        e = line_of(src, decls[idx + 1][0]) - 1 if idx + 1 < len(decls) else 10**9
+        return s, e
+
+    F = [f for f in F if _span(0)[0] <= f[3] <= _span(0)[1]]
+    base['findings'] = F
+    results = [base]
     for idx, (dpos, dname) in enumerate(decls):
         if dname == name and dpos == cm.start():
             continue
