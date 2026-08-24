@@ -1,0 +1,57 @@
+name: publish
+
+# Publishes hookguard-scanner to PyPI on version tags (v*).
+#
+# Uses PyPI Trusted Publishing (OIDC) — no token lives in this repo.
+# One-time setup on pypi.org: Account → Publishing → add pending publisher:
+#   owner: chaosxcode   repo: hookguard   workflow: publish.yml
+#
+# If you prefer an API token instead, add repo secret PYPI_TOKEN and the
+# token path takes over automatically.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Build sdist + wheel
+        run: |
+          python3 -m pip install --quiet build
+          python3 -m build --outdir dist .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write            # trusted publishing
+    env:
+      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Publish via Trusted Publishing (OIDC)
+        if: ${{ env.PYPI_TOKEN == '' }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Publish via API token (fallback)
+        if: ${{ env.PYPI_TOKEN != '' }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_TOKEN }}
