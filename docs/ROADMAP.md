@@ -25,8 +25,9 @@ numbers.
 
 ## Near
 
-- **Library-aware corpus analysis.** BunniHook was flagged and then manually cleared because its guard lives in `BunniHookLogic`, not the analyzed file. Corpus fetch should follow imports into sibling files of the same bundle; scanner validation checks should see them.
-- **Bytecode pass v2: prove upgradeability instead of implying it.** For each `DELEGATECALL`, classify the target: storage-derived (live-upgradeable in practice) vs constant (fixed delegation — and in shared-code families, one implementation serving every clone). This upgrades Finding 2 of the bytecode pass from opcode-presence to mechanism.
+- ~~Library-aware validation~~ ✅ SHIPPED — scanner follows sibling-library delegation within bundles and recognizes zero-state guards (`sqrtPriceX96 == 0 → revert`), auto-clearing the Bunni pattern.
+- ~~Bytecode pass v2~~ ✅ SHIPPED — constant-target vs storage-derived classification; found seven opaque implementations behind the clone families.
+- **Multi-contract files**: DONE for emission/attribution (315 contracts); remaining refinement = per-contract rule scoping so shared-file helpers cannot cross-contaminate findings.
 - **Wave-3 outreach cohort.** After a registry resync, whoever is *still* unregistered with 2+ pools becomes the next cohort; channels via deployer fields, contract natspec contacts, and code search.
 
 ## Mid
