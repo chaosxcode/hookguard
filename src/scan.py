@@ -141,7 +141,7 @@ def _analyze_all(path):
     name = cm.group(2)
     is_clause_m = re.search(rf'contract\s+{name}\s+is\s+([^;{{]+)\{{', src)
     inherits = is_clause_m.group(1) if is_clause_m else ''
-    if not (re.search(r'function\s+getHookPermissions\s*\(', src)
+    if not (re.search(r'function\s+getHookPermissions\s*\([^)]*\)([^;{]*)\{', src)
             or re.search(r'\b(BaseHook|IHooks)\b', inherits)):
         return []
     low = path.lower()
