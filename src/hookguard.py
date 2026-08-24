@@ -190,7 +190,55 @@ def html_escape(s):
              .replace('"', "&quot;"))
 
 
+def _scan_local(args):
+    d = args.repo.rstrip("/")
+    if not os.path.isdir(d):
+        print(f"error: not a directory: {d}", file=sys.stderr)
+        return 2
+    files = []
+    for root, dirs, fs in os.walk(d):
+        dirs[:] = [x for x in dirs if x.lower() not in
+                   ("test", "tests", "mock", "mocks", "lib", "node_modules",
+                    "script", "scripts", "out", "cache", ".git")]
+        for f in fs:
+            if f.endswith(".sol"):
+                files.append(os.path.join(root, f))
+    results = []
+    for f in sorted(files):
+        results.extend(scanner.analyze_file(f))
+    score = score_results(results)
+    counts = {"HIGH":0,"MEDIUM":0,"LOW":0,"INFO":0}
+    for c in results:
+        for f_ in c["findings"]:
+            counts[f_[0]] += 1
+    flagged = sum(1 for c in results if c["findings"])
+    print(f"\nHookGuard local scan — {d}")
+    print("=" * 62)
+    print(f"  hooks: {len(results)} · clean: {len(results)-flagged} · "
+          f"HIGH {counts['HIGH']} MEDIUM {counts['MEDIUM']} LOW {counts['LOW']} INFO {counts['INFO']}")
+    print(f"  risk: {score['score']}/100 {score['band']} (confidence: {score['confidence']})")
+    for r in results:
+        if r["findings"]:
+            print(f"\n  {r['contract']}")
+            for s_, code, msg, ln in sorted(r["findings"], key=lambda x: SEV_ORDER[x[0]]):
+                print(f"    [{s_:<6}] {code} @{ln}")
+    if args.json:
+        json.dump({"path": d, "score": score, "results": results},
+                  open(args.json, "w"), indent=1)
+    if args.html:
+        open(args.html, "w").write(render_html(d, "local", results, score))
+        print(f"  html -> {args.html}")
+    fail_ranks = {"INFO":1,"LOW":2,"MEDIUM":3,"HIGH":4}
+    if args.fail_on != "never" and any(
+            fail_ranks[f[0]] >= fail_ranks[args.fail_on]
+            for c in results for f in c["findings"]):
+        return 1
+    return 0
+
+
 def cmd_scan(args):
+    if args.local:
+        return _scan_local(args)
     repo = args.repo
     repo = repo.removesuffix(".git")
     if "github.com/" in repo:
@@ -262,7 +310,9 @@ def main():
     ap = argparse.ArgumentParser(prog="hookguard")
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("scan", help="scan a GitHub repository")
-    s.add_argument("repo")
+    s.add_argument("repo", help="github.com URL, owner/repo, or a local directory with --local")
+    s.add_argument("--local", action="store_true",
+                   help="scan a local directory instead of fetching from GitHub")
     s.add_argument("--branch", default="")
     s.add_argument("--paths", default="")
     s.add_argument("--html", default="")
@@ -270,7 +320,16 @@ def main():
     s.add_argument("--fail-on", default="never",
                    choices=["HIGH", "MEDIUM", "LOW", "never"])
     args = ap.parse_args()
-    sys.exit(cmd_scan(args))
+    try:
+        sys.exit(cmd_scan(args))
+    except RuntimeError as e:
+        msg = str(e)
+        if "curl empty/failed" in msg or isinstance(e.__cause__, OSError) or "Name or service" in msg:
+            print("error: GitHub API unreachable from this network "
+                  "(retries + curl fallback exhausted). Check connectivity "
+                  "or set GITHUB_TOKEN and retry.", file=sys.stderr)
+            sys.exit(2)
+        raise
 
 
 if __name__ == "__main__":

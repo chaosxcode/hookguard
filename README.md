@@ -35,9 +35,15 @@ jobs:
 Annotations land on the offending lines; a single PR comment summarizes.
 `fail-on: HIGH` by default — heuristics advise, they don't gate.
 
-### Scan any repo, right now
+### Install & scan any repo, right now
 
-No install, no CI needed:
+```bash
+pip install hookguard                      # 0.9.0 live on PyPI
+hookguard scan https://github.com/owner/v4-hook-repo --html report.html
+hookguard scan ./my-hooks --local           # offline, local directory
+```
+
+Or without installing:
 
 ```bash
 python3 src/hookguard.py scan https://github.com/owner/v4-hook-repo --html report.html
