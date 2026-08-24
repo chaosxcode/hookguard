@@ -210,8 +210,9 @@ def cmd_scan(args):
         dest = os.path.join(tmp, "bundle")
         os.makedirs(dest)
         n = fetch_files(repo, ref, picked, dest)
-        results = [r for r in (scanner.analyze(os.path.join(dest, f))
-                               for f in sorted(os.listdir(dest))) if r]
+        results = []
+        for f in sorted(os.listdir(dest)):
+            results.extend(scanner.analyze_file(os.path.join(dest, f)))
 
     if not results:
         print(f"no concrete v4 hook contracts found in {repo}@{ref} "

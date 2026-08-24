@@ -117,7 +117,7 @@ def is_inert(sig, body):
         return False
     return True
 
-def analyze(path):
+def _analyze_all(path):
     raw = open(path, encoding='utf-8', errors='ignore').read()
     src = strip_comments(raw)
     # Only analyse things that ARE hooks. Matching a bare mention of IHooks is
@@ -137,13 +137,13 @@ def analyze(path):
             cm = m
             break
     if not cm:
-        return None                                   # abstract base / no concrete hook
+        return []                                     # abstract base / no concrete hook
     name = cm.group(2)
     is_clause_m = re.search(rf'contract\s+{name}\s+is\s+([^;{{]+)\{{', src)
     inherits = is_clause_m.group(1) if is_clause_m else ''
     if not (re.search(r'function\s+getHookPermissions\s*\(', src)
             or re.search(r'\b(BaseHook|IHooks)\b', inherits)):
-        return None
+        return []
     low = path.lower()
     base = os.path.basename(path)
     if any(k in low for k in ('/mocks/', '/mock/', '/test/', '/tests/')) or \
@@ -153,7 +153,7 @@ def analyze(path):
        (name == 'Counter' and base == 'Counter.sol'):
         # not deployed: mocks/tests, teaching examples (ExampleVulnerableHook),
         # foundry's default scaffolding (Counter.sol) — flagging them is noise
-        return None
+        return []
     F = []
     decl_line = line_of(src, cm.start())
     # Structural match: a real getHookPermissions body, never the abstract
@@ -334,15 +334,71 @@ def analyze(path):
                     f'{c} performs a token/native transfer with no reentrancy guard. One hook serves many pools; '
                     'assume re-entry into this and other pools before the callback sequence completes.', line_of(src, body.start())))
                 break
-    return {'file': path, 'contract': name, 'findings': F,
-            'declared': [c for c,v in declared.items() if v],
-            'returnsDelta': [k for k,v in ret_delta.items() if v]}
+    base = {'file': path, 'contract': name, 'findings': F,
+            'declared': [c for c, v in declared.items() if v],
+            'returnsDelta': [k for k, v in ret_delta.items() if v]}
+
+    # Multi-contract files: every additional CONCRETE, QUALIFIED contract in
+    # the file gets its own result row, with findings attributed to the line
+    # span it occupies. Previously only the first declaration was analyzed;
+    # launchpad bundles shipping several hooks per file lost all but one.
+    results = [base]
+    decls = [(m.start(), m.group(2)) for m in
+             re.finditer(r'(abstract\s+)?contract\s+(\w+)', src)
+             if not m.group(1)]
+    for idx, (dpos, dname) in enumerate(decls):
+        if dname == name and dpos == cm.start():
+            continue
+        lowname = dname.lower()
+        if any(k in lowname for k in ('mock', 'test')) or \
+           re.search(r'(Mock|Test|Harness|Example)$', dname) or \
+           re.match(r'(Example|Test|Mock|Sample|Demo|Vulnerable)', dname):
+            continue
+        ic = re.search(rf'contract\s+{dname}\s+is\s+([^;{{]+)\{{', src[cm.start():])
+        inh = ic.group(1) if ic else ''
+        if not (re.search(r'function\s+getHookPermissions\s*\(', src)
+                or re.search(r'\b(BaseHook|IHooks)\b', inh)):
+            continue
+        span_start_line = line_of(src, dpos) + 1
+        span_end = decls[idx + 1][0] if idx + 1 < len(decls) else len(src)
+        span_end_line = line_of(src, span_end)
+        own = None
+        for pm in re.finditer(r'function\s+getHookPermissions\s*\([^)]*\)([^;{]*)\{(.*?)\n\s*\}',
+                              src, re.S):
+            if pm.start() >= dpos:
+                own = pm.group(2)
+                break
+        pd = {c: bool(own and re.search(rf'\b{c}\s*:\s*true', own))
+              for c in CALLBACKS}
+        prd = {k: bool(own and re.search(rf'\b{k}\s*:\s*true', own)) for k in
+               ['beforeSwapReturnsDelta', 'afterSwapReturnsDelta',
+                'afterAddLiquidityReturnsDelta', 'afterRemoveLiquidityReturnsDelta']}
+        span_f = [f for f in F if span_start_line <= f[3] <= span_end_line]
+        results.append({'file': path, 'contract': dname,
+                        'findings': span_f,
+                        'declared': [c for c, v in pd.items() if v],
+                        'returnsDelta': [k for k, v in prd.items() if v]})
+    return results
+
+
+def analyze_file(path):
+    """All concrete qualified hook contracts in a file."""
+    return _analyze_all(path)
+
+
+def analyze(path):
+    """Backward-compatible: first hook contract in the file."""
+    rows = analyze_file(path)
+    return rows[0] if rows else None
+
 
 def main(paths):
     files = []
     for p in paths:
         files += glob.glob(os.path.join(p, '**', '*.sol'), recursive=True) if os.path.isdir(p) else [p]
-    results = [r for r in (analyze(f) for f in sorted(set(files))) if r]
+    results = []
+    for f in sorted(set(files)):
+        results.extend(analyze_file(f))
     sev = {'HIGH':0,'MEDIUM':0,'LOW':0,'INFO':0}
     print(f"HookGuard source scan — {len(results)} hook contracts analysed\n" + "="*74)
     flagged = 0

@@ -2,21 +2,15 @@
  "generated": "2026-08-23",
  "chain": "ethereum",
  "address": "0x5832f3e51295cee676eebbb25748d527f64b5f80",
- "name": "ImmutableState",
- "findings": 2,
+ "name": "NestHook",
+ "findings": 0,
  "high": 0,
- "advisory": true,
+ "advisory": false,
  "source": true,
- "score": 24,
+ "score": 10,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
-  {
-   "key": "medium_finding",
-   "label": "2\u00d7 MEDIUM finding(s)",
-   "delta": 14,
-   "detail": "accurate detections awaiting author confirmation"
-  },
   {
    "key": "no_audit_recorded",
    "label": "no audit URL recorded",

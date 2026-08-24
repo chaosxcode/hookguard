@@ -99,9 +99,9 @@
   }
  },
  "scanner": {
-  "contractsMeasured": 306,
-  "clean": 173,
-  "cleanPct": 56.5,
+  "contractsMeasured": 315,
+  "clean": 182,
+  "cleanPct": 57.8,
   "severity": {
    "HIGH": 2,
    "MEDIUM": 121,
@@ -970,6 +970,46 @@
    "chain": "base",
    "address": "0x22266a74902ef7546ab80156539e7a349ad20040",
    "name": "BpegRenderer",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "base",
+   "address": "0x22266a74902ef7546ab80156539e7a349ad20040",
+   "name": "Bpeg",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "base",
+   "address": "0x22266a74902ef7546ab80156539e7a349ad20040",
+   "name": "BpegHook",
    "findings": 0,
    "high": 0,
    "advisory": false,
@@ -2805,13 +2845,13 @@
   },
   {
    "chain": "base",
-   "address": "0xfee99b847f90d7a7f87e273097b72e33d3490440",
-   "name": "BpegRenderer",
-   "findings": 1,
+   "address": "0xfe6947cd46a7e8f068a6b6ca804fb986feda8040",
+   "name": "Bpeg",
+   "findings": 0,
    "high": 0,
-   "advisory": true,
+   "advisory": false,
    "source": true,
-   "score": 17,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
@@ -2820,12 +2860,86 @@
      "label": "no audit URL recorded",
      "delta": 10,
      "detail": "means unknown, not audited-absent"
-    },
+    }
+   ]
+  },
+  {
+   "chain": "base",
+   "address": "0xfe6947cd46a7e8f068a6b6ca804fb986feda8040",
+   "name": "BpegHook",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
     {
-     "key": "medium_finding",
-     "label": "1\u00d7 MEDIUM finding(s)",
-     "delta": 7,
-     "detail": "accurate detections awaiting author confirmation"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "base",
+   "address": "0xfee99b847f90d7a7f87e273097b72e33d3490440",
+   "name": "BpegRenderer",
+   "findings": 1,
+   "high": 0,
+   "advisory": true,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "base",
+   "address": "0xfee99b847f90d7a7f87e273097b72e33d3490440",
+   "name": "Bpeg",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "base",
+   "address": "0xfee99b847f90d7a7f87e273097b72e33d3490440",
+   "name": "BpegHook",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -3984,16 +4098,30 @@
    "high": 0,
    "advisory": true,
    "source": true,
-   "score": 24,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "medium_finding",
-     "label": "2\u00d7 MEDIUM finding(s)",
-     "delta": 14,
-     "detail": "accurate detections awaiting author confirmation"
-    },
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
+    }
+   ]
+  },
+  {
+   "chain": "ethereum",
+   "address": "0x5832f3e51295cee676eebbb25748d527f64b5f80",
+   "name": "NestHook",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
     {
      "key": "no_audit_recorded",
      "label": "no audit URL recorded",
@@ -4070,7 +4198,7 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 17,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
@@ -4079,12 +4207,26 @@
      "label": "no audit URL recorded",
      "delta": 10,
      "detail": "means unknown, not audited-absent"
-    },
+    }
+   ]
+  },
+  {
+   "chain": "ethereum",
+   "address": "0x62ee80f068dce30ea4a275e91bb733fb17fd0ac0",
+   "name": "FairTradeHook",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
     {
-     "key": "medium_finding",
-     "label": "1\u00d7 MEDIUM finding(s)",
-     "delta": 7,
-     "detail": "accurate detections awaiting author confirmation"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -5382,7 +5524,7 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 17,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
@@ -5391,12 +5533,26 @@
      "label": "no audit URL recorded",
      "delta": 10,
      "detail": "means unknown, not audited-absent"
-    },
+    }
+   ]
+  },
+  {
+   "chain": "ethereum",
+   "address": "0xede8ec3dbb11055a736612e174ab7b0b41028ac0",
+   "name": "FairTradeHook",
+   "findings": 0,
+   "high": 0,
+   "advisory": false,
+   "source": true,
+   "score": 10,
+   "band": "LOW",
+   "confidence": "medium",
+   "factors": [
     {
-     "key": "medium_finding",
-     "label": "1\u00d7 MEDIUM finding(s)",
-     "delta": 7,
-     "detail": "accurate detections awaiting author confirmation"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },

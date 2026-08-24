@@ -451,6 +451,24 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/base/0x22266a74902ef7546ab80156539e7a349ad20040/BpegAll.sol",
+  "contract": "Bpeg",
+  "findings": [],
+  "declared": [
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0x22266a74902ef7546ab80156539e7a349ad20040/BpegAll.sol",
+  "contract": "BpegHook",
+  "findings": [],
+  "declared": [
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/base/0x23321f11a6d44fd1ab790044fdfde5758c902fdc/PositionManager.sol",
   "contract": "PositionManager",
   "findings": [],
@@ -1609,6 +1627,24 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/base/0xfe6947cd46a7e8f068a6b6ca804fb986feda8040/BpegAll.sol",
+  "contract": "Bpeg",
+  "findings": [],
+  "declared": [
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xfe6947cd46a7e8f068a6b6ca804fb986feda8040/BpegAll.sol",
+  "contract": "BpegHook",
+  "findings": [],
+  "declared": [
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/base/0xfee99b847f90d7a7f87e273097b72e33d3490440/BpegAll.sol",
   "contract": "BpegRenderer",
   "findings": [
@@ -1619,6 +1655,26 @@
     18
    ]
   ],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xfee99b847f90d7a7f87e273097b72e33d3490440/BpegAll.sol",
+  "contract": "Bpeg",
+  "findings": [],
+  "declared": [
+   "afterAddLiquidity",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/base/0xfee99b847f90d7a7f87e273097b72e33d3490440/BpegAll.sol",
+  "contract": "BpegHook",
+  "findings": [],
   "declared": [
    "afterAddLiquidity",
    "afterSwap"
@@ -2330,6 +2386,20 @@
   "returnsDelta": []
  },
  {
+  "file": "corpus/ethereum/0x5832f3e51295cee676eebbb25748d527f64b5f80/NestHook.sol",
+  "contract": "NestHook",
+  "findings": [],
+  "declared": [
+   "afterInitialize",
+   "beforeAddLiquidity",
+   "afterAddLiquidity",
+   "beforeRemoveLiquidity",
+   "afterRemoveLiquidity",
+   "beforeSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
   "file": "corpus/ethereum/0x5cf8e499c7c466c7e2cf127bdf129f57151e65dc/PositionManager.sol",
   "contract": "PositionManager",
   "findings": [],
@@ -2377,6 +2447,18 @@
     1587
    ]
   ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/ethereum/0x62ee80f068dce30ea4a275e91bb733fb17fd0ac0/FairTradeHook.sol",
+  "contract": "FairTradeHook",
+  "findings": [],
   "declared": [
    "beforeAddLiquidity",
    "beforeRemoveLiquidity",
@@ -3168,6 +3250,18 @@
     1587
    ]
   ],
+  "declared": [
+   "beforeAddLiquidity",
+   "beforeRemoveLiquidity",
+   "beforeSwap",
+   "afterSwap"
+  ],
+  "returnsDelta": []
+ },
+ {
+  "file": "corpus/ethereum/0xede8ec3dbb11055a736612e174ab7b0b41028ac0/FairTradeHook.sol",
+  "contract": "FairTradeHook",
+  "findings": [],
   "declared": [
    "beforeAddLiquidity",
    "beforeRemoveLiquidity",
