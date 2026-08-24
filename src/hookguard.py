@@ -225,6 +225,9 @@ def _scan_local(args):
     if args.json:
         json.dump({"path": d, "score": score, "results": results},
                   open(args.json, "w"), indent=1)
+    if args.md:
+        open(args.md, "w").write(markdown_report(d, "local", results, score))
+        print(f"  md   -> {args.md}")
     if args.html:
         open(args.html, "w").write(render_html(d, "local", results, score))
         print(f"  html -> {args.html}")
@@ -234,6 +237,31 @@ def _scan_local(args):
             for c in results for f in c["findings"]):
         return 1
     return 0
+
+
+
+def markdown_report(repo, ref, results, score):
+    import html as _h
+    lines = [f"## HookGuard report — `{repo}` @{ref}", "",
+             f"**Risk {score['score']}/100 — {score['band']}** "
+             f"(confidence: {score['confidence']}) · "
+             f"{len(results)} hook contract(s) analyzed", "",
+             "| severity | rule | line | contract |",
+             "|---|---|---|---|"]
+    sev_badge = {"HIGH": "`🔴 HIGH`", "MEDIUM": "`🟠 MEDIUM`",
+                 "LOW": "`LOW`", "INFO": "`INFO`"}
+    rows = []
+    for c in results:
+        for s, code, msg, ln in sorted(c["findings"], key=lambda f: SEV_ORDER[f[0]]):
+            rows.append(f"| {sev_badge[s]} | `{code}` | {ln} | {_h.escape(c['contract'])} |")
+    clean = [c['contract'] for c in results if not c['findings']]
+    if clean:
+        lines += ["", f"Clean: {', '.join('`'+_h.escape(x)+'`' for x in clean)}"]
+    lines += [""] + rows
+    lines += ["", "---",
+              "*Heuristic pattern scan — **not an audit**, findings are \"worth a look.\" "
+              "Weights public in [score.py](https://github.com/chaosxcode/hookguard/blob/master/src/score.py).*"]
+    return "\n".join(lines)
 
 
 def cmd_scan(args):
@@ -294,6 +322,9 @@ def cmd_scan(args):
         json.dump({"repo": repo, "ref": ref, "score": score, "results": results},
                   open(args.json, "w"), indent=1)
         print(f"  json -> {args.json}")
+    if args.md:
+        open(args.md, "w").write(markdown_report(repo, ref, results, score))
+        print(f"  md   -> {args.md}")
     if args.html:
         open(args.html, "w").write(render_html(repo, ref, results, score))
         print(f"  html -> {args.html}")
@@ -317,6 +348,7 @@ def main():
     s.add_argument("--paths", default="")
     s.add_argument("--html", default="")
     s.add_argument("--json", default="")
+    s.add_argument("--md", default="")
     s.add_argument("--fail-on", default="never",
                    choices=["HIGH", "MEDIUM", "LOW", "never"])
     args = ap.parse_args()
