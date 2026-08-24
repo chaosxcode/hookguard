@@ -1,0 +1,1 @@
+{"chain": "base", "first": 25350000, "latest": 50376707, "cursor": 150, "hooks": {"0x9e433f32bb5481a9ca7dff5b3af74a7ed041a888": {"pools": 1, "firstBlock": 25352561}, "0xa6c8d7514785c4314ee05ed566cb41151d43c0c0": {"pools": 3, "firstBlock": 25480643}, "0x4e141f8700652d47f2213d5da93a2c0b123d8151": {"pools": 1, "firstBlock": 25618035}}, "hookless": 8, "events": 13}
