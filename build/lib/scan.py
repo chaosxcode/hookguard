@@ -1,0 +1,422 @@
+#!/usr/bin/env python3
+"""
+HookGuard — source pattern scanner for Uniswap v4 hooks.
+
+CI/Foundry-native: point it at a repo, it flags documented v4 hook risk patterns
+BEFORE deployment. Heuristic and transparent by design — it is not an audit and
+never claims to be. Every rule cites the mechanism it is checking.
+
+Rules derive from: Trail of Bits "Building secure Uniswap v4 hooks" (2026),
+Uniswap's own Security Framework, OpenZeppelin, Cyfrin, and the Bunni v2
+($8.3M, Sept 2025) and Cork Protocol (~$10M+) post-mortems.
+"""
+import re, sys, os, json, glob
+
+# permission -> the callback that must implement it
+CALLBACKS = ['beforeInitialize','afterInitialize','beforeAddLiquidity','afterAddLiquidity',
+             'beforeRemoveLiquidity','afterRemoveLiquidity','beforeSwap','afterSwap',
+             'beforeDonate','afterDonate']
+
+def strip_comments(s):
+    # Replace comments with the same number of newlines instead of deleting them,
+    # so every character offset still maps to its real line in the source file.
+    # Without this, CI annotations point at the wrong line.
+    keep_nl = lambda m: '\n' * m.group(0).count('\n')
+    s = re.sub(r'/\*.*?\*/', keep_nl, s, flags=re.S)
+    return re.sub(r'//[^\n]*', '', s)
+
+def line_of(src, pos):
+    """1-indexed line number for a character offset."""
+    return src.count('\n', 0, pos) + 1
+
+def _validates_pool(src):
+    """True if the hook checks the incoming PoolKey against its own expectations
+    and rejects pools it does not recognise.
+
+    An allowlist keyed by PoolId is only one way to do this. The common
+    alternative is comparing the key's currencies (or fee/tickSpacing) against
+    stored immutables and reverting — e.g.
+
+        if (Currency.unwrap(key.currency0) != Currency.unwrap(currency0)
+            || Currency.unwrap(key.currency1) != Currency.unwrap(currency1))
+            revert PoolNotSupported();
+
+    A hook doing that is not attachable in any meaningful sense: an attacker can
+    initialise a pool against it, but every callback reverts. Treating that as
+    an ungated hook told a developer he had a HIGH severity issue he had in fact
+    already handled."""
+    return bool(re.search(
+        r'key_?\.\s*(currency0|currency1|fee|tickSpacing|hooks)\b[^;]{0,300}?'
+        r'(!=|==)[^;]{0,300}?(revert|require)', src, re.S | re.I)
+        or re.search(
+        r'(revert|require)[^;]{0,300}?key_?\.\s*(currency0|currency1|fee|tickSpacing)',
+        src, re.S | re.I)
+        # A per-pool registration flag checked with a revert is the same guard by
+        # another name: an attacker-created pool is simply not registered, so the
+        # callback bounces. SwayHookJIT does exactly this via PoolNotInitialized.
+        or re.search(
+        r'(revert|require)[^;]{0,160}?(NotInitialized|NotRegistered|NotSupported|'
+        r'NotAllowed|UnknownPool|InvalidPool|PoolNotFound)', src, re.S | re.I)
+        or re.search(
+        r'!\s*\w+\.\s*(isInitialized|initialized|registered|enabled|active)\b[^;]{0,80}revert',
+        src, re.S | re.I)
+        # Zero-state guard: rejecting pools whose stored state is unset
+        # (sqrtPriceX96 == 0) with an Invalid*-class revert nearby is
+        # registration-by-initialization -- the Bunni pattern. Two-token
+        # lookahead keeps unrelated reverts out.
+        or re.search(r'sqrtPriceX96\s*==\s*0(?=[\s\S]{0,900}?revert\s+\w*Invalid)',
+                     src, re.S | re.I))
+
+def body_of(src, brace_pos):
+    """Return the {...} block starting at brace_pos, brace-matched."""
+    depth, i = 0, brace_pos
+    while i < len(src):
+        if src[i] == '{': depth += 1
+        elif src[i] == '}':
+            depth -= 1
+            if depth == 0: return src[brace_pos:i+1]
+        i += 1
+    return src[brace_pos:]
+
+def is_inert(sig, body):
+    """True if a callback cannot desync anything.
+
+    Three ways a callback is harmless to call directly:
+      1. it reverts unconditionally,
+      2. it is declared view/pure,
+      3. it writes nothing to storage.
+
+    (3) is the subtle one. Hooks assign to NAMED RETURN VARIABLES
+    (`funcSelector = IHooks.beforeSwap.selector;`) and to locals, neither of
+    which is state. Counting those as mutation flagged Arrakis's read-only
+    beforeSwap, which only reads a view function. Assignments whose target is a
+    declared return name or a local are therefore ignored."""
+    inner = body[1:-1]
+
+    if re.search(r'\brevert\b', inner) and not re.search(r'\bif\b|\brequire\b', inner):
+        return True                                       # unconditional revert
+    if re.search(r'\b(view|pure)\b', sig):
+        return True                                       # cannot write by definition
+
+    # names that are NOT storage: declared returns, and locally declared vars
+    rc = re.search(r'returns\s*\(([^)]*)\)', sig, re.S)
+    safe = set()
+    if rc:
+        for part in rc.group(1).split(','):
+            w = part.strip().split()
+            if len(w) >= 2:
+                safe.add(w[-1])
+    for m in re.finditer(r'\b(?:uint\d*|int\d*|bool|address|bytes\d*|string|[A-Z]\w*)\s+'
+                         r'(?:memory|calldata|storage\s)?\s*(\w+)\s*=', inner):
+        safe.add(m.group(1))
+
+    for m in re.finditer(r'(?:^|[;{}\n])\s*([A-Za-z_]\w*)\s*(?:\[[^\]]*\])?\s*(?:\.\w+)?\s*=[^=]', inner):
+        if m.group(1) not in safe:
+            return False                                  # a real storage write
+    if re.search(r'\.call|\.transfer|safeTransfer|\bdelete\s|\+\+|--', inner):
+        return False
+    return True
+
+def _analyze_all(path):
+    raw = open(path, encoding='utf-8', errors='ignore').read()
+    src = strip_comments(raw)
+    # Only analyse things that ARE hooks. Matching a bare mention of IHooks is
+    # far too loose: verified-source bundles ship the whole project, so sibling
+    # contracts that merely *import* IHooks were being analysed as hooks and
+    # inflating every count. A hook either declares its permissions or inherits
+    # a hook base in its `is` clause.
+    #
+    # Bundles frequently define an abstract base ABOVE the concrete hook in the
+    # same file (hookathon style: `abstract contract AirbagHookBase is IHooks`,
+    # then `contract AirbagHook is AirbagHookBase`). Skipping "the" abstract
+    # used to mean skipping the whole file; instead, take the first CONCRETE
+    # contract declaration and anchor everything downstream to it.
+    cm = None
+    for m in re.finditer(r'(abstract\s+)?contract\s+(\w+)', src):
+        if not m.group(1):
+            cm = m
+            break
+    if not cm:
+        return []                                     # abstract base / no concrete hook
+    name = cm.group(2)
+    is_clause_m = re.search(rf'contract\s+{name}\s+is\s+([^;{{]+)\{{', src)
+    inherits = is_clause_m.group(1) if is_clause_m else ''
+    if not (re.search(r'function\s+getHookPermissions\s*\(', src)
+            or re.search(r'\b(BaseHook|IHooks)\b', inherits)):
+        return []
+    low = path.lower()
+    base = os.path.basename(path)
+    if any(k in low for k in ('/mocks/', '/mock/', '/test/', '/tests/')) or \
+       re.search(r'(Mock|Test|Harness|Example)$', name) or \
+       re.match(r'(Example|Test|Mock|Sample|Demo|Vulnerable)', name) or \
+       'vulnerable' in name.lower() or \
+       (name == 'Counter' and base == 'Counter.sol'):
+        # not deployed: mocks/tests, teaching examples (ExampleVulnerableHook),
+        # foundry's default scaffolding (Counter.sol) — flagging them is noise
+        return []
+    F = []
+    decl_line = line_of(src, cm.start())
+    # Structural match: a real getHookPermissions body, never the abstract
+    # declaration above it (whose trailing ';' used to let the match adopt a
+    # distant brace and silently drop every declared permission).
+    perms = re.search(r'function\s+getHookPermissions\s*\([^)]*\)([^;{]*)\{(.*?)\n\s*\}', src, re.S)
+    pblock = perms.group(2) if perms else ''
+    declared = {c: bool(re.search(rf'\b{c}\s*:\s*true', pblock)) for c in CALLBACKS}
+    ret_delta = {k: bool(re.search(rf'\b{k}\s*:\s*true', pblock)) for k in
+                 ['beforeSwapReturnsDelta','afterSwapReturnsDelta',
+                  'afterAddLiquidityReturnsDelta','afterRemoveLiquidityReturnsDelta']}
+
+    # Pool validation can live in a SIBLING library the callback delegates to
+    # (BunniHook -> BunniHookLogic.beforeSwap reverts for pools it does not
+    # know). If a callback body defers to a name defined elsewhere in the same
+    # bundle, that file's text joins the validation check -- nothing else. It
+    # widens what the rule can see without letting unrelated bundle files
+    # silence findings.
+    dirpath = os.path.dirname(path)
+    sibling = ''
+
+    # One-hop delegation chase: callback -> internal wrapper -> sibling call.
+    # A wide "any referenced file" rule was tried and rejected -- selector
+    # mentions like BaseHook.afterSwap.selector dragged whole dependency
+    # trees into the validation view and silenced real findings.
+    internal_fns = {}
+    for m2 in re.finditer(r'function\s+(_?\w+)\s*\([^)]*\)([^;{]*)\{', src):
+        if m2.group(1) not in internal_fns:
+            internal_fns[m2.group(1)] = body_of(src, m2.end() - 1)
+
+    for c in CALLBACKS:
+        m = re.search(rf'function\s+_?{c}\s*\([^)]*\)([^;{{]*)\{{', src)
+        if not m:
+            continue
+        body = body_of(src, m.end() - 1)
+        targets = set(re.findall(rf'\b([A-Z]\w+)\.\s*_?{c}\s*\(', body))
+        # chase internal wrappers one hop
+        for fn in set(re.findall(r'\b(_?\w+)\s*\(', body)):
+            fb = internal_fns.get(fn)
+            if fb and fn != c:
+                targets |= set(re.findall(rf'\b([A-Z]\w+)\.\s*\w+\s*\(', fb))
+        targets -= {name, 'BaseHook', 'IHooks', 'Hooks'}
+        for target in sorted(targets):
+            for sf in glob.glob(os.path.join(dirpath, '*.sol')):
+                if os.path.abspath(sf) == os.path.abspath(path):
+                    continue
+                st = strip_comments(open(sf, encoding='utf-8', errors='ignore').read())
+                if re.search(rf'\b(contract|library|abstract contract)\s+{target}\b', st):
+                    sibling += '\n' + st
+
+    # R1 permissionless pool attachment: anyone can create a pool pointing at this hook
+    validation_view = src + sibling
+    if not declared.get('beforeInitialize') and \
+       not re.search(r'(allowlist|allowList|whitelist|authorizedPool|validPool|onlyValidPool|poolId\s*==|PoolIdLibrary\.toId)', validation_view, re.I) and \
+       not _validates_pool(validation_view):
+        # Severity is driven by what an attacker-created pool could actually corrupt.
+        # A stateless observer hook is fine being permissionless — that is often the design.
+        # A hook holding funds or per-pool accounting is not.
+        holds_funds = bool(re.search(r'(safeTransfer|transferFrom|\.transfer\(|take\(|settle\(|mint\(|burn\()', src))
+        pool_state  = bool(re.search(r'mapping\s*\(\s*PoolId', src))
+        if holds_funds or pool_state:
+            F.append(('MEDIUM','PERMISSIONLESS_ATTACHMENT',
+                'No beforeInitialize gate and no pool validation found, and the hook holds funds or keeps per-PoolId '
+                'state. v4 pool creation is permissionless, so any pool can attach this hook and drive its callbacks. '
+                'onlyPoolManager proves the PoolManager called you, NOT that the pool is one you trust. '
+                'Whether that is exploitable depends on what an attacker-chosen pool can reach — this flags the '
+                'question, it does not answer it. Confirm the open attachment is intended.', decl_line))
+        else:
+            F.append(('INFO','PERMISSIONLESS_BY_DESIGN',
+                'Any pool may attach this hook (no beforeInitialize gate). No funds or per-pool state detected, so '
+                'this is likely intentional — confirm it is.', decl_line))
+
+    # R2 callbacks lacking the PoolManager guard (only matters if not using BaseHook)
+    #
+    # Guard detection is structural, because the same check is spelled at least
+    # six ways in the wild: BaseHook itself, OpenZeppelin's onlyPoolManager,
+    # private modifiers with other names (onlyPM, onlyManager), inline
+    # comparisons (both `msg.sender == poolManager` and the negated
+    # `if (msg.sender != poolManager) revert`), and internal assert helpers.
+    # What matters is whether SOMEONE OTHER than a trusted caller can reach the
+    # callback -- not which spelling sent them away.
+    uses_basehook = bool(re.search(r'\bis\b[^{]*BaseHook', src))
+
+    def fn_impl(name):
+        """Match a real implementation of `function <name>`, never a bare
+        declaration. Bundles concatenate whole projects, and an interface's
+        trailing `;` used to let the match adopt the NEXT contract's opening
+        brace as its body -- flagging declarations as if they were code."""
+        return re.search(rf'function\s+{name}\s*\([^)]*\)([^;{{]*)\{{', src)
+
+    # Every modifier body, plus any short internal function whose whole job is
+    # comparing msg.sender (assert-style guards live there).
+    mod_bodies, auth_helpers = {}, set()
+    for m in re.finditer(r'modifier\s+(\w+)\s*(\([^)]*\))?\s*\{', src):
+        mod_bodies[m.group(1)] = body_of(src, m.end() - 1)
+    for m in re.finditer(r'function\s+(_?\w+)\s*\([^)]*\)([^;{]*)\{', src):
+        nm = m.group(1)
+        if nm in mod_bodies or nm in CALLBACKS or nm == 'constructor':
+            continue
+        fb = body_of(src, m.end() - 1)
+        if len(fb) <= 600 and re.search(r'msg\.sender\s*(==|!=)', fb):
+            auth_helpers.add(nm)
+
+    KEYWORDS = {'external', 'public', 'internal', 'private', 'pure', 'view',
+                'payable', 'virtual', 'override', 'returns'}
+
+    def guarded(sigtail, body):
+        """True if this callback restricts its caller somehow."""
+        applied = {t for t in re.findall(r'[A-Za-z_]\w*', sigtail)} - KEYWORDS
+        for t in applied & set(mod_bodies):
+            if re.search(r'msg\.sender\s*(==|!=)', mod_bodies[t]):
+                return True                              # any caller gate beats "anyone"
+            if 'poolmanager' in t.lower().replace('_', ''):
+                return True                              # named for what it checks
+        if re.search(r'msg\.sender\s*(==|!=)\s*[^\s;]', body):
+            return True                                  # inline comparison, either polarity
+        return any(re.search(rf'\b{h}\s*\(', body) for h in auth_helpers)
+
+    if not uses_basehook:
+        for c in CALLBACKS:
+            m = fn_impl(c)
+            if not m:
+                continue
+            body = body_of(src, m.end() - 1)
+            if guarded(m.group(1), body):
+                continue
+            if is_inert(m.group(0), body):
+                continue
+            F.append(('HIGH','MISSING_POOLMANAGER_GUARD',
+                f'{c}() has no onlyPoolManager-style guard and the contract does not inherit BaseHook. '
+                'Anyone can call the callback directly and desync hook state.', line_of(src, m.start())))
+
+    # R3 return-delta declared but callback never returns a non-zero delta (or vice versa)
+    if ret_delta['beforeSwapReturnsDelta']:
+        body = re.search(r'function\s+_?beforeSwap\s*\(.*?\n\s*\}', src, re.S)
+        if body and not re.search(r'toBeforeSwapDelta|BeforeSwapDelta\s*\(', body.group(0)):
+            F.append(('MEDIUM','DELTA_FLAG_MISMATCH',
+                'beforeSwapReturnsDelta permission declared but beforeSwap does not construct a BeforeSwapDelta. '
+                'Flag/implementation mismatch — the inverse (returning a delta without the flag) makes EVERY swap revert (DoS).', line_of(src, body.start())))
+    for k, cb in [('afterSwapReturnsDelta','afterSwap')]:
+        if ret_delta[k]:
+            body = re.search(rf'function\s+_?{cb}\s*\(.*?\n\s*\}}', src, re.S)
+            if body and not re.search(r'return\s*\([^)]*,\s*(?!0\b)', body.group(0)):
+                F.append(('LOW','DELTA_FLAG_UNUSED', f'{k} declared but {cb} appears to always return a zero delta.', line_of(src, body.start())))
+
+    # R4 revert-DoS: external dependency inside a required callback with no failure path
+    for c in ['beforeSwap','afterSwap']:
+        if declared.get(c):
+            body = re.search(rf'function\s+_?{c}\s*\(.*?\n\s*\}}', src, re.S)
+            if body:
+                b = body.group(0)
+                ext = re.search(r'\b(latestRoundData|getPrice|oracle\.|\.call\(|staticcall|IERC20\([^)]*\)\.(transfer|transferFrom))', b)
+                if ext and 'try ' not in b:
+                    F.append(('MEDIUM','REVERT_DOS_RISK',
+                        f'{c} makes an external call ({ext.group(1)}) with no try/catch. If the dependency reverts or '
+                        'is paused, every swap on every pool using this hook is bricked — including LP exits.', line_of(src, body.start() + ext.start())))
+
+    # R5 unbounded dynamic fee
+    if re.search(r'DYNAMIC_FEE_FLAG|updateDynamicLPFee', src):
+        if not re.search(r'(MAX_FEE|maxFee|require\s*\([^)]*fee\s*<|fee\s*=\s*fee\s*>\s*\w+\s*\?)', src):
+            F.append(('MEDIUM','UNBOUNDED_DYNAMIC_FEE',
+                'Dynamic fee is set with no visible upper bound. An unbounded or manipulable fee lets a privileged '
+                'party (or manipulated input) tax swappers/LPs arbitrarily.', decl_line))
+
+    # R6 upgradeable: address bits are immutable, implementation is not
+    if re.search(r'\b(UUPSUpgradeable|Initializable|TransparentUpgradeableProxy|_authorizeUpgrade|delegatecall)\b', src):
+        F.append(('HIGH','UPGRADEABLE_HOOK',
+            'Upgradeable/delegatecall pattern. The hook ADDRESS permanently encodes permissions and pools cannot '
+            'detach, but the implementation can be swapped — the upgrade admin is part of the trust boundary.', decl_line))
+
+    # R7 reentrancy surface: external call in a callback with no guard
+    if not re.search(r'ReentrancyGuard|nonReentrant|_locked|transient', src):
+        for c in CALLBACKS:
+            if not declared.get(c): continue
+            body = re.search(rf'function\s+_?{c}\s*\(.*?\n\s*\}}', src, re.S)
+            if body and re.search(r'\.call\{|\.call\(|safeTransfer|transferFrom|\.send\(', body.group(0)):
+                F.append(('MEDIUM','REENTRANCY_SURFACE',
+                    f'{c} performs a token/native transfer with no reentrancy guard. One hook serves many pools; '
+                    'assume re-entry into this and other pools before the callback sequence completes.', line_of(src, body.start())))
+                break
+    base = {'file': path, 'contract': name, 'findings': F,
+            'declared': [c for c, v in declared.items() if v],
+            'returnsDelta': [k for k, v in ret_delta.items() if v]}
+
+    # Multi-contract files: every additional CONCRETE, QUALIFIED contract in
+    # the file gets its own result row, with findings attributed to the line
+    # span it occupies. Previously only the first declaration was analyzed;
+    # launchpad bundles shipping several hooks per file lost all but one.
+    results = [base]
+    decls = [(m.start(), m.group(2)) for m in
+             re.finditer(r'(abstract\s+)?contract\s+(\w+)', src)
+             if not m.group(1)]
+    for idx, (dpos, dname) in enumerate(decls):
+        if dname == name and dpos == cm.start():
+            continue
+        lowname = dname.lower()
+        if any(k in lowname for k in ('mock', 'test')) or \
+           re.search(r'(Mock|Test|Harness|Example)$', dname) or \
+           re.match(r'(Example|Test|Mock|Sample|Demo|Vulnerable)', dname):
+            continue
+        ic = re.search(rf'contract\s+{dname}\s+is\s+([^;{{]+)\{{', src[cm.start():])
+        inh = ic.group(1) if ic else ''
+        if not (re.search(r'function\s+getHookPermissions\s*\(', src)
+                or re.search(r'\b(BaseHook|IHooks)\b', inh)):
+            continue
+        span_start_line = line_of(src, dpos) + 1
+        span_end = decls[idx + 1][0] if idx + 1 < len(decls) else len(src)
+        span_end_line = line_of(src, span_end)
+        own = None
+        for pm in re.finditer(r'function\s+getHookPermissions\s*\([^)]*\)([^;{]*)\{(.*?)\n\s*\}',
+                              src, re.S):
+            if pm.start() >= dpos:
+                own = pm.group(2)
+                break
+        pd = {c: bool(own and re.search(rf'\b{c}\s*:\s*true', own))
+              for c in CALLBACKS}
+        prd = {k: bool(own and re.search(rf'\b{k}\s*:\s*true', own)) for k in
+               ['beforeSwapReturnsDelta', 'afterSwapReturnsDelta',
+                'afterAddLiquidityReturnsDelta', 'afterRemoveLiquidityReturnsDelta']}
+        span_f = [f for f in F if span_start_line <= f[3] <= span_end_line]
+        results.append({'file': path, 'contract': dname,
+                        'findings': span_f,
+                        'declared': [c for c, v in pd.items() if v],
+                        'returnsDelta': [k for k, v in prd.items() if v]})
+    return results
+
+
+def analyze_file(path):
+    """All concrete qualified hook contracts in a file."""
+    return _analyze_all(path)
+
+
+def analyze(path):
+    """Backward-compatible: first hook contract in the file."""
+    rows = analyze_file(path)
+    return rows[0] if rows else None
+
+
+def main(paths):
+    files = []
+    for p in paths:
+        files += glob.glob(os.path.join(p, '**', '*.sol'), recursive=True) if os.path.isdir(p) else [p]
+    results = []
+    for f in sorted(set(files)):
+        results.extend(analyze_file(f))
+    sev = {'HIGH':0,'MEDIUM':0,'LOW':0,'INFO':0}
+    print(f"HookGuard source scan — {len(results)} hook contracts analysed\n" + "="*74)
+    flagged = 0
+    for r in results:
+        if not r['findings']: continue
+        if any(f[0] in ('HIGH','MEDIUM','LOW') for f in r['findings']): flagged += 1
+        print(f"\n  {r['contract']}   ({os.path.relpath(r['file'])})")
+        if r['declared']: print(f"    permissions: {', '.join(r['declared'])}")
+        for f in r['findings']:
+            s, code, msg = f[0], f[1], f[2]
+            sev[s] += 1
+            print(f"    [{s:<6}] {code}\n             {msg[:150]}")
+    print("\n" + "="*74)
+    print(f"  contracts analysed : {len(results)}")
+    print(f"  contracts flagged  : {flagged}")
+    print(f"  findings           : HIGH {sev['HIGH']}  MEDIUM {sev['MEDIUM']}  LOW {sev['LOW']}  INFO {sev['INFO']}")
+    json.dump(results, open('out/scan.json','w'), indent=1)
+    print("  wrote out/scan.json")
+
+if __name__ == '__main__':
+    main(sys.argv[1:] or ['/tmp/v4t/src'])

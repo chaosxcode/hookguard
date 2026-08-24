@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "hookguard-scanner"
+name = "hookguard"
 version = "0.9.0"
 description = "Risk scanner for Uniswap v4 hooks — CI-native, bytecode-aware, measured against real deployed hooks."
 readme = "README.md"
