@@ -57,6 +57,13 @@ h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;c
 .sub{margin-top:16px;max-width:720px;color:var(--dim);font-size:16px}
 .sub b{color:var(--text);font-weight:550}
 
+
+.cta{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.cta-btn{padding:9px 16px;border-radius:11px;border:1px solid var(--border);
+  color:var(--text);text-decoration:none;font-size:13px;background:var(--surface)}
+.cta-btn:hover{border-color:var(--border2);transform:translateY(-1px)}
+.cta-btn.primary{background:var(--grad);color:#0b0710;font-weight:650;border:none}
+
 /* ---------- kpi ---------- */
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
 .card{position:relative;border-radius:16px;border:1px solid var(--border);
@@ -223,6 +230,12 @@ footer code{color:var(--dim)}
      everything deployed off it, and what bytecode says when source is missing.
      <b>This is not an audit.</b> Every number below is regenerated from public
      chain data and reproducible from a clone.</p>
+
+  <div class="cta">
+    <a class="cta-btn primary" href="https://pypi.org/project/hookguard/">pip install hookguard</a>
+    <a class="cta-btn" href="https://github.com/chaosxcode/hookguard-example">fork the starter</a>
+    <a class="cta-btn" href="https://github.com/chaosxcode/hookguard/issues/2">request a free scan</a>
+  </div>
 
   <div class="kpis">
     <div class="card kpi" style="--kc:rgba(255,0,122,.14)">
