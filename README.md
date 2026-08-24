@@ -37,22 +37,26 @@ jobs:
 Annotations land on the offending lines; a single PR comment summarizes.
 `fail-on: HIGH` by default — heuristics advise, they don't gate.
 
-### Install & scan any repo, right now
+### Scan any repo, right now
+
+No install, no CI needed:
 
 ```bash
-pip install hookguard                      # 0.9.0 live on PyPI
+pip install hookguard
 hookguard scan https://github.com/owner/v4-hook-repo --html report.html
-hookguard scan ./my-hooks --local           # offline, local directory
+hookguard scan ./contracts --local          # offline mode
 ```
 
-Or without installing:
+Or straight from a clone:
 
 ```bash
 python3 src/hookguard.py scan https://github.com/owner/v4-hook-repo --html report.html
 ```
 
-Starting a new hook project? Use [hookguard-example](https://github.com/chaosxcode/hookguard-example)
-— a minimal starter with HookGuard CI preinstalled, scanning clean by design.
+Prefer zero-install? Scan right in the browser — code never leaves your tab:
+<https://chaosxcode.github.io/hookguard/scan.html>
+
+Starting a new hook project? Use [hookguard-example](https://github.com/chaosxcode/hookguard-example) — a minimal starter with HookGuard CI preinstalled, scanning clean by design.
 
 Auto-detects hook directories, prints findings with an itemized risk score,
 and writes a standalone HTML report. `--fail-on HIGH` exits non-zero for
@@ -191,8 +195,8 @@ noise) and reports:
 | `PERMISSIONLESS_BY_DESIGN` | INFO | Same, but stateless and fund-free — usually intentional. |
 | `MISSING_POOLMANAGER_GUARD` | HIGH | A callback with no `onlyPoolManager`-style guard on a contract that doesn't inherit `BaseHook`. |
 | `UPGRADEABLE_HOOK` | HIGH | Address bits encode permissions forever and pools can't detach, but the implementation can be swapped. The upgrade admin is part of the trust boundary. |
-| `DELTA_FLAG_MISMATCH` | MEDIUM | `RETURNS_DELTA` permission declared but no delta constructed. The inverse bricks **every** swap (DoS). |
-| `DELTA_FLAG_UNUSED` | LOW | `afterSwapReturnsDelta` declared but the callback always returns a zero delta — dead weight on the permission surface. |
+| `DELTA_FLAG_MISMATCH` | MEDIUM |
+| `DELTA_FLAG_UNUSED` | LOW | `afterSwapReturnsDelta` declared but the callback always returns a zero delta — dead weight on the permission surface. | `RETURNS_DELTA` permission declared but no delta constructed. The inverse bricks **every** swap (DoS). |
 | `REVERT_DOS_RISK` | MEDIUM | External call in a required callback with no `try/catch`. A paused oracle bricks every pool using the hook — including LP exits. |
 | `UNBOUNDED_DYNAMIC_FEE` | MEDIUM | Dynamic fee with no visible upper bound. |
 | `REENTRANCY_SURFACE` | MEDIUM | Transfer inside a callback with no guard. One hook serves many pools. |
