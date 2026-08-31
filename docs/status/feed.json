@@ -1,99 +1,109 @@
 {
- "generated": "2026-08-24",
+ "generated": "2026-08-31",
  "registry": {
-  "total": 551,
-  "chains": 16,
+  "total": 642,
+  "chains": 18,
   "growthWeek": {
    "from": 486,
-   "to": 551
+   "to": 642
   },
   "audited": 30,
-  "auditedPct": 5.4,
-  "valueMoving": 393,
-  "valueMovingPct": 71.3,
-  "valueMovingNoAudit": 367,
-  "valueMovingNoAuditPct": 66.6,
-  "upgradeable": 21,
-  "verifiedSource": 551,
+  "auditedPct": 4.7,
+  "valueMoving": 470,
+  "valueMovingPct": 73.2,
+  "valueMovingNoAudit": 444,
+  "valueMovingNoAuditPct": 69.2,
+  "upgradeable": 22,
+  "verifiedSource": 642,
   "byChain": {
+   "robinhood": {
+    "hooks": 123,
+    "unaudited": 122,
+    "unauditedPct": 99.2
+   },
    "base": {
-    "hooks": 174,
-    "unaudited": 166,
-    "unauditedPct": 95.4
+    "hooks": 180,
+    "unaudited": 172,
+    "unauditedPct": 95.6
    },
    "ethereum": {
-    "hooks": 177,
-    "unaudited": 168,
-    "unauditedPct": 94.9
-   },
-   "robinhood": {
-    "hooks": 88,
-    "unaudited": 87,
-    "unauditedPct": 98.9
-   },
-   "arbitrum": {
-    "hooks": 22,
-    "unaudited": 20,
-    "unauditedPct": 90.9
-   },
-   "bnb": {
-    "hooks": 22,
-    "unaudited": 17,
-    "unauditedPct": 77.3
-   },
-   "polygon": {
-    "hooks": 11,
-    "unaudited": 9,
-    "unauditedPct": 81.8
-   },
-   "unichain": {
-    "hooks": 22,
-    "unaudited": 21,
+    "hooks": 198,
+    "unaudited": 189,
     "unauditedPct": 95.5
    },
-   "xlayer": {
-    "hooks": 7,
-    "unaudited": 7,
-    "unauditedPct": 100.0
+   "arbitrum": {
+    "hooks": 23,
+    "unaudited": 21,
+    "unauditedPct": 91.3
    },
-   "blast": {
-    "hooks": 1,
-    "unaudited": 1,
-    "unauditedPct": 100.0
+   "bnb": {
+    "hooks": 24,
+    "unaudited": 19,
+    "unauditedPct": 79.2
    },
-   "celo": {
-    "hooks": 1,
-    "unaudited": 1,
-    "unauditedPct": 100.0
-   },
-   "monad": {
-    "hooks": 5,
-    "unaudited": 4,
-    "unauditedPct": 80.0
-   },
-   "optimism": {
+   "polygon": {
     "hooks": 12,
-    "unaudited": 11,
-    "unauditedPct": 91.7
+    "unaudited": 10,
+    "unauditedPct": 83.3
    },
-   "soneium": {
-    "hooks": 1,
-    "unaudited": 1,
-    "unauditedPct": 100.0
+   "unichain": {
+    "hooks": 23,
+    "unaudited": 22,
+    "unauditedPct": 95.7
    },
-   "worldchain": {
-    "hooks": 1,
-    "unaudited": 1,
-    "unauditedPct": 100.0
-   },
-   "zora": {
-    "hooks": 1,
-    "unaudited": 1,
+   "xlayer": {
+    "hooks": 10,
+    "unaudited": 10,
     "unauditedPct": 100.0
    },
    "avalanche": {
-    "hooks": 6,
-    "unaudited": 6,
+    "hooks": 8,
+    "unaudited": 8,
+    "unauditedPct": 100.0
+   },
+   "blast": {
+    "hooks": 2,
+    "unaudited": 2,
+    "unauditedPct": 100.0
+   },
+   "celo": {
+    "hooks": 2,
+    "unaudited": 2,
+    "unauditedPct": 100.0
+   },
+   "monad": {
+    "hooks": 16,
+    "unaudited": 15,
+    "unauditedPct": 93.8
+   },
+   "optimism": {
+    "hooks": 13,
+    "unaudited": 12,
+    "unauditedPct": 92.3
+   },
+   "soneium": {
+    "hooks": 2,
+    "unaudited": 2,
+    "unauditedPct": 100.0
+   },
+   "worldchain": {
+    "hooks": 2,
+    "unaudited": 2,
+    "unauditedPct": 100.0
+   },
+   "zora": {
+    "hooks": 2,
+    "unaudited": 2,
+    "unauditedPct": 100.0
+   },
+   "megaeth": {
+    "hooks": 1,
+    "unaudited": 1,
+    "unauditedPct": 100.0
+   },
+   "tempo": {
+    "hooks": 1,
+    "unaudited": 1,
     "unauditedPct": 100.0
    }
   }
@@ -124,8 +134,8 @@
   "poolsWithHook": 5366,
   "distinctHooks": 1211,
   "registryCoverage": {
-   "now": 19,
-   "pct": 1.6
+   "now": 20,
+   "pct": 1.7
   },
   "census": {
    "multiPoolHooks": 107,
@@ -235,7 +245,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-08-24T09:51:28+00:00",
+  "searchedAt": "2026-08-31T16:52:02+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
