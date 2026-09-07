@@ -1,55 +1,65 @@
 {
- "generated": "2026-08-31",
+ "generated": "2026-09-07",
  "registry": {
-  "total": 642,
-  "chains": 18,
+  "total": 1750,
+  "chains": 20,
   "growthWeek": {
    "from": 486,
-   "to": 642
+   "to": 1750
   },
-  "audited": 30,
-  "auditedPct": 4.7,
-  "valueMoving": 470,
-  "valueMovingPct": 73.2,
-  "valueMovingNoAudit": 444,
-  "valueMovingNoAuditPct": 69.2,
-  "upgradeable": 22,
-  "verifiedSource": 642,
+  "audited": 31,
+  "auditedPct": 1.8,
+  "valueMoving": 1075,
+  "valueMovingPct": 61.4,
+  "valueMovingNoAudit": 1049,
+  "valueMovingNoAuditPct": 59.9,
+  "upgradeable": 45,
+  "verifiedSource": 1750,
   "byChain": {
-   "robinhood": {
-    "hooks": 123,
-    "unaudited": 122,
-    "unauditedPct": 99.2
-   },
    "base": {
-    "hooks": 180,
-    "unaudited": 172,
-    "unauditedPct": 95.6
+    "hooks": 443,
+    "unaudited": 435,
+    "unauditedPct": 98.2
+   },
+   "ink": {
+    "hooks": 14,
+    "unaudited": 14,
+    "unauditedPct": 100.0
+   },
+   "robinhood": {
+    "hooks": 500,
+    "unaudited": 498,
+    "unauditedPct": 99.6
    },
    "ethereum": {
-    "hooks": 198,
-    "unaudited": 189,
-    "unauditedPct": 95.5
+    "hooks": 383,
+    "unaudited": 374,
+    "unauditedPct": 97.7
    },
    "arbitrum": {
-    "hooks": 23,
-    "unaudited": 21,
-    "unauditedPct": 91.3
+    "hooks": 33,
+    "unaudited": 31,
+    "unauditedPct": 93.9
    },
    "bnb": {
-    "hooks": 24,
-    "unaudited": 19,
-    "unauditedPct": 79.2
+    "hooks": 99,
+    "unaudited": 94,
+    "unauditedPct": 94.9
+   },
+   "monad": {
+    "hooks": 38,
+    "unaudited": 37,
+    "unauditedPct": 97.4
    },
    "polygon": {
-    "hooks": 12,
-    "unaudited": 10,
-    "unauditedPct": 83.3
+    "hooks": 53,
+    "unaudited": 51,
+    "unauditedPct": 96.2
    },
    "unichain": {
-    "hooks": 23,
-    "unaudited": 22,
-    "unauditedPct": 95.7
+    "hooks": 28,
+    "unaudited": 27,
+    "unauditedPct": 96.4
    },
    "xlayer": {
     "hooks": 10,
@@ -57,38 +67,38 @@
     "unauditedPct": 100.0
    },
    "avalanche": {
-    "hooks": 8,
-    "unaudited": 8,
+    "hooks": 65,
+    "unaudited": 65,
     "unauditedPct": 100.0
    },
    "blast": {
-    "hooks": 2,
-    "unaudited": 2,
+    "hooks": 5,
+    "unaudited": 5,
     "unauditedPct": 100.0
    },
    "celo": {
-    "hooks": 2,
-    "unaudited": 2,
+    "hooks": 4,
+    "unaudited": 4,
     "unauditedPct": 100.0
    },
-   "monad": {
-    "hooks": 16,
-    "unaudited": 15,
-    "unauditedPct": 93.8
+   "megaeth": {
+    "hooks": 4,
+    "unaudited": 4,
+    "unauditedPct": 100.0
    },
    "optimism": {
-    "hooks": 13,
-    "unaudited": 12,
-    "unauditedPct": 92.3
+    "hooks": 37,
+    "unaudited": 36,
+    "unauditedPct": 97.3
    },
    "soneium": {
-    "hooks": 2,
-    "unaudited": 2,
+    "hooks": 11,
+    "unaudited": 11,
     "unauditedPct": 100.0
    },
    "worldchain": {
-    "hooks": 2,
-    "unaudited": 2,
+    "hooks": 18,
+    "unaudited": 18,
     "unauditedPct": 100.0
    },
    "zora": {
@@ -96,14 +106,14 @@
     "unaudited": 2,
     "unauditedPct": 100.0
    },
-   "megaeth": {
+   "tempo": {
     "hooks": 1,
     "unaudited": 1,
     "unauditedPct": 100.0
    },
-   "tempo": {
-    "hooks": 1,
-    "unaudited": 1,
+   "linea": {
+    "hooks": 2,
+    "unaudited": 2,
     "unauditedPct": 100.0
    }
   }
@@ -134,8 +144,8 @@
   "poolsWithHook": 5366,
   "distinctHooks": 1211,
   "registryCoverage": {
-   "now": 20,
-   "pct": 1.7
+   "now": 25,
+   "pct": 2.1
   },
   "census": {
    "multiPoolHooks": 107,
@@ -245,7 +255,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-08-31T16:52:02+00:00",
+  "searchedAt": "2026-09-07T14:55:01+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
@@ -6643,15 +6653,15 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 8,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -8315,7 +8325,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 33,
+   "score": 35,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -8326,10 +8336,10 @@
      "detail": "nothing at source level can be checked; opacity priced, not guilt"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },

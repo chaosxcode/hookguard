@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-31",
+ "generated": "2026-09-07",
  "chain": "unichain",
  "address": "0x000052423c1db6b7ff8641b85a7eefc7b2791888",
  "name": "BunniHook",
@@ -7,15 +7,15 @@
  "high": 0,
  "advisory": false,
  "source": true,
- "score": 8,
+ "score": 10,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
   {
-   "key": "unregistered",
-   "label": "absent from the hooklist registry",
-   "delta": 8,
-   "detail": "opt-in transparency signal not exercised"
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
   }
  ]
 }

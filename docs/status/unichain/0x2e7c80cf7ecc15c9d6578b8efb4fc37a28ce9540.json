@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-31",
+ "generated": "2026-09-07",
  "chain": "unichain",
  "address": "0x2e7c80cf7ecc15c9d6578b8efb4fc37a28ce9540",
  "name": "",
@@ -12,7 +12,7 @@
  "findings": null,
  "high": null,
  "advisory": false,
- "score": 33,
+ "score": 35,
  "band": "MODERATE",
  "confidence": "medium",
  "factors": [
@@ -23,10 +23,10 @@
    "detail": "nothing at source level can be checked; opacity priced, not guilt"
   },
   {
-   "key": "unregistered",
-   "label": "absent from the hooklist registry",
-   "delta": 8,
-   "detail": "opt-in transparency signal not exercised"
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
   }
  ]
 }
