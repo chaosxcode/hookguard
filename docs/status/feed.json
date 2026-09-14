@@ -1,45 +1,45 @@
 {
- "generated": "2026-09-07",
+ "generated": "2026-09-14",
  "registry": {
-  "total": 1750,
+  "total": 2004,
   "chains": 20,
   "growthWeek": {
    "from": 486,
-   "to": 1750
+   "to": 2004
   },
-  "audited": 31,
-  "auditedPct": 1.8,
-  "valueMoving": 1075,
-  "valueMovingPct": 61.4,
-  "valueMovingNoAudit": 1049,
-  "valueMovingNoAuditPct": 59.9,
-  "upgradeable": 45,
-  "verifiedSource": 1750,
+  "audited": 44,
+  "auditedPct": 2.2,
+  "valueMoving": 1274,
+  "valueMovingPct": 63.6,
+  "valueMovingNoAudit": 1240,
+  "valueMovingNoAuditPct": 61.9,
+  "upgradeable": 52,
+  "verifiedSource": 2004,
   "byChain": {
    "base": {
-    "hooks": 443,
-    "unaudited": 435,
-    "unauditedPct": 98.2
+    "hooks": 448,
+    "unaudited": 439,
+    "unauditedPct": 98.0
    },
    "ink": {
-    "hooks": 14,
-    "unaudited": 14,
+    "hooks": 17,
+    "unaudited": 17,
     "unauditedPct": 100.0
    },
    "robinhood": {
-    "hooks": 500,
-    "unaudited": 498,
-    "unauditedPct": 99.6
+    "hooks": 726,
+    "unaudited": 722,
+    "unauditedPct": 99.4
    },
    "ethereum": {
-    "hooks": 383,
-    "unaudited": 374,
-    "unauditedPct": 97.7
+    "hooks": 396,
+    "unaudited": 380,
+    "unauditedPct": 96.0
    },
    "arbitrum": {
-    "hooks": 33,
-    "unaudited": 31,
-    "unauditedPct": 93.9
+    "hooks": 36,
+    "unaudited": 33,
+    "unauditedPct": 91.7
    },
    "bnb": {
     "hooks": 99,
@@ -57,9 +57,9 @@
     "unauditedPct": 96.2
    },
    "unichain": {
-    "hooks": 28,
-    "unaudited": 27,
-    "unauditedPct": 96.4
+    "hooks": 30,
+    "unaudited": 28,
+    "unauditedPct": 93.3
    },
    "xlayer": {
     "hooks": 10,
@@ -67,8 +67,8 @@
     "unauditedPct": 100.0
    },
    "avalanche": {
-    "hooks": 65,
-    "unaudited": 65,
+    "hooks": 67,
+    "unaudited": 67,
     "unauditedPct": 100.0
    },
    "blast": {
@@ -88,8 +88,8 @@
    },
    "optimism": {
     "hooks": 37,
-    "unaudited": 36,
-    "unauditedPct": 97.3
+    "unaudited": 35,
+    "unauditedPct": 94.6
    },
    "soneium": {
     "hooks": 11,
@@ -255,7 +255,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-09-07T14:55:01+00:00",
+  "searchedAt": "2026-09-14T15:45:58+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
