@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-14",
+ "generated": "2026-09-21",
  "chain": "unichain",
  "address": "0x77a19c56605a185002da73c6ff92b61224356a80",
  "name": "YieldHarvestingHook",
@@ -7,15 +7,15 @@
  "high": 0,
  "advisory": false,
  "source": true,
- "score": 8,
+ "score": 10,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
   {
-   "key": "unregistered",
-   "label": "absent from the hooklist registry",
-   "delta": 8,
-   "detail": "opt-in transparency signal not exercised"
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
   }
  ]
 }

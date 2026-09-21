@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-14",
+ "generated": "2026-09-21",
  "chain": "unichain",
  "address": "0xcab5a0b38b36bacd781a6ab9cc931fc6560ac0c0",
  "name": "LimitOrderHook",
@@ -7,15 +7,15 @@
  "high": 0,
  "advisory": false,
  "source": true,
- "score": 16,
+ "score": 18,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
   {
-   "key": "unregistered",
-   "label": "absent from the hooklist registry",
-   "delta": 8,
-   "detail": "opt-in transparency signal not exercised"
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
   },
   {
    "key": "medium_finding",

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-14",
+ "generated": "2026-09-21",
  "chain": "unichain",
  "address": "0x8b51d5831fe98a3eb9e4e28020ddae06da0c0444",
  "name": "UniMemeHook",
@@ -7,15 +7,15 @@
  "high": 0,
  "advisory": true,
  "source": true,
- "score": 15,
+ "score": 17,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
   {
-   "key": "unregistered",
-   "label": "absent from the hooklist registry",
-   "delta": 8,
-   "detail": "opt-in transparency signal not exercised"
+   "key": "no_audit_recorded",
+   "label": "no audit URL recorded",
+   "delta": 10,
+   "detail": "means unknown, not audited-absent"
   },
   {
    "key": "medium_finding",

@@ -1,50 +1,65 @@
 {
- "generated": "2026-09-14",
+ "generated": "2026-09-21",
  "registry": {
-  "total": 2004,
-  "chains": 20,
+  "total": 4961,
+  "chains": 21,
   "growthWeek": {
    "from": 486,
-   "to": 2004
+   "to": 4961
   },
-  "audited": 44,
-  "auditedPct": 2.2,
-  "valueMoving": 1274,
-  "valueMovingPct": 63.6,
-  "valueMovingNoAudit": 1240,
-  "valueMovingNoAuditPct": 61.9,
-  "upgradeable": 52,
-  "verifiedSource": 2004,
+  "audited": 54,
+  "auditedPct": 1.1,
+  "valueMoving": 3726,
+  "valueMovingPct": 75.1,
+  "valueMovingNoAudit": 3690,
+  "valueMovingNoAuditPct": 74.4,
+  "upgradeable": 99,
+  "verifiedSource": 4961,
   "byChain": {
    "base": {
-    "hooks": 448,
-    "unaudited": 439,
-    "unauditedPct": 98.0
+    "hooks": 1154,
+    "unaudited": 1144,
+    "unauditedPct": 99.1
+   },
+   "bnb": {
+    "hooks": 267,
+    "unaudited": 261,
+    "unauditedPct": 97.8
    },
    "ink": {
-    "hooks": 17,
-    "unaudited": 17,
+    "hooks": 41,
+    "unaudited": 41,
     "unauditedPct": 100.0
    },
    "robinhood": {
-    "hooks": 726,
-    "unaudited": 722,
-    "unauditedPct": 99.4
+    "hooks": 1164,
+    "unaudited": 1160,
+    "unauditedPct": 99.7
    },
    "ethereum": {
-    "hooks": 396,
-    "unaudited": 380,
-    "unauditedPct": 96.0
+    "hooks": 1126,
+    "unaudited": 1109,
+    "unauditedPct": 98.5
+   },
+   "xlayer": {
+    "hooks": 31,
+    "unaudited": 30,
+    "unauditedPct": 96.8
+   },
+   "arc": {
+    "hooks": 11,
+    "unaudited": 9,
+    "unauditedPct": 81.8
+   },
+   "unichain": {
+    "hooks": 697,
+    "unaudited": 694,
+    "unauditedPct": 99.6
    },
    "arbitrum": {
-    "hooks": 36,
-    "unaudited": 33,
-    "unauditedPct": 91.7
-   },
-   "bnb": {
-    "hooks": 99,
-    "unaudited": 94,
-    "unauditedPct": 94.9
+    "hooks": 203,
+    "unaudited": 199,
+    "unauditedPct": 98.0
    },
    "monad": {
     "hooks": 38,
@@ -52,23 +67,13 @@
     "unauditedPct": 97.4
    },
    "polygon": {
-    "hooks": 53,
-    "unaudited": 51,
-    "unauditedPct": 96.2
-   },
-   "unichain": {
-    "hooks": 30,
-    "unaudited": 28,
-    "unauditedPct": 93.3
-   },
-   "xlayer": {
-    "hooks": 10,
-    "unaudited": 10,
-    "unauditedPct": 100.0
+    "hooks": 59,
+    "unaudited": 56,
+    "unauditedPct": 94.9
    },
    "avalanche": {
-    "hooks": 67,
-    "unaudited": 67,
+    "hooks": 69,
+    "unaudited": 69,
     "unauditedPct": 100.0
    },
    "blast": {
@@ -82,38 +87,38 @@
     "unauditedPct": 100.0
    },
    "megaeth": {
+    "hooks": 6,
+    "unaudited": 6,
+    "unauditedPct": 100.0
+   },
+   "optimism": {
+    "hooks": 39,
+    "unaudited": 37,
+    "unauditedPct": 94.9
+   },
+   "soneium": {
+    "hooks": 12,
+    "unaudited": 11,
+    "unauditedPct": 91.7
+   },
+   "tempo": {
     "hooks": 4,
     "unaudited": 4,
     "unauditedPct": 100.0
    },
-   "optimism": {
-    "hooks": 37,
-    "unaudited": 35,
-    "unauditedPct": 94.6
-   },
-   "soneium": {
-    "hooks": 11,
-    "unaudited": 11,
-    "unauditedPct": 100.0
-   },
    "worldchain": {
-    "hooks": 18,
-    "unaudited": 18,
+    "hooks": 21,
+    "unaudited": 21,
     "unauditedPct": 100.0
    },
    "zora": {
-    "hooks": 2,
-    "unaudited": 2,
-    "unauditedPct": 100.0
-   },
-   "tempo": {
-    "hooks": 1,
-    "unaudited": 1,
+    "hooks": 7,
+    "unaudited": 7,
     "unauditedPct": 100.0
    },
    "linea": {
-    "hooks": 2,
-    "unaudited": 2,
+    "hooks": 3,
+    "unaudited": 3,
     "unauditedPct": 100.0
    }
   }
@@ -144,8 +149,8 @@
   "poolsWithHook": 5366,
   "distinctHooks": 1211,
   "registryCoverage": {
-   "now": 25,
-   "pct": 2.1
+   "now": 689,
+   "pct": 56.9
   },
   "census": {
    "multiPoolHooks": 107,
@@ -255,7 +260,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-09-14T15:45:58+00:00",
+  "searchedAt": "2026-09-21T15:45:14+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
@@ -6673,15 +6678,15 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 8,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -6883,15 +6888,15 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 8,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -6903,15 +6908,15 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 8,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -6923,15 +6928,15 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 8,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -6989,15 +6994,15 @@
    "high": 0,
    "advisory": true,
    "source": true,
-   "score": 15,
+   "score": 17,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     },
     {
      "key": "medium_finding",
@@ -7015,15 +7020,15 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 8,
+   "score": 10,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -7061,15 +7066,15 @@
    "high": 0,
    "advisory": true,
    "source": true,
-   "score": 15,
+   "score": 17,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     },
     {
      "key": "medium_finding",
@@ -7185,15 +7190,15 @@
    "high": 0,
    "advisory": true,
    "source": true,
-   "score": 15,
+   "score": 17,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     },
     {
      "key": "medium_finding",
@@ -7211,15 +7216,15 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 16,
+   "score": 18,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     },
     {
      "key": "medium_finding",
@@ -7315,15 +7320,15 @@
    "high": 0,
    "advisory": true,
    "source": true,
-   "score": 15,
+   "score": 17,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     },
     {
      "key": "medium_finding",
@@ -8640,7 +8645,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 33,
+   "score": 35,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -8651,10 +8656,10 @@
      "detail": "nothing at source level can be checked; opacity priced, not guilt"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -8949,7 +8954,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 45,
+   "score": 47,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -8966,10 +8971,10 @@
      "detail": "target appears readable"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -9172,7 +9177,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 33,
+   "score": 35,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -9183,10 +9188,10 @@
      "detail": "nothing at source level can be checked; opacity priced, not guilt"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -10137,7 +10142,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 33,
+   "score": 35,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -10148,10 +10153,10 @@
      "detail": "nothing at source level can be checked; opacity priced, not guilt"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -10168,7 +10173,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 33,
+   "score": 35,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -10179,10 +10184,10 @@
      "detail": "nothing at source level can be checked; opacity priced, not guilt"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -10261,7 +10266,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 33,
+   "score": 35,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -10272,10 +10277,10 @@
      "detail": "nothing at source level can be checked; opacity priced, not guilt"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -10323,7 +10328,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 33,
+   "score": 35,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -10334,10 +10339,10 @@
      "detail": "nothing at source level can be checked; opacity priced, not guilt"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
@@ -10354,7 +10359,7 @@
    "findings": null,
    "high": null,
    "advisory": false,
-   "score": 33,
+   "score": 35,
    "band": "MODERATE",
    "confidence": "medium",
    "factors": [
@@ -10365,10 +10370,10 @@
      "detail": "nothing at source level can be checked; opacity priced, not guilt"
     },
     {
-     "key": "unregistered",
-     "label": "absent from the hooklist registry",
-     "delta": 8,
-     "detail": "opt-in transparency signal not exercised"
+     "key": "no_audit_recorded",
+     "label": "no audit URL recorded",
+     "delta": 10,
+     "detail": "means unknown, not audited-absent"
     }
    ]
   },
