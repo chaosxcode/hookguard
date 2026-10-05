@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-28",
+ "generated": "2026-10-05",
  "chain": "unichain",
  "address": "0x54bd666ea7fd8d5404c0593eab3dcf9b6e2a3ac4",
  "name": "BackGeoOracle",
@@ -7,15 +7,8 @@
  "high": 0,
  "advisory": false,
  "source": true,
- "score": 10,
+ "score": 0,
  "band": "LOW",
  "confidence": "medium",
- "factors": [
-  {
-   "key": "no_audit_recorded",
-   "label": "no audit URL recorded",
-   "delta": 10,
-   "detail": "means unknown, not audited-absent"
-  }
- ]
+ "factors": []
 }

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-28",
+ "generated": "2026-10-05",
  "chain": "polygon",
  "address": "0x15cd9520d0faf71c938db4426f8c58b5cbaa9acc",
  "name": "Spot",
@@ -7,16 +7,10 @@
  "high": 0,
  "advisory": true,
  "source": true,
- "score": 17,
+ "score": 7,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
-  {
-   "key": "no_audit_recorded",
-   "label": "no audit URL recorded",
-   "delta": 10,
-   "detail": "means unknown, not audited-absent"
-  },
   {
    "key": "medium_finding",
    "label": "1\u00d7 MEDIUM finding(s)",

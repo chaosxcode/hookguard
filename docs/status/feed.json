@@ -1,30 +1,30 @@
 {
- "generated": "2026-09-28",
+ "generated": "2026-10-05",
  "registry": {
-  "total": 4961,
+  "total": 4942,
   "chains": 21,
   "growthWeek": {
    "from": 486,
-   "to": 4961
+   "to": 4942
   },
   "audited": 54,
   "auditedPct": 1.1,
-  "valueMoving": 3726,
-  "valueMovingPct": 75.1,
-  "valueMovingNoAudit": 3690,
-  "valueMovingNoAuditPct": 74.4,
-  "upgradeable": 99,
-  "verifiedSource": 4961,
+  "valueMoving": 3706,
+  "valueMovingPct": 75.0,
+  "valueMovingNoAudit": 3670,
+  "valueMovingNoAuditPct": 74.3,
+  "upgradeable": 98,
+  "verifiedSource": 4942,
   "byChain": {
    "base": {
-    "hooks": 1154,
-    "unaudited": 1144,
+    "hooks": 1135,
+    "unaudited": 1125,
     "unauditedPct": 99.1
    },
    "bnb": {
-    "hooks": 267,
-    "unaudited": 261,
-    "unauditedPct": 97.8
+    "hooks": 266,
+    "unaudited": 260,
+    "unauditedPct": 97.7
    },
    "ink": {
     "hooks": 41,
@@ -32,13 +32,13 @@
     "unauditedPct": 100.0
    },
    "robinhood": {
-    "hooks": 1164,
-    "unaudited": 1160,
+    "hooks": 1173,
+    "unaudited": 1169,
     "unauditedPct": 99.7
    },
    "ethereum": {
-    "hooks": 1126,
-    "unaudited": 1109,
+    "hooks": 1119,
+    "unaudited": 1102,
     "unauditedPct": 98.5
    },
    "xlayer": {
@@ -47,9 +47,9 @@
     "unauditedPct": 96.8
    },
    "arc": {
-    "hooks": 11,
-    "unaudited": 9,
-    "unauditedPct": 81.8
+    "hooks": 12,
+    "unaudited": 10,
+    "unauditedPct": 83.3
    },
    "unichain": {
     "hooks": 697,
@@ -62,14 +62,9 @@
     "unauditedPct": 98.0
    },
    "monad": {
-    "hooks": 38,
-    "unaudited": 37,
-    "unauditedPct": 97.4
-   },
-   "polygon": {
-    "hooks": 59,
-    "unaudited": 56,
-    "unauditedPct": 94.9
+    "hooks": 37,
+    "unaudited": 36,
+    "unauditedPct": 97.3
    },
    "avalanche": {
     "hooks": 69,
@@ -95,6 +90,11 @@
     "hooks": 39,
     "unaudited": 37,
     "unauditedPct": 94.9
+   },
+   "polygon": {
+    "hooks": 58,
+    "unaudited": 55,
+    "unauditedPct": 94.8
    },
    "soneium": {
     "hooks": 12,
@@ -260,7 +260,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-09-28T17:28:24+00:00",
+  "searchedAt": "2026-10-05T18:07:45+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
@@ -1191,17 +1191,10 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 10,
+   "score": 0,
    "band": "LOW",
    "confidence": "medium",
-   "factors": [
-    {
-     "key": "no_audit_recorded",
-     "label": "no audit URL recorded",
-     "delta": 10,
-     "detail": "means unknown, not audited-absent"
-    }
-   ]
+   "factors": []
   },
   {
    "chain": "base",
@@ -1507,17 +1500,10 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 10,
+   "score": 0,
    "band": "LOW",
    "confidence": "medium",
-   "factors": [
-    {
-     "key": "no_audit_recorded",
-     "label": "no audit URL recorded",
-     "delta": 10,
-     "detail": "means unknown, not audited-absent"
-    }
-   ]
+   "factors": []
   },
   {
    "chain": "base",
@@ -2790,17 +2776,10 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 10,
+   "score": 0,
    "band": "LOW",
    "confidence": "medium",
-   "factors": [
-    {
-     "key": "no_audit_recorded",
-     "label": "no audit URL recorded",
-     "delta": 10,
-     "detail": "means unknown, not audited-absent"
-    }
-   ]
+   "factors": []
   },
   {
    "chain": "base",
@@ -2996,17 +2975,10 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 10,
+   "score": 0,
    "band": "LOW",
    "confidence": "medium",
-   "factors": [
-    {
-     "key": "no_audit_recorded",
-     "label": "no audit URL recorded",
-     "delta": 10,
-     "detail": "means unknown, not audited-absent"
-    }
-   ]
+   "factors": []
   },
   {
    "chain": "bnb",
@@ -5457,16 +5429,10 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 11,
+   "score": 1,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
-    {
-     "key": "no_audit_recorded",
-     "label": "no audit URL recorded",
-     "delta": 10,
-     "detail": "means unknown, not audited-absent"
-    },
     {
      "key": "info_finding",
      "label": "1\u00d7 informational",
@@ -5877,17 +5843,10 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 10,
+   "score": 0,
    "band": "LOW",
    "confidence": "medium",
-   "factors": [
-    {
-     "key": "no_audit_recorded",
-     "label": "no audit URL recorded",
-     "delta": 10,
-     "detail": "means unknown, not audited-absent"
-    }
-   ]
+   "factors": []
   },
   {
    "chain": "optimism",
@@ -6021,16 +5980,10 @@
    "high": 0,
    "advisory": true,
    "source": true,
-   "score": 17,
+   "score": 7,
    "band": "LOW",
    "confidence": "medium",
    "factors": [
-    {
-     "key": "no_audit_recorded",
-     "label": "no audit URL recorded",
-     "delta": 10,
-     "detail": "means unknown, not audited-absent"
-    },
     {
      "key": "medium_finding",
      "label": "1\u00d7 MEDIUM finding(s)",
@@ -6822,17 +6775,10 @@
    "high": 0,
    "advisory": false,
    "source": true,
-   "score": 10,
+   "score": 0,
    "band": "LOW",
    "confidence": "medium",
-   "factors": [
-    {
-     "key": "no_audit_recorded",
-     "label": "no audit URL recorded",
-     "delta": 10,
-     "detail": "means unknown, not audited-absent"
-    }
-   ]
+   "factors": []
   },
   {
    "chain": "unichain",

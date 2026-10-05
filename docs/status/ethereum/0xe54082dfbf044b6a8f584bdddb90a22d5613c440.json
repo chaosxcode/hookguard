@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-28",
+ "generated": "2026-10-05",
  "chain": "ethereum",
  "address": "0xe54082dfbf044b6a8f584bdddb90a22d5613c440",
  "name": "UpegHook",
@@ -7,16 +7,10 @@
  "high": 0,
  "advisory": false,
  "source": true,
- "score": 11,
+ "score": 1,
  "band": "LOW",
  "confidence": "medium",
  "factors": [
-  {
-   "key": "no_audit_recorded",
-   "label": "no audit URL recorded",
-   "delta": 10,
-   "detail": "means unknown, not audited-absent"
-  },
   {
    "key": "info_finding",
    "label": "1\u00d7 informational",

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-28",
+ "generated": "2026-10-05",
  "chain": "base",
  "address": "0xf6d0a13609bb5779bc5d639f2ba3bfda83d4d0c0",
  "name": "ZoraV4CoinHook",
@@ -7,15 +7,8 @@
  "high": 0,
  "advisory": false,
  "source": true,
- "score": 10,
+ "score": 0,
  "band": "LOW",
  "confidence": "medium",
- "factors": [
-  {
-   "key": "no_audit_recorded",
-   "label": "no audit URL recorded",
-   "delta": 10,
-   "detail": "means unknown, not audited-absent"
-  }
- ]
+ "factors": []
 }
