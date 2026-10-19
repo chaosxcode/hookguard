@@ -1,35 +1,35 @@
 {
- "generated": "2026-10-12",
+ "generated": "2026-10-19",
  "registry": {
-  "total": 4965,
+  "total": 4979,
   "chains": 21,
   "growthWeek": {
    "from": 486,
-   "to": 4965
+   "to": 4979
   },
   "audited": 55,
   "auditedPct": 1.1,
-  "valueMoving": 3723,
+  "valueMoving": 3734,
   "valueMovingPct": 75.0,
-  "valueMovingNoAudit": 3686,
-  "valueMovingNoAuditPct": 74.2,
-  "upgradeable": 100,
-  "verifiedSource": 4965,
+  "valueMovingNoAudit": 3697,
+  "valueMovingNoAuditPct": 74.3,
+  "upgradeable": 101,
+  "verifiedSource": 4979,
   "byChain": {
    "base": {
-    "hooks": 1139,
-    "unaudited": 1129,
+    "hooks": 1142,
+    "unaudited": 1132,
     "unauditedPct": 99.1
    },
    "ethereum": {
-    "hooks": 1122,
-    "unaudited": 1105,
+    "hooks": 1127,
+    "unaudited": 1110,
     "unauditedPct": 98.5
    },
    "bnb": {
-    "hooks": 266,
-    "unaudited": 260,
-    "unauditedPct": 97.7
+    "hooks": 268,
+    "unaudited": 262,
+    "unauditedPct": 97.8
    },
    "ink": {
     "hooks": 41,
@@ -37,8 +37,8 @@
     "unauditedPct": 100.0
    },
    "robinhood": {
-    "hooks": 1187,
-    "unaudited": 1182,
+    "hooks": 1191,
+    "unaudited": 1186,
     "unauditedPct": 99.6
    },
    "xlayer": {
@@ -260,7 +260,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-10-12T18:45:19+00:00",
+  "searchedAt": "2026-10-19T16:18:07+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
