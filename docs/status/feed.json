@@ -1,34 +1,34 @@
 {
- "generated": "2026-10-19",
+ "generated": "2026-10-26",
  "registry": {
-  "total": 4979,
+  "total": 4996,
   "chains": 21,
   "growthWeek": {
    "from": 486,
-   "to": 4979
+   "to": 4996
   },
   "audited": 55,
   "auditedPct": 1.1,
-  "valueMoving": 3734,
+  "valueMoving": 3747,
   "valueMovingPct": 75.0,
-  "valueMovingNoAudit": 3697,
+  "valueMovingNoAudit": 3710,
   "valueMovingNoAuditPct": 74.3,
-  "upgradeable": 101,
-  "verifiedSource": 4979,
+  "upgradeable": 102,
+  "verifiedSource": 4996,
   "byChain": {
    "base": {
-    "hooks": 1142,
-    "unaudited": 1132,
+    "hooks": 1145,
+    "unaudited": 1135,
     "unauditedPct": 99.1
    },
    "ethereum": {
-    "hooks": 1127,
-    "unaudited": 1110,
+    "hooks": 1129,
+    "unaudited": 1112,
     "unauditedPct": 98.5
    },
    "bnb": {
-    "hooks": 268,
-    "unaudited": 262,
+    "hooks": 269,
+    "unaudited": 263,
     "unauditedPct": 97.8
    },
    "ink": {
@@ -37,24 +37,29 @@
     "unauditedPct": 100.0
    },
    "robinhood": {
-    "hooks": 1191,
-    "unaudited": 1186,
+    "hooks": 1196,
+    "unaudited": 1191,
     "unauditedPct": 99.6
    },
    "xlayer": {
-    "hooks": 31,
-    "unaudited": 30,
-    "unauditedPct": 96.8
+    "hooks": 32,
+    "unaudited": 31,
+    "unauditedPct": 96.9
    },
    "arc": {
-    "hooks": 12,
-    "unaudited": 10,
-    "unauditedPct": 83.3
+    "hooks": 13,
+    "unaudited": 11,
+    "unauditedPct": 84.6
    },
    "unichain": {
-    "hooks": 697,
-    "unaudited": 694,
+    "hooks": 698,
+    "unaudited": 695,
     "unauditedPct": 99.6
+   },
+   "avalanche": {
+    "hooks": 72,
+    "unaudited": 72,
+    "unauditedPct": 100.0
    },
    "arbitrum": {
     "hooks": 204,
@@ -65,11 +70,6 @@
     "hooks": 38,
     "unaudited": 37,
     "unauditedPct": 97.4
-   },
-   "avalanche": {
-    "hooks": 69,
-    "unaudited": 69,
-    "unauditedPct": 100.0
    },
    "blast": {
     "hooks": 5,
@@ -260,7 +260,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-10-19T16:18:07+00:00",
+  "searchedAt": "2026-10-26T15:57:35+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
