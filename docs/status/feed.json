@@ -1,44 +1,44 @@
 {
- "generated": "2026-11-16",
+ "generated": "2026-11-23",
  "registry": {
-  "total": 5248,
+  "total": 5271,
   "chains": 21,
   "growthWeek": {
    "from": 486,
-   "to": 5248
+   "to": 5271
   },
-  "audited": 56,
+  "audited": 57,
   "auditedPct": 1.1,
-  "valueMoving": 3947,
-  "valueMovingPct": 75.2,
-  "valueMovingNoAudit": 3909,
+  "valueMoving": 3968,
+  "valueMovingPct": 75.3,
+  "valueMovingNoAudit": 3929,
   "valueMovingNoAuditPct": 74.5,
   "upgradeable": 105,
-  "verifiedSource": 5245,
+  "verifiedSource": 5268,
   "byChain": {
    "base": {
-    "hooks": 1191,
-    "unaudited": 1181,
-    "unauditedPct": 99.2
+    "hooks": 1200,
+    "unaudited": 1189,
+    "unauditedPct": 99.1
    },
    "ethereum": {
-    "hooks": 1169,
-    "unaudited": 1152,
+    "hooks": 1172,
+    "unaudited": 1155,
     "unauditedPct": 98.5
    },
    "bnb": {
-    "hooks": 276,
-    "unaudited": 270,
-    "unauditedPct": 97.8
+    "hooks": 280,
+    "unaudited": 274,
+    "unauditedPct": 97.9
    },
    "ink": {
-    "hooks": 43,
-    "unaudited": 43,
+    "hooks": 45,
+    "unaudited": 45,
     "unauditedPct": 100.0
    },
    "robinhood": {
-    "hooks": 1318,
-    "unaudited": 1313,
+    "hooks": 1322,
+    "unaudited": 1317,
     "unauditedPct": 99.6
    },
    "xlayer": {
@@ -52,8 +52,8 @@
     "unauditedPct": 92.9
    },
    "unichain": {
-    "hooks": 703,
-    "unaudited": 700,
+    "hooks": 704,
+    "unaudited": 701,
     "unauditedPct": 99.6
    },
    "avalanche": {
@@ -260,7 +260,7 @@
   "label": "external installs",
   "message": "0 of 5",
   "color": "inactive",
-  "searchedAt": "2026-11-16T19:23:51+00:00",
+  "searchedAt": "2026-11-23T20:58:41+00:00",
   "goal": 5,
   "externalInstalls": 0,
   "ownReferences": 0,
